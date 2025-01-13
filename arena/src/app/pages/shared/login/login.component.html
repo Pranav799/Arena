@@ -1,0 +1,53 @@
+<section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex md:h-screen">
+        <!-- Left Div: This will take 50% space and align content to the center -->
+        <div class="flex-1 flex items-center justify-center bg-white">
+            
+        </div>
+
+        <!-- Right Div: This will take 50% space and contain the login form -->
+        <div class="flex-1 flex items-center justify-center bg-white dark:bg-gray-800">
+            <div class="w-full max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 min-h-[500px] flex flex-col justify-between">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-purple md:text-2xl dark:text-white mb-6">
+                   <p class="text-purple-800">Sign in to your account</p> 
+                </h1>
+            
+                <form class="space-y-4 flex-grow" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                        <input type="email" 
+                               name="email" 
+                               id="email" 
+                               [(ngModel)]="email"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                               placeholder="enter your email" required="true">
+                    </div>
+            
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="enter your password " class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="true">
+                    </div>
+            
+                    <!-- Increased padding and ensured enough space for the button -->
+                    <div>
+                        <button 
+                            type="submit" 
+                            class="w-full text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-12">
+                            Sign in
+                        </button>
+                    </div> 
+                    
+                    <div *ngIf="errorMessage == 'le'" class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                        <span class="font-medium">Warning alert!</span> Enter a valid email id and password 
+                    </div>
+
+                    <div *ngIf="errorMessage == 'wp'" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">Alert!</span> Password enterd is incorrect
+                      </div> 
+                    
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</section>

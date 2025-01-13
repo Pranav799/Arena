@@ -1,0 +1,40 @@
+{
+  "user": [
+    {
+      "userID": 1,
+      "userName": "Pranav",
+      "userType": "admin",
+      "email": "23mcaa30@kristujayanti.com",
+      "password": "password",
+      "type":"admin"
+    }
+  ],
+  "venues": [
+    {
+      "id": "d60c",
+      "venueId": "001",
+      "venueName": "Auditorium A1",
+      "block": "Admin Block",
+      "seatingCapacity": "200",
+      "ac": "A/C",
+      "permission": "No",
+      "location": "2nd floor Admin Block",
+      "venueType": "conference hall",
+      "picture": "",
+      "intervalTimings": ""
+    },
+    {
+      "id": "399f",
+      "venueId": "002",
+      "venueName": "Conference Hall",
+      "block": "Admin Block",
+      "seatingCapacity": "120",
+      "ac": "A/C",
+      "permission": "Yes",
+      "location": "2nd floor Admin Block",
+      "venueType": "conference hall",
+      "picture": "",
+      "intervalTimings": ""
+    }
+  ]
+}
