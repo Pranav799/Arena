@@ -14,6 +14,7 @@ import { ParentCardComponent } from './components/parent-card/parent-card.compon
 import { MyBookingComponent } from './components/my-booking/my-booking.component';
 import { BulkBookingComponent } from './components/bulk-booking/bulk-booking.component';
 import { LoginComponent } from './pages/shared/login/login.component';
+import { TestComponent } from './pages/shared/test/test.component';
 
 
 
@@ -29,7 +30,8 @@ import { LoginComponent } from './pages/shared/login/login.component';
     ParentCardComponent,
     MyBookingComponent,
     BulkBookingComponent,
-    LoginComponent
+    LoginComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

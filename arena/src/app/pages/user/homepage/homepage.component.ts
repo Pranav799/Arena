@@ -7,6 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent {
+
+  activeItem: string = 'All Venues'; 
+  buttonName: string = 'Venue Type'; 
+  selectedDate: string = '';
+
+  isDropdownOpen: boolean = false;
+  
   
   // Navigation 
   constructor(private router: Router) {}
@@ -17,5 +24,30 @@ export class HomepageComponent {
   badges: string[] = ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
     , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
   ];
+
+  setActiveItem(item: string): void {
+    this.activeItem = item; 
+  }
+
+  setButtonName(item: string): void {
+    this.buttonName = item; 
+  }
+  
+  setDropdown(isOpen: boolean): void {
+    this.isDropdownOpen = isOpen;
+  }
+
+  onDateChange(): void {
+    console.log('Selected Date:', this.selectedDate); // Optional logging for debugging
+    this.closeDatePicker(); // Call method to close the date picker
+  }
+
+  // Method to close the date picker (just an example)
+  closeDatePicker(): void {
+    const datepickerElement = document.getElementById('default-datepicker');
+    if (datepickerElement) {
+      datepickerElement.blur(); // This will hide the date picker on focus loss
+    }
+  }
 
 }
