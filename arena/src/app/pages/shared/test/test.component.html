@@ -1,13 +1,13 @@
 <!-- Main Page -->
 <div class="flex h-screen">
     <!-- Side Panel (Left Section) -->
-    <div [ngClass]="{'w-1/5': isSidePanelOpen, 'hidden': !isSidePanelOpen}"
-    class="transition-all duration-300 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg n">
+    <div [ngClass]="{'w-1/6': isSidePanelOpen, 'w-12': !isSidePanelOpen}"
+    class="transition-all duration-900 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg n">
  
  <!-- Menu content goes here -->
 
  <div class="py-4">
-    <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 mb">Menu</h5>
+    <h5 id="drawer-navigation-label" *ngIf="isSidePanelOpen" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 mb">Menu</h5>
 
     <ul class="space-y-2 font-medium">
           
@@ -62,7 +62,7 @@
 
 <!-- ---------main   -->
     
-    <div [ngClass]="{'w-full': !isSidePanelOpen, 'w-4/5': isSidePanelOpen}"
+    <div [ngClass]="{'w-full': !isSidePanelOpen, 'w-5/6': isSidePanelOpen}"
         class="bg-gray-100 p-1 overflow-y-auto relative">
     
         <nav class="bg-white border-gray-200 dark:bg-gray-900 shadow-lg p-2 ">
