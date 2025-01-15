@@ -14,6 +14,16 @@ export class MyBookingComponent {
   @Input() address : string = '';
   @Input() venue : string = '';
   @Input() status : string = '';
+  
+  cancelBookingModal: boolean = false;
 
+  openCancelBookingModal(){
+    this.cancelBookingModal = true
+  }
+
+  closeCancelBookingModal(){
+    this.cancelBookingModal = false
+  }
+  
 
 }
