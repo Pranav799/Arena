@@ -2,7 +2,7 @@
 
 <div class="container mx-auto p-2 bg-white border border-gray-400 rounded-lg">
     <!-- First Row -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1 mb-0">
       <div class="section p-2  text-left ">
         <h5 class="text-lg font-bold tracking-tight text-gray-900 dark:text-white mb-0">{{venue}}</h5>
       </div>
@@ -15,21 +15,21 @@
             <p class="text-gray-700 text-sm dark:text-[2px] ml-0">{{address}}</p>
           </div>
       </div>
-      <div class="section p-2 bg-white text-center ">
+      <div class="section p-2 bg-white text-left ">
         <p class="text-black text-[14px] font-bold dark:text-[2px] ml-0">Booking ID : {{bookingid}}</p>
       </div>
       <div class="section p-2 bg-white text-center ">
         <button 
                 *ngIf="status == 'Scheduled'" 
                 type="button" 
-                class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                class="text-red-700 bg-red-200 hover:text-black focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                 Cancel Booking
             </button>
       </div>
     </div>
   
     <!-- Second Row -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1">
       <div class="section p-2 bg-white text-left ">
         <p class="text-black text-sm "><span class="font-bold">Event Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{eventname}}</p>
       </div>
@@ -40,21 +40,22 @@
         <p class="text-black text-sm"><span class="font-bold">Event Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{eventdate | date: 'd MMM yyyy'}}</p>
       </div>
       <div class="section p-2 bg-white text-center ">
-        <ng-container *ngIf="status === 'Scheduled'; else otherStatuses">
-            <span class="bg-yellow-400 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+        <ng-container *ngIf="status === 'Scheduled'; else otherStatuses"><p class="text-black text-sm">Status:
+            <span class="text-yellow-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded">
                 Scheduled
-            </span>
+            </span> </p>
+            
         </ng-container>
         <ng-template #otherStatuses>
-            <ng-container *ngIf="status === 'Completed'">
-                <span class="bg-green-500 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+            <ng-container *ngIf="status === 'Completed'"><p class="text-black text-sm">Status:
+                <span class=" text-green-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                     Completed
-                </span>
+                </span></p>
             </ng-container>
-            <ng-container *ngIf="status === 'Cancelled'">
-                <span class="bg-red-500 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+            <ng-container *ngIf="status === 'Cancelled'"><p class="text-black text-sm">Status:
+                <span class=" text-red-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
                     Cancelled
-                </span>
+                </span></p>
             </ng-container>
         </ng-template>
       </div>
