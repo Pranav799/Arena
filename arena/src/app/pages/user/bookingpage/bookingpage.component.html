@@ -150,42 +150,45 @@
   
     <!-- Grid of App Card Components -->
     <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 mb-20">
-
-      <app-my-booking 
-      [bookingid] = "070125"
-      [eventname] = "'Shells Inaugration'"
-      [address] = "'Main Block PG'"
-      [venue] = "'P1 Conference Hall '"
-      [status] = "'Scheduled'"></app-my-booking>
-
-      <app-my-booking 
-      [bookingid] = "070126"
-      [eventname] = "'Incubation Programme'"
-      [address] = "'Admin Block '"
-      [venue] = "'A2 Auditorium'"
-      [status] = "'Cancelled'"></app-my-booking>
-
-      <app-my-booking 
-      [bookingid] = "070126"
-      [eventname] = "'Incubation Programme'"
-      [address] = "'Admin Block '"
-      [venue] = "'Panel Room M4'"
-      [status] = "'Completed'"></app-my-booking>
-
-      <app-my-booking 
-      [bookingid] = "070126"
-      [eventname] = "'Incubation Programme'"
-      [address] = "'Admin Block '"
-      [venue] = "'A1 Auditorium'"
-      [status] = "'Completed'"></app-my-booking>
-
-      <app-my-booking 
-      [bookingid] = "070126"
-      [eventname] = "'Incubation Programme'"
-      [address] = "'Admin Block '"
-      [venue] = "'SKE Auditorium'"
-      [status] = "'Completed'"></app-my-booking>
-
+      <!-- Loop over paginated bookings -->
+      <app-my-booking *ngFor="let booking of paginatedBookings" 
+                      [bookingid]="booking.bookingid"
+                      [eventname]="booking.eventname"
+                      [address]="booking.address"
+                      [venue]="booking.venue"
+                      [status]="booking.status">
+      </app-my-booking>
     </div>
+    
+    <!-- Paginator -->
+    <div class="flex items-center justify-between w-full fixed bottom-0 left-0 right-0 bg-white z-50 shadow-md py-2 px-12">
+      
+      <span class="text-sm text-gray-700 dark:text-gray-400">
+        Showing 
+        <span class="font-semibold text-gray-900 dark:text-white">{{ (currentPage - 1) * itemsPerPage + 1 }}</span> 
+        to 
+        <span class="font-semibold text-gray-900 dark:text-white">{{ currentPage * itemsPerPage > totalItems ? totalItems : currentPage * itemsPerPage }}</span> 
+        of 
+        <span class="font-semibold text-gray-900 dark:text-white">{{ totalItems }}</span> Entries
+      </span>
+    
+     
+      <div class="inline-flex">
+        
+        <button (click)="prevPage()" [disabled]="currentPage === 1" 
+                class="flex items-center justify-center px-3 h-8 text-sm font-medium text-black bg-white rounded-s ">
+                Prev
+        </button>
+    
+        
+        <button (click)="nextPage()" 
+                [disabled]="currentPage * itemsPerPage >= totalItems" 
+                class="flex items-center justify-center px-3 h-8 text-sm font-medium text-black bg-white border-0 border-s border-gray-700 rounded-e ">
+               Next
+        </button>
+      </div>
+    </div>
+    
+    
     
   </div>

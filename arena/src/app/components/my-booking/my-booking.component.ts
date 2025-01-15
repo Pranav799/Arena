@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class MyBookingComponent {
 
-  @Input() bookingid : number = 0;
+  @Input() bookingid : string = '';
   bookingdate: Date = new Date();
   eventdate: Date = new Date();
   @Input() eventname : string = '';
