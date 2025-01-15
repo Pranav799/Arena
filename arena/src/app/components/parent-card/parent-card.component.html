@@ -192,16 +192,16 @@
                             
                             <!-- ------------------------ Mementos -------------------------  -->
                             <div class="flex items-center ps-3 space-x-2">
-                                <!-- Radio button to select Saplings -->
+                                
                                 <input id="mementos-radio" 
                                     type="radio" 
                                     value="mementos" 
                                     [(ngModel)]="mementos" 
                                     name="memntos-radio" 
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                <label for="memntos-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
+                                <label for="memntos-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Mementos</label>
 
-                                <!-- Conditionally render the input field for saplings quantity -->
+                                
                                 <div *ngIf="mementos === 'mementos'" class="flex items-center">
                                     <input type="number" 
                                         id="memntos-quantity" 
@@ -215,7 +215,7 @@
 
                             <!-- --------------------Laptop----------------------  -->
                             <div class="flex items-center ps-3 space-x-2">
-                                <!-- Radio button to select Saplings -->
+                                
                                 <input id="laptop-radio" 
                                     type="radio" 
                                     value="laptop" 
@@ -224,7 +224,7 @@
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="laptop-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Laptop</label>
 
-                                <!-- Conditionally render the input field for saplings quantity -->
+                                
                                 <div *ngIf="laptop === 'laptop'" class="flex items-center">
                                     <input type="number" 
                                         id="laptop-quantity" 
@@ -238,7 +238,7 @@
 
                             <!-- ---------------sapling----------------------  -->
                            <div class="flex items-center ps-3 space-x-2">
-                                <!-- Radio button to select Saplings -->
+                                
                                 <input id="saplings-radio" 
                                     type="radio" 
                                     value="saplings" 
@@ -247,7 +247,7 @@
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="saplings-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
 
-                                <!-- Conditionally render the input field for saplings quantity -->
+                               
                                 <div *ngIf="saplings === 'saplings'" class="flex items-center">
                                     <input type="number" 
                                         id="saplings-quantity" 
