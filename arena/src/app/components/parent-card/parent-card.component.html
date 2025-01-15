@@ -69,7 +69,7 @@
                 </svg>
                 <p class="mb-0 font-normal text-[13px] dark:text-gray-400">{{address}}</p>
             </div>
-            <a  class="ml-4 font-normal text-[12px] text-blue-500 hover:text-blue-700">View others Booking </a>
+            <a  class="ml-4 font-normal text-xs text-blue-500 hover:text-blue-700">View others Booking </a>
 
             
             
@@ -78,7 +78,8 @@
         <!-- Right Side -->
         <div class="flex flex-col w-1/3 text-right">
             <button type="button" 
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-[12px] px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 whitespace-nowrap flex justify-center items-center"
+            (click)="openbookVenueModal()"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 whitespace-nowrap flex justify-center items-center"
                     data-modal-target="crud-modal" data-modal-toggle="crud-modal">
                 Book Venue
             </button>
@@ -95,8 +96,8 @@
 
 
 <!-- Dialouge Box -->
-  <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-md max-h-full">
+  <div *ngIf="bookVenueModal"    class="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-50">
+      <div class="relative p-4 w-full max-w-3xl max-h-full">
           <!-- Modal content -->
           <div class="relative bg-[#f9f9f9] rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
@@ -107,7 +108,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                     My Booking
                 </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-xs w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" (click)="closebookVenueModal()">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
@@ -116,13 +117,13 @@
                 </div>
 
                 <!-- Second line: Paragraph -->
-                <p class="mt-2 text-[10px] text-gray-700 dark:text-gray-300">
+                <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
                 DATE | VENUE | ADDRESS
                 </p>
                 
                 <!-- Component -->
                 <div class="mt-4">
-                    <app-badge [badges]="badges" badgeClass="w-1/6 text-[6px] max-w-[calc(16.66%-0.5rem)]"></app-badge>
+                    <app-badge [badges]="badges" badgeClass="w-1/4 text-[12px] max-w-[calc(20%-0.5rem)]"></app-badge>
                 </div>
             </div>
 
@@ -130,66 +131,178 @@
 
               <!-- Modal body -->
               <form class="p-4 md:p-5 mb-8 overflow-auto max-h-screen">
+
                 <div class="flex items-center space-x-4 mb-0">
-                    <!-- First label and input pair -->
-                    <label class="w-1/2 text-black text-[12px] text-left ">Event Name <span class="text-red-700">*</span></label>
-                    <input type="text" class="w-1/2 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]">
+                    <label class="w-2/5 text-black text-xs text-left ">Event Name <span class="text-red-700">*</span></label>
+                    <input type="text" class="w-3/5 h-12 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
             
                 <div class="flex items-center space-x-4 mb-0">
-                    <!-- Second label and input pair -->
-                    <label class="w-1/2 text-black text-[12px] text-left ">Resource Person / Chief Guest Name <span class="text-red-700">*</span></label>
-                    <input type="text" class="w-1/2 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]">
+                    <label class="w-2/5 text-black text-xs text-left ">Resource Person / Chief Guest Name <span class="text-red-700">*</span></label>
+                    <input type="text" class="w-3/5 px-3 h-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
             
                 <div class="flex items-center space-x-4 mb-0">
-                    <!-- Third label and input pair -->
-                    <label class="w-1/2 text-black text-[12px] text-left ">Department / Club / Association / Deanery / Institutional Name <span class="text-red-700">*</span></label>
-                    <input type="text" class="w-1/2 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]">
+                    <label class="w-2/5 text-black text-xs text-left ">Department / Club / Association / Deanery / Institutional Name <span class="text-red-700">*</span></label>
+                    <input type="text" class="w-3/5 px-3 h-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
                 <div class="flex items-center space-x-4 mb-0">
-                    <!-- Third label and input pair -->
-                    <label class="w-1/2 text-black text-[12px] text-left ">Fest / Conference /Meeting / Seminar /Workshop / Training Programme / FDP <span class="text-red-700">*</span></label>
-                    <input type="text" class="w-1/2 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]">
+                    <label class="w-2/5 text-black text-xs text-left ">Fest / Conference /Meeting / Seminar /Workshop / Training Programme / FDP <span class="text-red-700">*</span></label>
+                    <input type="text" class="w-3/5 h-12 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
+                <div class="flex items-center space-x-4 mb-2">
+                    <label class="w-2/5 text-black text-xs text-left ">Additional Requirements</label>
+
+                    <div class="flex w-3/5 flex-wrap gap-1">
+                            <div class="flex items-center ps-3">
+                                <input id="photography" type="radio" value="" name="photography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="photography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Photography</label>
+                            </div>
+
+                            <div class="flex items-center ps-3">
+                                <input id="videography" type="radio" value="" name="videography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="videography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Videography</label>
+                            </div>
+
+                            <div class="flex items-center ps-3">
+                                <input id="choir" type="radio" value="" name="choir" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="choir" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Choir</label>
+                            </div>
+
+                            <div class="flex items-center ps-3">
+                                <input id="lamp" type="radio" value="" name="lamp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="lamp" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Lamp</label>
+                            </div>
+
+                            <div class="flex items-center ps-3">
+                                <input id="studentReporters" type="radio" value="" name="studentReporters" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="studentReporters" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Student Reporters</label>
+                            </div>
+
+                            <div class="flex items-center ps-3">
+                                <input id="whiteboard" type="radio" value="" name="whiteboard" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="whiteboard" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Whiteboard</label>
+                            </div>
+                            
+                            <!-- ------------------------ Mementos -------------------------  -->
+                            <div class="flex items-center ps-3 space-x-2">
+                                <!-- Radio button to select Saplings -->
+                                <input id="mementos-radio" 
+                                    type="radio" 
+                                    value="mementos" 
+                                    [(ngModel)]="mementos" 
+                                    name="memntos-radio" 
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="memntos-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
+
+                                <!-- Conditionally render the input field for saplings quantity -->
+                                <div *ngIf="mementos === 'mementos'" class="flex items-center">
+                                    <input type="number" 
+                                        id="memntos-quantity" 
+                                        [(ngModel)]="mementosQuantity" 
+                                        name="mementos-quantity" 
+                                        class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
+                                        min="1" 
+                                        placeholder="Enter number">
+                                </div>
+                            </div>
+
+                            <!-- --------------------Laptop----------------------  -->
+                            <div class="flex items-center ps-3 space-x-2">
+                                <!-- Radio button to select Saplings -->
+                                <input id="laptop-radio" 
+                                    type="radio" 
+                                    value="laptop" 
+                                    [(ngModel)]="laptop" 
+                                    name="laptop-radio" 
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="laptop-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Laptop</label>
+
+                                <!-- Conditionally render the input field for saplings quantity -->
+                                <div *ngIf="laptop === 'laptop'" class="flex items-center">
+                                    <input type="number" 
+                                        id="laptop-quantity" 
+                                        [(ngModel)]="laptopQuantity" 
+                                        name="laptop-quantity" 
+                                        class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
+                                        min="1" 
+                                        placeholder="Enter number">
+                                </div>
+                            </div>
+
+                            <!-- ---------------sapling----------------------  -->
+                           <div class="flex items-center ps-3 space-x-2">
+                                <!-- Radio button to select Saplings -->
+                                <input id="saplings-radio" 
+                                    type="radio" 
+                                    value="saplings" 
+                                    [(ngModel)]="saplings" 
+                                    name="saplings-radio" 
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="saplings-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
+
+                                <!-- Conditionally render the input field for saplings quantity -->
+                                <div *ngIf="saplings === 'saplings'" class="flex items-center">
+                                    <input type="number" 
+                                        id="saplings-quantity" 
+                                        [(ngModel)]="saplingsQuantity" 
+                                        name="saplings-quantity" 
+                                        class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
+                                        min="1" 
+                                        placeholder="Enter number">
+                                </div>
+                            </div>
+
+                    </div>
+                    
+                </div>
+
                 <div class="flex items-center space-x-4 mb-0">
-                    <!-- Third label and input pair -->
-                    <label class="w-1/2 text-black text-[12px] text-left ">Additional Requirements</label>
-                    <input type="text" class="w-1/2 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]">
+                    <label class="w-2/5 text-black text-xs text-left ">Extra Requirements, if needed</label>
+                    <textarea id="message" rows="2" class="w-3/5 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" placeholder=""></textarea>
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
-                <div class="flex items-center space-x-4 mb-0">
-                    <!-- Third label and input pair -->
-                    <label class="w-1/2 text-black text-[12px] text-left ">Extra Requirements, if needed</label>
-                    <textarea id="message" rows="2" class="w-1/2 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]" placeholder=""></textarea>
-                    <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
-                </div>
+                <div class="flex items-center space-x-4 mb-2">
+                     <p class="text-xs">Is the event scheduled as per the academic calendar?</p>
 
-                <div class="flex items-center space-x-4 mb-0">
-                    <!-- Third label and input pair -->
-                     <p class="text-[12px]">Is the event scheduled as per the academic calendar?</p>
+                    <input id="yes" type="radio" value="" name="yes-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="yes" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Yes</label>
 
-                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="default-radio-1" class="ms-2 text-[10px] font-medium text-gray-900 dark:text-gray-300">Yes</label>
-
-                    <input checked id="default-radio-2" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="default-radio-2" class="ms-2 text-[10px] font-medium text-gray-900 dark:text-gray-300">No</label>
+                    <input checked id="no" type="radio" value="" name="no-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="no" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">No</label>
 
                 </div>
+
+                <div class="flex items-center space-x-4 mb-2">
+                    <p class="text-xs">Mode of Event</p>
+
+                   <input id="offline" type="radio" value="" name="offline-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                   <label for="offline" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Offline</label>
+
+                   <input checked id="hybrid" type="radio" value="" name="hybrid-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                   <label for="hybrid" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Hybrid</label>
+
+               </div>
 
                 <div class="flex mt-8">
-                    <div class="flex-1 flex justify-center" data-modal-toggle="crud-modal">
-                        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-[10px] font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 w-full">Cancel</button>
+                    <div class="flex-1 flex justify-center" >
+                        <button type="button" (click)="closebookVenueModal()" class="py-2.5 px-5 me-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 w-full">Cancel</button>
                     </div>
                     <div class="flex-1 flex justify-center">
-                        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-[10px] px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800 w-full">Confirm</button>
+                        <button 
+                            type="button"
+                            (click)="openSucessBookingModal(); closebookVenueModal() "
+                            data-modal-target="default-modal" data-modal-toggle="default-modal"
+                            class="py-2.5 px-5 me-2 mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800 w-full">
+                            Confirm
+                        </button>
                     </div>
                 </div>
                 
@@ -200,4 +313,41 @@
           </div>
       </div>
   </div> 
+  
+
+
+
+
+
+  <!-- ------------------------------- Sucess ----------------------  -->
+  <div *ngIf="sucessBookingModal" 
+  class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">>
+    <div class="relative p-4 w-full max-w-lg max-h-full"> 
+    
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+       
+        <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
+          <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4"> 
+          
+          <div class="text-center"> 
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Venue Booked Successfully !
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              Auditorium A1 | 2nd Floor, Admin Block has been booked!
+            </p>
+          </div>
+        </div>
+  
+       
+        <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <button (click)="closeSucessBookingModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Done
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
   

@@ -45,4 +45,5 @@ export class TestComponent {
       console.error('Error adding venue', error);
     });
   }
+
 }
