@@ -26,7 +26,7 @@ export class TestComponent {
 
   
   isSidePanelOpen = true;  // Set initial state of the side panel
-  activeSection: string = 'dashboard';  // Default active section
+  activeSection: string = 'createvenue';  // Default active section
 
   // Toggle the side panel visibility
   toggleSidePanel() {

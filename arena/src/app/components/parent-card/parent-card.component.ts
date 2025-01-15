@@ -13,6 +13,7 @@ export class ParentCardComponent {
   @Input() acstatus : string ='';
   @Input() imagepath : string = '';
   @Input() address: string = '';
+  
   sucessBookingModal: boolean = false;
   bookVenueModal: boolean = false;
 
