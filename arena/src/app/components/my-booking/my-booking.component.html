@@ -85,7 +85,7 @@
   
        
         <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-          <button (click)="closeCancelBookingModal()"  type="button" class="text-white bg-red-700 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+          <button (click)="closeCancelBookingModal(); opensucessCancelBookingModal()"  type="button" class="text-white bg-red-700 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
             Cancel Booking
           </button>
         </div>
@@ -96,5 +96,33 @@
 
 
 
+  <div *ngIf="sucessCancelBookingModal" 
+  class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
+    <div class="relative p-4 w-full max-w-lg max-h-full"> 
+    
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+       
+        <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
+          <img src="../../../assets/images/cancelsucess.png" alt="Success" class="mb-4"> 
+          
+          <div class="text-center"> 
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Booking Cancelled Successfully !
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              Booking for Auditorium A1 | 2nd Floor, Admin Block has been cancelled!
+            </p>
+          </div>
+        </div>
   
+       
+        <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <button (click)="closesucessCancelBookingModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Done
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
   

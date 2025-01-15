@@ -16,6 +16,7 @@ export class MyBookingComponent {
   @Input() status : string = '';
   
   cancelBookingModal: boolean = false;
+  sucessCancelBookingModal: boolean = false;
 
   openCancelBookingModal(){
     this.cancelBookingModal = true
@@ -25,5 +26,13 @@ export class MyBookingComponent {
     this.cancelBookingModal = false
   }
   
+
+  opensucessCancelBookingModal(){
+    this.sucessCancelBookingModal = true
+  }
+
+  closesucessCancelBookingModal(){
+    this.sucessCancelBookingModal = false
+  }
 
 }
