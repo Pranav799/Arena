@@ -17,14 +17,30 @@ export class ParentCardComponent {
   sucessBookingModal: boolean = false;
   bookVenueModal: boolean = false;
 
-  saplings: string = '';
-  saplingsQuantity: number = 1;
+  mementosSelected: boolean = false; 
+  laptopsSelected: boolean = false; 
+  saplingsSelected: boolean = false; 
+
   mementos: string = '';
+  laptops: string = '';
+  saplings: string = '';
+
+  saplingsQuantity: number = 1;
   mementosQuantity: number = 1;
-  laptop: string = '';
   laptopQuantity: number = 1;
 
 
+  onMementosChange(): void {
+    this.mementos = this.mementosSelected ? 'mementos' : '';
+  }
+
+  onLaptopsChange(): void {
+    this.laptops = this.laptopsSelected ? 'laptops' : '';
+  }
+
+  onSaplingsChange(): void {
+    this.saplings = this.saplingsSelected ? 'saplings' : '';
+  }
 
   openSucessBookingModal() {
     this.sucessBookingModal = true;

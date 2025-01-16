@@ -161,48 +161,73 @@
 
                     <div class="flex w-3/5 flex-wrap gap-1">
                             <div class="flex items-center ps-3">
-                                <input id="photography" type="radio" value="" name="photography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="photography" type="checkbox" value="" name="photography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="photography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Photography</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="videography" type="radio" value="" name="videography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="videography" type="checkbox" value="" name="videography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="videography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Videography</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="choir" type="radio" value="" name="choir" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="choir" type="checkbox" value="" name="choir" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="choir" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Choir</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="lamp" type="radio" value="" name="lamp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="lamp" type="checkbox" value="" name="lamp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="lamp" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Lamp</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="studentReporters" type="radio" value="" name="studentReporters" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="studentReporters" type="checkbox" value="" name="studentReporters" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="studentReporters" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Student Reporters</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="whiteboard" type="radio" value="" name="whiteboard" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="whiteboard" type="checkbox" value="" name="whiteboard" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="whiteboard" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Whiteboard</label>
                             </div>
+
+                            <!-- ---------------sapling----------------------  -->
+                           <div class="flex items-center ps-3 space-x-2">
+                                
+                            <input id="saplings-radio" 
+                                type="checkbox" 
+                                value="saplings" 
+                                [(ngModel)]="saplingsSelected" 
+                                (ngModelChange)="onSaplingsChange()" 
+                                name="saplings-radio" 
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="saplings-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
+
+                           
+                            <div *ngIf="saplingsSelected" class="flex items-center">
+                                <input type="number" 
+                                    id="saplings-quantity" 
+                                    [(ngModel)]="saplingsQuantity" 
+                                    name="saplings-quantity" 
+                                    class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
+                                    min="1" 
+                                    placeholder="Enter number">
+                            </div>
+                        </div>
                             
                             <!-- ------------------------ Mementos -------------------------  -->
                             <div class="flex items-center ps-3 space-x-2">
                                 
                                 <input id="mementos-radio" 
-                                    type="radio" 
+                                    type="checkbox" 
                                     value="mementos" 
-                                    [(ngModel)]="mementos" 
+                                    [(ngModel)]="mementosSelected" 
+                                    (ngModelChange)="onMementosChange()" 
                                     name="memntos-radio" 
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="memntos-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Mementos</label>
 
                                 
-                                <div *ngIf="mementos === 'mementos'" class="flex items-center">
+                                <div *ngIf="mementosSelected" class="flex items-center">
                                     <input type="number" 
                                         id="memntos-quantity" 
                                         [(ngModel)]="mementosQuantity" 
@@ -217,15 +242,16 @@
                             <div class="flex items-center ps-3 space-x-2">
                                 
                                 <input id="laptop-radio" 
-                                    type="radio" 
+                                    type="checkbox" 
                                     value="laptop" 
-                                    [(ngModel)]="laptop" 
+                                    [(ngModel)]="laptopsSelected" 
+                                    (ngModelChange)="onLaptopsChange()" 
                                     name="laptop-radio" 
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="laptop-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Laptop</label>
 
                                 
-                                <div *ngIf="laptop === 'laptop'" class="flex items-center">
+                                <div *ngIf="laptopsSelected" class="flex items-center">
                                     <input type="number" 
                                         id="laptop-quantity" 
                                         [(ngModel)]="laptopQuantity" 
@@ -236,28 +262,7 @@
                                 </div>
                             </div>
 
-                            <!-- ---------------sapling----------------------  -->
-                           <div class="flex items-center ps-3 space-x-2">
-                                
-                                <input id="saplings-radio" 
-                                    type="radio" 
-                                    value="saplings" 
-                                    [(ngModel)]="saplings" 
-                                    name="saplings-radio" 
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                <label for="saplings-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
-
-                               
-                                <div *ngIf="saplings === 'saplings'" class="flex items-center">
-                                    <input type="number" 
-                                        id="saplings-quantity" 
-                                        [(ngModel)]="saplingsQuantity" 
-                                        name="saplings-quantity" 
-                                        class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
-                                        min="1" 
-                                        placeholder="Enter number">
-                                </div>
-                            </div>
+                            
 
                     </div>
                     
