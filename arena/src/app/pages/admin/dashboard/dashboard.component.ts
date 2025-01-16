@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { VenueService } from 'src/app/service/venue.service';
+import { AgGridAngular } from 'ag-grid-angular'; // Angular Data Grid Component
+import type { ColDef, GridApi } from 'ag-grid-community'; // Column Definition Type Interface
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +10,7 @@ import { VenueService } from 'src/app/service/venue.service';
 })
 export class DashboardComponent {
 
-
-  venue = {
+ venue = {
     venueId: '',
     venueName: '',
     block: '',
@@ -23,10 +24,18 @@ export class DashboardComponent {
   };
 
   constructor(private venueService: VenueService) {}
-  
-  activeSection: string = 'dashboard';
 
-  setActiveSection(section: string): void {
+  
+  isSidePanelOpen = true;  // Set initial state of the side panel
+  activeSection: string = 'createvenue';  // Default active section
+
+  // Toggle the side panel visibility
+  toggleSidePanel() {
+    this.isSidePanelOpen = !this.isSidePanelOpen;
+  }
+
+  // Set active section to change content dynamically
+  setActiveSection(section: string) {
     this.activeSection = section;
   }
 
@@ -38,5 +47,18 @@ export class DashboardComponent {
     });
   }
 
+
+   rowData = [
+      { make: "Tesla", model: "Model Y", price: 64950, electric: true },
+      { make: "Ford", model: "F-Series", price: 33850, electric: false },
+      { make: "Toyota", model: "Corolla", price: 29600, electric: false },
+    ];
+  
+    colDefs: ColDef[] = [
+      { headerName: 'Make', field: 'make' },
+      { headerName: 'Model', field: 'model' },
+      { headerName: 'Price', field: 'price' },
+      { headerName: 'Electric', field: 'electric' }
+    ];
 
 }
