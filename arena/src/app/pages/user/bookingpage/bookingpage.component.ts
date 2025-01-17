@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './bookingpage.component.html',
   styleUrls: ['./bookingpage.component.css']
 })
+
 export class BookingpageComponent implements OnInit {
   bookings = [
     { bookingid: '070125', eventname: 'Shells Inauguration', address: 'Main Block PG', venue: 'P1 Conference Hall', status: 'Scheduled' },
@@ -23,10 +24,10 @@ export class BookingpageComponent implements OnInit {
     
   ];
 
-  currentPage: number = 1;  // Current page, starts at 1
-  itemsPerPage: number = 5;  // Items per page
-  totalItems: number = 0;    // Total items, set dynamically based on bookings length
-  paginatedBookings: any[] = [];  // Paginated bookings to display
+  currentPage: number = 1;  
+  itemsPerPage: number = 5;  
+  totalItems: number = 0;    
+  paginatedBookings: any[] = [];  
 
   constructor(private router: Router) {}
 
