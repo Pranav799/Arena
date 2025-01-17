@@ -46,19 +46,48 @@ export class DashboardComponent {
       console.error('Error adding venue', error);
     });
   }
+// agGrid 
+gridApi!: GridApi;
+gridColumnApi: any;
 
+  rowData = [
+    { make: 'Tesla', model: 'Model Y', price: 64950, electric: true },
+    { make: 'Ford', model: 'F-Series', price: 33850, electric: false },
+    { make: 'Toyota', model: 'Corolla', price: 29600, electric: false },
+  ];
 
-   rowData = [
-      { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-      { make: "Ford", model: "F-Series", price: 33850, electric: false },
-      { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    ];
-  
-    colDefs: ColDef[] = [
-      { headerName: 'Make', field: 'make' },
-      { headerName: 'Model', field: 'model' },
-      { headerName: 'Price', field: 'price' },
-      { headerName: 'Electric', field: 'electric' }
-    ];
+  colDefs: ColDef[] = [
+    { headerName: 'Make', field: 'make', sortable: true, filter: true, editable: true, floatingFilter: true },
+    { headerName: 'Model', field: 'model', sortable: true, filter: true, editable: true, floatingFilter: true },
+    { headerName: 'Price', field: 'price', sortable: true, filter: true, editable: true },
+    { headerName: 'Electric', field: 'electric', sortable: true, filter: true, editable: true, cellEditor: 'agSelectCellEditor', cellEditorParams: { values: [true, false] } },
+  ];
+
+  paginationPageSize = 10;
+  paginationPageSizeSelector = [5, 10, 20];
+
+  rowSelection: 'multiple' | 'single' = 'multiple'; 
+  domLayout: 'normal' | 'autoHeight' | 'print' = 'autoHeight'; 
+  defaultColDef = {
+    resizable: true,
+    filter: true,
+    sortable: true,
+  };
+
+  onGridReady(params: any): void {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+  // Example function to handle selection or pagination events
+  onSelectionChanged() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    console.log('Selected Rows:', selectedRows);
+  }
+
+  // Example function to handle pagination changes
+  onPaginationChanged() {
+    console.log('Current Page:', this.gridApi.paginationGetCurrentPage());
+  }
 
 }

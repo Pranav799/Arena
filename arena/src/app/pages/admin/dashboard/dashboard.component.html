@@ -96,14 +96,23 @@
       <!-- Conditional Rendering of Section of Drawer  -->
 
 
-      <div *ngIf="activeSection === 'dashboard'" class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div *ngIf="activeSection === 'dashboard'" class="flex items-center justify-center min-h-screen bg-gray-100">
           
-        <ag-grid-angular
-        [rowData]="rowData"
-        [columnDefs]="colDefs"
-        class="ag-theme-alpine"
-        style="width: 80%; height: 400px; align-items: flex-start;">
-      </ag-grid-angular>
+      <ag-grid-angular
+      [rowData]="rowData"
+      [columnDefs]="colDefs"
+      [pagination]="true"
+      [paginationPageSize]="paginationPageSize"
+      [paginationPageSizeSelector]="paginationPageSizeSelector"
+      [rowSelection]="rowSelection"
+      [domLayout]="domLayout"
+      class="ag-theme-alpine"
+      style="width: 50%; height: 400px;"
+      (gridReady)="onGridReady($event)"
+      (selectionChanged)="onSelectionChanged()"
+      (paginationChanged)="onPaginationChanged()">
+    </ag-grid-angular>
+    
       
     </div>
 
@@ -114,15 +123,15 @@
         <div class="w-[80%] p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h5 class="mb-5 text-2xl font-bold tracking-tight text-[#6A0DAD] dark:text-white">Create a Venue</h5>
       
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 gap-4 p-4">
             <div class="mb-2">
               <label for="venue-id" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue ID</label>
-              <input id="venue-id" [(ngModel)]="venue.venueId" name="venueId" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter venue id">
+              <input id="venue-id" [(ngModel)]="venue.venueId" name="venueId" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. M2">
             </div>
             
             <div class="mb-2">
               <label for="venue-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Name</label>
-              <input id="venue-name" [(ngModel)]="venue.venueName" name="venueName" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter venue name">
+              <input id="venue-name" [(ngModel)]="venue.venueName" name="venueName" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Auditorium M2">
             </div>
 
             <div class="mb-2">
@@ -132,7 +141,7 @@
 
               <div class="mb-2">
                 <label for="seating-capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seating Capacity </label>
-                <input id="seating-capacity" [(ngModel)]="venue.seatingCapacity" name="seatingCapacity" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter seating capacity ">
+                <input id="seating-capacity" [(ngModel)]="venue.seatingCapacity" name="seatingCapacity" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. 100 ">
               </div>  
 
               <div class="mb-2">
@@ -155,19 +164,19 @@
                 <div class="flex items-center space-x-4">
                   <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700 ">
                     <input id="intreval" [(ngModel)]="venue.permission" name="Intreval" type="radio" value="Yes" class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="intreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+                    <label for="intreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
                   </div>
           
                   <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
                     <input id="nointreval" [(ngModel)]="venue.permission" name="Intreval" type="radio" value="No" checked class="ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="nointreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+                    <label for="nointreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
                   </div>
               </div>
              </div>
 
              <div class="mb-2">
                 <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Location  </label>
-                <input id="venue-location" [(ngModel)]="venue.location" name="location" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter venue location">
+                <input id="venue-location" [(ngModel)]="venue.location" name="location" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Main Block 3rd Floor">
               </div>
 
               <div class="mb-2">
@@ -179,16 +188,16 @@
                 <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Upload Picture</label>
                 
                 <!-- Card Container -->
-                <div class="w-full p-4 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
+                <div class="w-full px-3 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex items-center justify-center w-full">
                         <!-- Logo Section (30%) -->
                         <div class="w-[30%] flex justify-center">
-                            <svg class="w-8 h-8 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <svg class="w-12 h-12 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                             </svg>
                         </div>
                         <!-- Text Section (70%) -->
-                        <div class="w-[70%] flex flex-col items-center justify-center pt-5 pb-6 h-[64px]">
+                        <div class="w-[70%] flex flex-col items-center justify-center pt-3 pb-3 h-[120px]">
                             <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                 <input id="dropzone-file" type="file" class="hidden" />
                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Select a file or drag and drop here</p>
@@ -201,8 +210,12 @@
             
 
               <div class="mb-2">
-                <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Intreval Timings</label>
-                <input id="venue-location" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600" placeholder="Enter venue location">
+                <label class="inline-flex items-center cursor-pointer">
+                  <input type="checkbox" value="" class="sr-only peer">
+                  <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Interval Timings</span>
+                  <div class="relative w-11 h-6 ml-2 bg-gray-200 peer-focus:outline-none rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                </label>
+                <p class="ml-3 text-gray-500 text-sm mt-2 ">Toggle this if the venue timings is in break time (Eg. Qudrangle)</p>
               </div> 
 
               <hr class="h-px my-6 bg-black border-0 col-span-2">
@@ -218,8 +231,7 @@
       
 
   <div *ngIf="activeSection === 'editvenue'">
-    <h1>Billing Content</h1>
-    <p>This is the billing section.</p>
+    
   </div>
 
 
