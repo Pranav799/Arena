@@ -107,11 +107,14 @@
       [rowSelection]="rowSelection"
       [domLayout]="domLayout"
       class="ag-theme-alpine"
-      style="width: 50%; height: 400px;"
+      style="width: 70%; height: 800px;"
       (gridReady)="onGridReady($event)"
       (selectionChanged)="onSelectionChanged()"
       (paginationChanged)="onPaginationChanged()">
     </ag-grid-angular>
+    <div class="grid-footer">
+      <button (click)="downloadCSV()">Download CSV</button>
+    </div>
     
       
     </div>
