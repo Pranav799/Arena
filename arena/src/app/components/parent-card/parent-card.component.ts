@@ -30,6 +30,12 @@ export class ParentCardComponent {
   laptopQuantity: number = 1;
 
 
+  buttons = ['08:00 - 9:00', '9:00 - 10:00', '10:00 - 11:00 ', '11:00 - 12:00 ', '12:00 - 01:00 ',
+             '1:00 - 2:00', '2:00 - 3:00', '3:00 - 4:00 ', '4:00 - 5:00'
+  ];
+
+
+
   onMementosChange(): void {
     this.mementos = this.mementosSelected ? 'mementos' : '';
   }
@@ -57,5 +63,24 @@ export class ParentCardComponent {
   closebookVenueModal() {
     this.bookVenueModal = false;
   }
+
+
+
+  selectedButtons: string[] = [];
+
+  isSelected(button: string): boolean {
+    return this.selectedButtons.includes(button);
+  }
+
+  toggleSelection(button: string): void {
+    const index = this.selectedButtons.indexOf(button);
+    if (index === -1) {
+      this.selectedButtons.push(button);
+    } else {
+      this.selectedButtons.splice(index, 1);
+    }
+  }
+
+  
 
 }
