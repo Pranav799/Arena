@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { VenueService } from 'src/app/service/venue.service';
-import { AgGridAngular } from 'ag-grid-angular'; // Angular Data Grid Component
-import type { ColDef, GridApi } from 'ag-grid-community'; // Column Definition Type Interface
-
+import { AgGridAngular } from 'ag-grid-angular'; 
+import type { ColDef, GridApi } from 'ag-grid-community'; 
 
 @Component({
   selector: 'app-dashboard',
@@ -26,21 +25,15 @@ export class DashboardComponent {
 
   myTheme: any;
 
-
   constructor(private venueService: VenueService) {}
-
   
+  isSidePanelOpen = true;  
+  activeSection: string = 'createvenue';  
 
-  
-  isSidePanelOpen = true;  // Set initial state of the side panel
-  activeSection: string = 'createvenue';  // Default active section
-
-  // Toggle the side panel visibility
   toggleSidePanel() {
     this.isSidePanelOpen = !this.isSidePanelOpen;
   }
 
-  // Set active section to change content dynamically
   setActiveSection(section: string) {
     this.activeSection = section;
   }
@@ -53,8 +46,6 @@ export class DashboardComponent {
     });
   }
 
-
-// agGrid 
 gridApi!: GridApi;
 gridColumnApi: any;
 
@@ -105,13 +96,11 @@ rowData = [
     this.gridColumnApi = params.columnApi;
   }
 
-  // Example function to handle selection or pagination events
   onSelectionChanged() {
     const selectedRows = this.gridApi.getSelectedRows();
     console.log('Selected Rows:', selectedRows);
   }
 
-  // Example function to handle pagination changes
   onPaginationChanged() {
     console.log('Current Page:', this.gridApi.paginationGetCurrentPage());
   }
@@ -120,7 +109,7 @@ rowData = [
     if (this.gridApi) {
       const params = {
         fileName: 'vehicles.csv',
-        allColumns: true,  // Export all columns
+        allColumns: true,  
       };
       this.gridApi.exportDataAsCsv(params);
     }
