@@ -10,7 +10,7 @@ export class HomepageComponent {
 
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
-  selectedDate: string = '';
+  selectedDate: any;
 
   isDropdownOpen: boolean = false;
   
