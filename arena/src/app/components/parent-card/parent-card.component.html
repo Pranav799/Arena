@@ -1,13 +1,9 @@
 <div class="bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
    
-   
-   
     <!-- Image -->
     <div class="p-4">
         <img class="rounded-lg w-full object-cover shadow-lg w-[100%] h-[170px]" src={{imagepath}} alt="" />
     </div>
-
-
 
     <!-- Heading and descrption -->
     <div class="p-6 flex justify-between items-center">
@@ -49,8 +45,6 @@
         </div>
     </div>
     
-
-
     <!-- App Badge -->
     <div class="pt-0 p-2">
         <!-- Flex container to hold the buttons, ensuring wrapping works and the buttons are confined to 3 per row -->
@@ -68,15 +62,6 @@
         </div>
     </div>
     
-    
-    
-    
-    
-    
-    
-
-
-
     <!-- location and book button -->
     <div class="p-2 flex justify-between items-center mt-6">
         <!-- Left Side -->
@@ -102,14 +87,7 @@
             </button>
         </div>
     </div>
-
-
-
 </div>
-
-
-
-
 
 
 <!-- Dialouge Box -->
@@ -137,14 +115,11 @@
                 <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
                 DATE | VENUE | ADDRESS
                 </p>
-                
                 <!-- Component -->
                 <div class="mt-4">
                     <app-badge [badges]="selectedButtons" badgeClass="w-1/4 text-[12px] max-w-[calc(20%-0.5rem)]"></app-badge>
                 </div>
             </div>
-
-  
 
               <!-- Modal body -->
               <form class="p-4 md:p-5 mb-8 overflow-auto max-h-screen">
@@ -328,19 +303,12 @@
                     </div>
                 </div>
                 
-                
-
             </form>
             
           </div>
       </div>
   </div> 
   
-
-
-
-
-
   <!-- ------------------------------- Sucess ----------------------  -->
   <div *ngIf="sucessBookingModal" 
   class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
