@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./parent-card.component.css']
 })
 export class ParentCardComponent {
-  @Input() badges: string[] = []; // Accept badges array as input
   @Input() heading: string = '';
   @Input() location: string = '';
   @Input() capacity : Number = 0;
@@ -29,12 +28,10 @@ export class ParentCardComponent {
   mementosQuantity: number = 1;
   laptopQuantity: number = 1;
 
-
+  selectedButtons: string[] = [];
   buttons = ['08:00 - 9:00', '9:00 - 10:00', '10:00 - 11:00 ', '11:00 - 12:00 ', '12:00 - 01:00 ',
              '1:00 - 2:00', '2:00 - 3:00', '3:00 - 4:00 ', '4:00 - 5:00'
   ];
-
-
 
   onMementosChange(): void {
     this.mementos = this.mementosSelected ? 'mementos' : '';
@@ -64,10 +61,6 @@ export class ParentCardComponent {
     this.bookVenueModal = false;
   }
 
-
-
-  selectedButtons: string[] = [];
-
   isSelected(button: string): boolean {
     return this.selectedButtons.includes(button);
   }
@@ -80,7 +73,5 @@ export class ParentCardComponent {
       this.selectedButtons.splice(index, 1);
     }
   }
-
-  
 
 }
