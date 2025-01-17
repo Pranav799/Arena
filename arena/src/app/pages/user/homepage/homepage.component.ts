@@ -14,9 +14,8 @@ export class HomepageComponent {
 
   isDropdownOpen: boolean = false;
   
-  
-  // Navigation 
   constructor(private router: Router) {}
+  
   navigateToBooking() {
     this.router.navigate(['/booking']);
   }
@@ -38,15 +37,14 @@ export class HomepageComponent {
   }
 
   onDateChange(): void {
-    console.log('Selected Date:', this.selectedDate); // Optional logging for debugging
-    this.closeDatePicker(); // Call method to close the date picker
+    console.log('Selected Date:', this.selectedDate); 
+    this.closeDatePicker(); 
   }
 
-  // Method to close the date picker (just an example)
   closeDatePicker(): void {
     const datepickerElement = document.getElementById('default-datepicker');
     if (datepickerElement) {
-      datepickerElement.blur(); // This will hide the date picker on focus loss
+      datepickerElement.blur(); 
     }
   }
 
