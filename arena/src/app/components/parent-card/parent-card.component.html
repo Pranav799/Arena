@@ -54,7 +54,7 @@
     <!-- App Badge -->
     <div class="pt-0 px-4 py-4">
         <!-- Flex container to hold the buttons, ensuring wrapping works and the buttons are confined to 3 per row -->
-        <div class="flex flex-wrap gap-4 w-full">
+        <div class="flex flex-wrap justify-center gap-4 w-full">
             <button *ngFor="let button of buttons" 
                     [ngClass]="{
                       'text-green-500 border border-green-500 ': !isSelected(button),
