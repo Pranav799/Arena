@@ -1,63 +1,56 @@
 
 <div class="flex h-screen">
   
-  
-  <div [ngClass]="{'w-1/6': isSidePanelOpen, 'w-12': !isSidePanelOpen}"
-      class="transition-all duration-900 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg n">
+  <div [ngClass]="{'w-1/6': isSidePanelOpen, 'w-12': !isSidePanelOpen}" class="transition-all duration-900 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg n">
+        <div class="py-4">
 
-<!-- Menu content goes here -->
+          <h5 id="drawer-navigation-label" *ngIf="isSidePanelOpen" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 mt-3 mb-4">Menu</h5>
+          <ul class="space-y-2 font-medium" [ngClass]="{'mt-16': !isSidePanelOpen}"> 
+              <li>
+                <button (click)="setActiveSection('dashboard')" data-drawer-hide="drawer-navigation" 
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <img src="../../../../assets/icons/dashboard.svg" class="h-4" alt="Flowbite Logo" />
+                    <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+                </button>
+              </li> 
 
-<div class="py-4">
-  <h5 id="drawer-navigation-label" *ngIf="isSidePanelOpen" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 mt-3 mb-4">Menu</h5>
+              <li>
+                <button (click)="setActiveSection('createvenue')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
+                  <span class="flex-1 ms-3 whitespace-nowrap">Create Venue</span>
+                </button>
+            </li>
 
-  <ul class="space-y-2 font-medium" [ngClass]="{'mt-16': !isSidePanelOpen}">
-        
-      <li>
-         <button (click)="setActiveSection('dashboard')" data-drawer-hide="drawer-navigation" 
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <img src="../../../../assets/icons/dashboard.svg" class="h-4" alt="Flowbite Logo" />
-            <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
-         </button>
-      </li> 
+            <li>
+                <button (click)="setActiveSection('editvenue')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
+                  <span class="flex-1 ms-3 whitespace-nowrap">View/ Edit Venue</span>
+                </button>
+            </li>
 
-      <li>
-        <button (click)="setActiveSection('createvenue')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-           <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
-           <span class="flex-1 ms-3 whitespace-nowrap">Create Venue</span>
-        </button>
-     </li>
+            <li>
+                <button (click)="setActiveSection('slotbooking')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
+                  <span class="flex-1 ms-3 whitespace-nowrap">Slot Booking</span>
+                </button>
+            </li>
 
-     <li>
-        <button (click)="setActiveSection('editvenue')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-           <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
-           <span class="flex-1 ms-3 whitespace-nowrap">View/ Edit Venue</span>
-        </button>
-     </li>
+            <li>
+                <button (click)="setActiveSection('report')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <img src="../../../../assets/icons/report.svg" class="h-4" alt="Flowbite Logo" />
+                  <span class="flex-1 ms-3 whitespace-nowrap">Reports</span>
+                </button>
+            </li>
 
-     <li>
-        <button (click)="setActiveSection('slotbooking')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-           <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
-           <span class="flex-1 ms-3 whitespace-nowrap">Slot Booking</span>
-        </button>
-     </li>
+            <li>
+                <button (click)="setActiveSection('bulkbooking')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
+                  <span class="flex-1 ms-3 whitespace-nowrap">Bulk Booking</span>
+                </button>
+            </li>
 
-     <li>
-        <button (click)="setActiveSection('report')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-           <img src="../../../../assets/icons/report.svg" class="h-4" alt="Flowbite Logo" />
-           <span class="flex-1 ms-3 whitespace-nowrap">Reports</span>
-        </button>
-     </li>
-
-     <li>
-        <button (click)="setActiveSection('bulkbooking')" data-drawer-hide="drawer-navigation" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-           <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
-           <span class="flex-1 ms-3 whitespace-nowrap">Bulk Booking</span>
-        </button>
-     </li>
-
-   </ul>
-</div>
-
+          </ul>
+        </div>
   </div>
 
   
