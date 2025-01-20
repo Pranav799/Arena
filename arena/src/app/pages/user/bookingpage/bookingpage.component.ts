@@ -29,16 +29,10 @@ export class BookingpageComponent implements OnInit {
   paginatedBookings: any[] = [];  
   isDropdownOpen: boolean = false;
   isFilterDropdownOpen: boolean = false;
-
   buttonName: string = 'Venue Type'; 
   activeItem: string = 'All Venues'; 
-
   filterItem: string = ''; 
   filterName: string = 'Filter'; 
-
-
-
-
 
   constructor(private router: Router) {}
 
@@ -128,9 +122,8 @@ export class BookingpageComponent implements OnInit {
     this.isFilterDropdownOpen = isOpen;
   }
   
-
-
   setButtonName(item: string): void {
     this.buttonName = item; 
   }
+  
 }
