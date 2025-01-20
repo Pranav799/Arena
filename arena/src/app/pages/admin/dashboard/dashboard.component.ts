@@ -28,6 +28,7 @@ export class DashboardComponent {
   constructor(private venueService: VenueService) {}
   
   isSidePanelOpen = true;  
+  isDropdownOpen = false;
   activeSection: string = 'createvenue';  
 
   toggleSidePanel() {
@@ -113,6 +114,10 @@ rowData = [
       };
       this.gridApi.exportDataAsCsv(params);
     }
+  }
+
+  setDropdown(status : boolean){
+    this.isDropdownOpen = status;
   }
 
 }
