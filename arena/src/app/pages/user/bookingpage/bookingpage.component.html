@@ -42,17 +42,32 @@
                   
                     <!-- input field (Venue Type) -->
                     <div class="relative flex-1">
-                        <input 
-                          type="text" 
-                          id="floating_outlined" 
-                          class="block px-2 pb-2.5 pt-2 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                          placeholder=" " 
-                        />
-                        <label 
-                          for="floating_outlined" 
-                          class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                          Venue Type
-                        </label>
+                      <button 
+                      id="dropdownDefaultButton" 
+                      class="text-black bg-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+                      type="button" 
+                      (click)="setDropdown(!isDropdownOpen)">
+                      {{buttonName}}
+                      <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                      </svg>
+                    </button>
+
+                    <div 
+                    *ngIf="isDropdownOpen"  
+                    class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                      <li>
+                        <a (click)="setActiveItem('Auditorium'); setDropdown(false); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Conference Hall'); setDropdown(false); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Meeting Room'); setDropdown(false); setButtonName('Meeting Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Meeting Room</a>
+                      </li>
+                    </ul>
+                  </div>
                     </div>
                   
                     <!-- Date Picker Input -->
@@ -94,54 +109,42 @@
    
     <div class="mb-6 flex justify-between items-center">
        <!-- Heading -->
-      <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left">All Bookings</h3>
+      <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left">{{buttonName}}</h3>
       <!-- Search -->
       <div class="relative max-w-sm">
         <div class="flex items-center justify-center p-4">
-            <button id="dropdownDefault" data-dropdown-toggle="dropdown"
-                    class="text-black bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    type="button">
-                Filter by category
-                <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </button>
-
-          
+            
             <!-- Dropdown menu -->
-            <div id="dropdown" class="z-10 hidden w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+            <button 
+            id="dropdownDefaultButton" 
+            class="text-black bg-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+            type="button" 
+            (click)="setFilterDropdown(!isFilterDropdownOpen)">
+            {{filterName}}
+            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            </svg>
+          </button>
 
-              <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
-                <li class="flex items-center">
-                  <input id="Scheduled" type="checkbox" value=""
-                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-          
-                  <label for="Scheduled" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-                    Scheduled
-                  </label>
-                </li>
-          
-                <li class="flex items-center">
-                  <input id="Completed" type="checkbox" value=""
-                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-          
-                  <label for="Completed" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-                    Completed
-                  </label>
-                </li>
-          
-                <li class="flex items-center">
-                  <input id="Cancelled" type="checkbox" value=""
-                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-          
-                  <label for="Cancelled" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-                    Cancelled
-                  </label>
-                </li>
-          
-              </ul>
-            </div>
+          <div 
+          *ngIf="isFilterDropdownOpen"  
+          class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+            <li>
+              <a (click)="setFilterItem('All'); setFilterDropdown(false)" class="block px-4 py-2 hover:bg-gray-100 "> All</a>
+            </li>
+            <li>
+              <a (click)="setFilterItem('Sucessfull'); setFilterDropdown(false)" class="block px-4 py-2 hover:bg-gray-100 ">Sucessfull</a>
+            </li>
+            <li>
+              <a (click)="setFilterItem('Pending '); setFilterDropdown(false)" class="block px-4 py-2 hover:bg-gray-100 "> Pending</a>
+            </li>
+            <li>
+              <a (click)="setFilterItem('Cancelled '); setFilterDropdown(false)" class="block px-4 py-2 hover:bg-gray-100 "> Cancelled</a>
+            </li>
+
+          </ul>
+        </div>
 
           </div>
       </div>

@@ -93,10 +93,11 @@
           </div>
       </nav>
 
-      <!-- Conditional Rendering of Section of Drawer  -->
 
 
-    <div *ngIf="activeSection === 'dashboard'" class="flex items-center justify-center min-h-screen bg-gray-100">
+ <!-- Conditional Rendering of Section of Drawer  -->
+
+  <div *ngIf="activeSection === 'dashboard'" class="flex items-center justify-center min-h-screen bg-gray-100">
           
       <ag-grid-angular
       [rowData]="rowData"
@@ -117,12 +118,9 @@
     </div>
     
       
-    </div>
+  </div>
 
-
-
-<!-- Create Venue Part -->
-    <div class="flex items-center justify-center min-h-screen bg-gray-100" *ngIf="activeSection === 'createvenue'">
+  <div *ngIf="activeSection === 'createvenue'" class="flex items-center justify-center min-h-screen bg-gray-100" >
         <div class="w-[80%] p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h5 class="mb-5 text-2xl font-bold tracking-tight text-[#6A0DAD] dark:text-white">Create a Venue</h5>
       
@@ -229,24 +227,15 @@
 
           </div>
         </div>
-      </div>
-<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------           -->
-      
+  </div>
 
   <div *ngIf="activeSection === 'editvenue'">
-    
   </div>
-
 
   <div *ngIf="activeSection === 'slotbooking'">
-    <h1>Sign In Content</h1>
-    <p>This is the sign-in section.</p>
   </div>
 
-
   <div *ngIf="activeSection === 'report'">
-    <h1>Sign Up Content</h1>
-    <p>This is the sign-up section.</p>
   </div>
 
   <div *ngIf="activeSection === 'bulkbooking'" class="flex justify-center mt-6">
@@ -254,9 +243,6 @@
   </div>
 
 
-
-
-<!-- -------------------------------------------------------------------------------------------------------- -->
 
       
 

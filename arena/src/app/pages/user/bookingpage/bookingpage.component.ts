@@ -21,13 +21,24 @@ export class BookingpageComponent implements OnInit {
     { bookingid: '070131', eventname: 'Networking Event', address: 'Admin Block', venue: 'Networking Room', status: 'Scheduled' },
     { bookingid: '070132', eventname: 'Leadership Forum', address: 'Conference Center', venue: 'Leadership Hall', status: 'Completed' },
     { bookingid: '070133', eventname: 'Annual Gathering', address: 'Main Block', venue: 'Grand Hall', status: 'Cancelled' },
-    
   ];
 
   currentPage: number = 1;  
   itemsPerPage: number = 5;  
   totalItems: number = 0;    
   paginatedBookings: any[] = [];  
+  isDropdownOpen: boolean = false;
+  isFilterDropdownOpen: boolean = false;
+
+  buttonName: string = 'Venue Type'; 
+  activeItem: string = 'All Venues'; 
+
+  filterItem: string = ''; 
+  filterName: string = 'Filter'; 
+
+
+
+
 
   constructor(private router: Router) {}
 
@@ -98,5 +109,28 @@ export class BookingpageComponent implements OnInit {
   // Navigate to the home page
   navigateToHome() {
     this.router.navigate(['/home']);
+  }
+
+  setActiveItem(item: string): void {
+    this.activeItem = item; 
+  }
+
+  setFilterItem(item: string): void {
+    this.filterItem = item; 
+    this.filterName = item;
+  }
+
+  setDropdown(isOpen: boolean): void {
+    this.isDropdownOpen = isOpen;
+  }
+
+  setFilterDropdown(isOpen: boolean): void {
+    this.isFilterDropdownOpen = isOpen;
+  }
+  
+
+
+  setButtonName(item: string): void {
+    this.buttonName = item; 
   }
 }

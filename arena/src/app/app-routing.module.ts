@@ -5,10 +5,7 @@ import { BookingpageComponent } from './pages/user/bookingpage/bookingpage.compo
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { LoginComponent } from './pages/shared/login/login.component';
 
-
-
 const routes: Routes = [
-
   {path:"", component:LoginComponent},
   {path:"home", component:HomepageComponent},
   {path:"booking", component:BookingpageComponent},
@@ -20,6 +17,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
 
 
