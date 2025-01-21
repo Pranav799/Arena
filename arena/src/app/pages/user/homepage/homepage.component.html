@@ -1,5 +1,5 @@
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg">
+<nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
       <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse"><img src="assets/images/applogo.png" class="h-8" alt="App Logo" /></a>
@@ -111,69 +111,17 @@
     <!-- Grid of App Card Components -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       <app-card 
-      [heading]=" 'Auditorium A1' "
-      [location]=" 'Main Block' "
-      [capacity]="200"
-      [acstatus]="'AC'"
-      [imagepath]="'assets/images/audi1.jpg'"
-      [address]="'4th Floor Humanities Block'"></app-card>
-
-      <app-card 
-      [heading]=" 'Auditorium A4' "
-      [location]=" 'Administrative Block' "
-      [capacity]="20"
-      [acstatus]="'NonAC'"
-      [imagepath]="'assets/images/audi2.webp'"
-      [address]="'6th Floor Admin Block'"></app-card>
-
-      <app-card 
-      [heading]=" 'P2 Conference Hall' "
-      [location]=" 'Humanities Block' "
-      [capacity]="180"
-      [acstatus]="'AC'"
-      [imagepath]="'assets/images/audi3.jpg'"
-      [address]="'1st Floor Humanities Block'"></app-card>
-
-      <app-card 
-      [heading]=" 'Meeting Room' "
-      [location]=" 'PG Block' "
-      [capacity]="11"
-      [acstatus]="'AC'"
-      [imagepath]="'assets/images/audi4.jpg'"
-      [address]="'2nd Floor PG Block'"></app-card>
-
-      <app-card 
-      [heading]=" 'P2 Conference Hall' "
-      [location]=" 'Humanities Block' "
-      [capacity]="180"
-      [acstatus]="'AC'"
-      [imagepath]="'assets/images/audi3.jpg'"
-      [address]="'1st Floor Humanities Block'"></app-card>
-
-      <app-card 
-      [heading]=" 'Meeting Room' "
-      [location]=" 'PG Block' "
-      [capacity]="11"
-      [acstatus]="'AC'"
-      [imagepath]="'assets/images/audi4.jpg'"
-      [address]="'2nd Floor PG Block'"></app-card>
-      
-      <app-card 
-      [heading]=" 'P2 Conference Hall' "
-      [location]=" 'Humanities Block' "
-      [capacity]="180"
-      [acstatus]="'AC'"
-      [imagepath]="'assets/images/audi3.jpg'"
-      [address]="'1st Floor Humanities Block'"></app-card>
-
-
-      <app-card 
-      [heading]=" 'Meeting Room' "
-      [location]=" 'PG Block' "
-      [capacity]="11"
-      [acstatus]="'AC'"
-      [imagepath]="'assets/images/audi4.jpg'"
-      [address]="'2nd Floor PG Block'"></app-card>
+    *ngFor="let card of cards; let i = index"
+    [heading]="card.heading"
+    [location]="card.location"
+    [capacity]="card.capacity"
+    [acstatus]="card.acstatus"
+    [imagepath]="card.imagepath"
+    [address]="card.address"
+    [buttons]="card.buttons"
+    [selectedButtons]="card.selectedButtons"  
+    (buttonSelect)="onButtonSelect(i, $event)"> 
+  </app-card>
 
     </div>
     

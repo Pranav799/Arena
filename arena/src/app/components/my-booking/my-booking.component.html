@@ -66,26 +66,26 @@
 
 
 
-  <div *ngIf="cancelBookingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70 rounded-b">
-    <div class="relative p-0 w-80 max-w-lg max-h-full"> 
+  <div *ngIf="cancelBookingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">
+    <div class="relative p-4 w-full max-w-lg max-h-full"> 
     
       <div class="relative bg-white rounded-lg shadow ">
        
-        <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
-          <img src="../../../assets/images/cancelbooking.png" alt="Success" class="mb-4"> 
+        <div class="p-1 flex flex-col items-center"> 
+          <img src="../../../assets/images/cancelbooking.png" alt="Success" class="m-4 h-24"> 
           
           <div class="text-center"> 
-            <p class="text-sm text-gray-600 dark:text-gray-300 mb-5">
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-5">
                 State Reason for Cancellation
             </p>
 
-            <textarea id="message" rows="2" class="block p-2.5 w-70 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Reason"></textarea>
+            <textarea id="message" rows="3" class="block p-2.5 w-[370px] text-sm mb-6 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 " placeholder="Reason"></textarea>
           </div>
         </div>
   
        
         <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-          <button (click)="closeCancelBookingModal(); opensucessCancelBookingModal()"  type="button" class="text-white bg-red-700 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+          <button (click)="closeCancelBookingModal(); opensucessCancelBookingModal()"  type="button" class="text-white bg-red-700 hover:bg-red-500  w-[400px] font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
             Cancel Booking
           </button>
         </div>

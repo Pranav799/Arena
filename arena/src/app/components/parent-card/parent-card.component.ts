@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -6,12 +6,25 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./parent-card.component.css']
 })
 export class ParentCardComponent {
-  @Input() heading: string = '';
-  @Input() location: string = '';
-  @Input() capacity : Number = 0;
-  @Input() acstatus : string ='';
-  @Input() imagepath : string = '';
-  @Input() address: string = '';
+  @Input() heading!: string;
+  @Input() location!: string;
+  @Input() capacity!: number;
+  @Input() acstatus!: string;
+  @Input() imagepath!: string;
+  @Input() address!: string;
+  @Input() buttons: string[] = []; // List of buttons (slots) for this card
+  @Input() selectedButtons: string[] = []; // Array to track selected buttons (multiple allowed)
+
+  @Output() buttonSelect = new EventEmitter<string>();
+
+  onButtonSelect(button: string): void {
+    this.buttonSelect.emit(button);  // Emit the selected button to the parent
+  }
+
+  // Check if a slot is selected in this card
+  isSelected(button: string): boolean {
+    return this.selectedButtons.includes(button);
+  }
   
   sucessBookingModal: boolean = false;
   bookVenueModal: boolean = false;
@@ -27,11 +40,6 @@ export class ParentCardComponent {
   saplingsQuantity: number = 1;
   mementosQuantity: number = 1;
   laptopQuantity: number = 1;
-
-  selectedButtons: string[] = [];
-  buttons = ['08:00 - 9:00', '9:00 - 10:00', '10:00 - 11:00 ', '11:00 - 12:00 ', '12:00 - 01:00 ',
-             '1:00 - 2:00', '2:00 - 3:00', '3:00 - 4:00 ', '4:00 - 5:00'
-  ];
 
   onMementosChange(): void {
     this.mementos = this.mementosSelected ? 'mementos' : '';
@@ -59,10 +67,6 @@ export class ParentCardComponent {
 
   closebookVenueModal() {
     this.bookVenueModal = false;
-  }
-
-  isSelected(button: string): boolean {
-    return this.selectedButtons.includes(button);
   }
 
   toggleSelection(button: string): void {
