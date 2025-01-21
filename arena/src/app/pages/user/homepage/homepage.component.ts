@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  styleUrls: ['./homepage.component.css'],
+  providers: [DatePipe]
 })
 export class HomepageComponent {
 
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
+  selectedDate: string = '';
+  isDropdownOpen: boolean = false;
+
 
 
   cards = [
@@ -23,7 +28,7 @@ export class HomepageComponent {
       buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
     , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
   ], 
-      selectedButtons: [] as string[] // Can store multiple selected slots
+      selectedButtons: [] as string[] 
     },
     { 
       heading: 'P2 Conference Hall', 
@@ -35,7 +40,7 @@ export class HomepageComponent {
       buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
     , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
   ], 
-      selectedButtons: [] as string[] // Can store multiple selected slots
+      selectedButtons: [] as string[] 
     },
     { 
       heading: 'Meeting Room', 
@@ -47,49 +52,31 @@ export class HomepageComponent {
       buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
         , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
       ], 
-      selectedButtons: [] as string[] // Can store multiple selected slots
+      selectedButtons: [] as string[]
     },
   ];
 
-  selectedDate: any;
+  constructor(private router: Router, private datePipe: DatePipe)  {}
 
-  isDropdownOpen: boolean = false;
-  
-  constructor(private router: Router) {}
-
-
-  ngOnInit() {}
-
-  // Handle slot selection in a card
   onButtonSelect(cardIndex: number, button: string): void {
-    // Clear selected slots in all other cards
+
     this.cards.forEach((card, index) => {
       if (index !== cardIndex) {
-        card.selectedButtons = []; // Clear selection in other cards
-      }
+        card.selectedButtons = [];       }
     });
 
-    // Toggle the selected button in the current card
     const selectedButtons = this.cards[cardIndex].selectedButtons;
     const buttonIndex = selectedButtons.indexOf(button);
-    
     if (buttonIndex === -1) {
-      // If the button is not already selected, add it
       selectedButtons.push(button);
     } else {
-      // If the button is already selected, remove it
       selectedButtons.splice(buttonIndex, 1);
     }
   }
 
-  
   navigateToBooking() {
     this.router.navigate(['/booking']);
   }
-
-  badges: string[] = ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-    , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-  ];
 
   setActiveItem(item: string): void {
     this.activeItem = item; 
@@ -104,14 +91,19 @@ export class HomepageComponent {
   }
 
   onDateChange(): void {
-    console.log('Selected Date:', this.selectedDate); 
-    this.closeDatePicker(); 
+    // Format the selected date
+    if (this.selectedDate) {
+      this.selectedDate = this.datePipe.transform(this.selectedDate, 'dd MMM yyyy')!;
+    }
+    console.log('Formatted Date:', this.selectedDate);
+    this.closeDatePicker();
   }
+
 
   closeDatePicker(): void {
     const datepickerElement = document.getElementById('default-datepicker');
     if (datepickerElement) {
-      datepickerElement.blur(); 
+      datepickerElement.blur();
     }
   }
 

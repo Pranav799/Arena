@@ -24,6 +24,8 @@ export class DashboardComponent {
   };
 
   myTheme: any;
+  activeItem: string = 'All Venues'; 
+  buttonName: string = 'Venue Type'; 
 
   constructor(private venueService: VenueService) {}
   
@@ -49,6 +51,45 @@ export class DashboardComponent {
 
 gridApi!: GridApi;
 gridColumnApi: any;
+
+cards = [
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi4.jpg', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+  , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+], 
+    selectedButtons: [] as string[] // Can store multiple selected slots
+  },
+  { 
+    heading: 'P2 Conference Hall', 
+    location: 'Humanities Block', 
+    capacity: 180, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi3.jpg', 
+    address: '1st Floor Humanities Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+  , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+], 
+    selectedButtons: [] as string[] // Can store multiple selected slots
+  },
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi4.jpg', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+      , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+    ], 
+    selectedButtons: [] as string[] // Can store multiple selected slots
+  },
+];
 
 rowData = [
   { make: 'Tesla', model: 'Model Y', price: 64950, electric: true },
@@ -92,6 +133,30 @@ rowData = [
     sortable: true,
   };
 
+  ngOnInit() {}
+
+  // Handle slot selection in a card
+  onButtonSelect(cardIndex: number, button: string): void {
+    // Clear selected slots in all other cards
+    this.cards.forEach((card, index) => {
+      if (index !== cardIndex) {
+        card.selectedButtons = []; // Clear selection in other cards
+      }
+    });
+
+    // Toggle the selected button in the current card
+    const selectedButtons = this.cards[cardIndex].selectedButtons;
+    const buttonIndex = selectedButtons.indexOf(button);
+    
+    if (buttonIndex === -1) {
+      // If the button is not already selected, add it
+      selectedButtons.push(button);
+    } else {
+      // If the button is already selected, remove it
+      selectedButtons.splice(buttonIndex, 1);
+    }
+  }
+
   onGridReady(params: any): void {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -118,6 +183,14 @@ rowData = [
 
   setDropdown(status : boolean){
     this.isDropdownOpen = status;
+  }
+
+  setActiveItem(item: string): void {
+    this.activeItem = item; 
+  }
+
+  setButtonName(item: string): void {
+    this.buttonName = item; 
   }
 
 }

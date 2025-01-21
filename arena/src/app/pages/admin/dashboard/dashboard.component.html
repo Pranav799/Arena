@@ -79,7 +79,7 @@
             </div>
         </nav>
 
-        <div *ngIf="activeSection === 'dashboard'" class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div *ngIf="activeSection === 'dashboard'" class="flex items-center justify-center min-h-screen">
                 
             <ag-grid-angular
             [rowData]="rowData"
@@ -102,7 +102,7 @@
             
         </div>
 
-        <div *ngIf="activeSection === 'createvenue'" class="flex justify-center mt-12 bg-gray-100" >
+        <div *ngIf="activeSection === 'createvenue'" class="flex justify-center mt-12 " >
           
               <div class="w-[80%] p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                 <h5 class="mb-5 text-2xl font-bold tracking-tight text-[#6A0DAD] dark:text-white">Create a Venue</h5>
@@ -212,23 +212,23 @@
               </div>
         </div>
 
-        <div *ngIf="activeSection === 'editvenue'">
+        <div *ngIf="activeSection === 'editvenue'" >
         </div>
 
-        <div *ngIf="activeSection === 'slotbooking'">
+        <div *ngIf="activeSection === 'slotbooking'" >
 
           <div class="flex  justify-center mt-12">
-            <div class="w-full max-w-xl bg-white border border-gray-200 rounded-lg shadow-lg p-4 py-8"> 
+            <div class="w-full max-w-xl bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8"> 
                 <p class="mb-4 text-blue-800 text-sm font-semibold flex justify-center">Check Availability</p>
-                <div class="flex">
+                <div class="flex gap-2">
 
                   <div class="w-2/5 text-left">
                     <button 
                           id="dropdownDefaultButton" 
-                          class="text-black bg-white font-medium text-sm px-5 py-2.5 text-center inline-flex items-center " 
+                          class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center rounded-lg " 
                           type="button" 
                           (click)="setDropdown(true)">
-                          Venue Type
+                          {{buttonName}}
                           <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                           </svg>
@@ -238,16 +238,25 @@
                         *ngIf="isDropdownOpen"  
                         class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                          <li>
-                            <a (click)="setDropdown(false)" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
-                          </li>
-                          <li>
-                            <a (click)="setDropdown(false)" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
-                          </li>
-                          <li>
-                            <a (click)="setDropdown(false)" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Meeting Room</a>
-                          </li>
-                        </ul>
+                        <li>
+                          <a (click)="setActiveItem('All Venue'); setDropdown(false); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                        </li>
+                        <li>
+                          <a (click)="setActiveItem('Auditorium'); setDropdown(false); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                        </li>
+                        <li>
+                          <a (click)="setActiveItem('Conference Hall'); setDropdown(false); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                        </li>
+                        <li>
+                          <a (click)="setActiveItem('Mini Auditorium'); setDropdown(false); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                        </li>
+                        <li>
+                          <a (click)="setActiveItem('Panel Room'); setDropdown(false); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                        </li>
+                        <li>
+                          <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(false); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                        </li>
+                      </ul>
                       </div>
                   </div>
 
@@ -267,7 +276,7 @@
                   </div>
                   </div>
 
-                  <div class="w-1/5 ml-4 ">
+                  <div class="w-1/7 ml-auto ">
                     <button 
                           type="button" 
                           class="flex items-center justify-center w-12 h-10 bg-blue-700 text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -284,79 +293,28 @@
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-6 lg:p-14">
-            <app-card 
-            [heading]=" 'Auditorium A1' "
-            [location]=" 'Main Block' "
-            [capacity]="200"
-            [acstatus]="'AC'"
-            [imagepath]="'assets/images/audi1.jpg'"
-            [address]="'4th Floor Humanities Block'"></app-card>
-      
-            <app-card 
-            [heading]=" 'Auditorium A4' "
-            [location]=" 'Administrative Block' "
-            [capacity]="20"
-            [acstatus]="'NonAC'"
-            [imagepath]="'assets/images/audi2.webp'"
-            [address]="'6th Floor Admin Block'"></app-card>
-      
-            <app-card 
-            [heading]=" 'P2 Conference Hall' "
-            [location]=" 'Humanities Block' "
-            [capacity]="180"
-            [acstatus]="'AC'"
-            [imagepath]="'assets/images/audi3.jpg'"
-            [address]="'1st Floor Humanities Block'"></app-card>
-      
-            <app-card 
-            [heading]=" 'Meeting Room' "
-            [location]=" 'PG Block' "
-            [capacity]="11"
-            [acstatus]="'AC'"
-            [imagepath]="'assets/images/audi4.jpg'"
-            [address]="'2nd Floor PG Block'"></app-card>
-      
-            <app-card 
-            [heading]=" 'P2 Conference Hall' "
-            [location]=" 'Humanities Block' "
-            [capacity]="180"
-            [acstatus]="'AC'"
-            [imagepath]="'assets/images/audi3.jpg'"
-            [address]="'1st Floor Humanities Block'"></app-card>
-      
-            <app-card 
-            [heading]=" 'Meeting Room' "
-            [location]=" 'PG Block' "
-            [capacity]="11"
-            [acstatus]="'AC'"
-            [imagepath]="'assets/images/audi4.jpg'"
-            [address]="'2nd Floor PG Block'"></app-card>
             
             <app-card 
-            [heading]=" 'P2 Conference Hall' "
-            [location]=" 'Humanities Block' "
-            [capacity]="180"
-            [acstatus]="'AC'"
-            [imagepath]="'assets/images/audi3.jpg'"
-            [address]="'1st Floor Humanities Block'"></app-card>
-      
-      
-            <app-card 
-            [heading]=" 'Meeting Room' "
-            [location]=" 'PG Block' "
-            [capacity]="11"
-            [acstatus]="'AC'"
-            [imagepath]="'assets/images/audi4.jpg'"
-            [address]="'2nd Floor PG Block'"></app-card>
+                *ngFor="let card of cards; let i = index"
+                [heading]="card.heading"
+                [location]="card.location"
+                [capacity]="card.capacity"
+                [acstatus]="card.acstatus"
+                [imagepath]="card.imagepath"
+                [address]="card.address"
+                [buttons]="card.buttons"
+                [selectedButtons]="card.selectedButtons"  
+                (buttonSelect)="onButtonSelect(i, $event)"> 
+          </app-card>
       
           </div>
 
         </div>
 
-        <div *ngIf="activeSection === 'report'">
+        <div *ngIf="activeSection === 'report'" >
         </div>
 
-        <div *ngIf="activeSection === 'bulkbooking'" class="flex justify-center mt-6">
+        <div *ngIf="activeSection === 'bulkbooking'" class="flex justify-center mt-6 bg-[#f3f6fe]">
           <app-bulk-booking></app-bulk-booking>
         </div>
 
