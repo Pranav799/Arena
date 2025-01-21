@@ -281,7 +281,76 @@
 
                 </div>
             </div>
-        </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-6 lg:p-14">
+            <app-card 
+            [heading]=" 'Auditorium A1' "
+            [location]=" 'Main Block' "
+            [capacity]="200"
+            [acstatus]="'AC'"
+            [imagepath]="'assets/images/audi1.jpg'"
+            [address]="'4th Floor Humanities Block'"></app-card>
+      
+            <app-card 
+            [heading]=" 'Auditorium A4' "
+            [location]=" 'Administrative Block' "
+            [capacity]="20"
+            [acstatus]="'NonAC'"
+            [imagepath]="'assets/images/audi2.webp'"
+            [address]="'6th Floor Admin Block'"></app-card>
+      
+            <app-card 
+            [heading]=" 'P2 Conference Hall' "
+            [location]=" 'Humanities Block' "
+            [capacity]="180"
+            [acstatus]="'AC'"
+            [imagepath]="'assets/images/audi3.jpg'"
+            [address]="'1st Floor Humanities Block'"></app-card>
+      
+            <app-card 
+            [heading]=" 'Meeting Room' "
+            [location]=" 'PG Block' "
+            [capacity]="11"
+            [acstatus]="'AC'"
+            [imagepath]="'assets/images/audi4.jpg'"
+            [address]="'2nd Floor PG Block'"></app-card>
+      
+            <app-card 
+            [heading]=" 'P2 Conference Hall' "
+            [location]=" 'Humanities Block' "
+            [capacity]="180"
+            [acstatus]="'AC'"
+            [imagepath]="'assets/images/audi3.jpg'"
+            [address]="'1st Floor Humanities Block'"></app-card>
+      
+            <app-card 
+            [heading]=" 'Meeting Room' "
+            [location]=" 'PG Block' "
+            [capacity]="11"
+            [acstatus]="'AC'"
+            [imagepath]="'assets/images/audi4.jpg'"
+            [address]="'2nd Floor PG Block'"></app-card>
+            
+            <app-card 
+            [heading]=" 'P2 Conference Hall' "
+            [location]=" 'Humanities Block' "
+            [capacity]="180"
+            [acstatus]="'AC'"
+            [imagepath]="'assets/images/audi3.jpg'"
+            [address]="'1st Floor Humanities Block'"></app-card>
+      
+      
+            <app-card 
+            [heading]=" 'Meeting Room' "
+            [location]=" 'PG Block' "
+            [capacity]="11"
+            [acstatus]="'AC'"
+            [imagepath]="'assets/images/audi4.jpg'"
+            [address]="'2nd Floor PG Block'"></app-card>
+      
+          </div>
+
         </div>
 
         <div *ngIf="activeSection === 'report'">
