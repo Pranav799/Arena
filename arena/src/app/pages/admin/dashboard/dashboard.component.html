@@ -81,23 +81,7 @@
 
         <div *ngIf="activeSection === 'dashboard'" class="flex items-center justify-center min-h-screen">
                 
-            <ag-grid-angular
-            [rowData]="rowData"
-            [columnDefs]="colDefs"
-            [pagination]="true"
-            [paginationPageSize]="paginationPageSize"
-            [paginationPageSizeSelector]="paginationPageSizeSelector"
-            [rowSelection]="rowSelection"
-            [domLayout]="domLayout"
-            class="ag-theme-alpine"
-            style="width: 70%; height: 800px;"
-            (gridReady)="onGridReady($event)"
-            (selectionChanged)="onSelectionChanged()"
-            (paginationChanged)="onPaginationChanged()">
-          </ag-grid-angular>
-          <div class="grid-footer">
-            <button (click)="downloadCSV()">Download CSV</button>
-          </div>
+           
           
             
         </div>
@@ -164,8 +148,42 @@
                     </div>
 
                     <div class="mb-2">
-                      <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Choose the type of Venue  </label>
-                      <input id="venue-type" [(ngModel)]="venue.venueType" name="venueType" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Type of Venue  ">
+                      <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Choose the type of Venue  </label>
+                      <button 
+                        id="dropdownDefaultButton" 
+                        class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center rounded-lg " 
+                        type="button" 
+                        (click)="setDropdown(true)">
+                        {{buttonName}}
+                        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                        </svg>
+                      </button>
+
+                      <div 
+                      *ngIf="isDropdownOpen"  
+                      class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
+                      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                      <li>
+                        <a (click)="setActiveItem('All Venue'); setDropdown(false); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Auditorium'); setDropdown(false); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Conference Hall'); setDropdown(false); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Mini Auditorium'); setDropdown(false); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Panel Room'); setDropdown(false); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(false); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                      </li>
+                    </ul>
+                    </div>
                     </div> 
 
                     <div class="mb-2">
@@ -291,7 +309,6 @@
                 </div>
             </div>
           </div>
-          
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-6 lg:p-14">
             
             <app-card 
