@@ -73,7 +73,7 @@ export class HomepageComponent implements OnInit {
       location: 'PG Block', 
       capacity: 11, 
       acstatus: 'AC', 
-      imagepath: 'assets/images/', 
+      imagepath: 'assets/images/10.jpg', 
       address: '2nd Floor PG Block', 
       buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
         , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
