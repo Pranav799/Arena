@@ -31,7 +31,7 @@ export class DashboardComponent {
   
   isSidePanelOpen = true;  
   isDropdownOpen = false;
-  activeSection: string = 'createvenue';  
+  activeSection: string = 'dashboard';  
 
   toggleSidePanel() {
     this.isSidePanelOpen = !this.isSidePanelOpen;
@@ -192,5 +192,9 @@ rowData = [
   setButtonName(item: string): void {
     this.buttonName = item; 
   }
+
+
+
+  
 
 }
