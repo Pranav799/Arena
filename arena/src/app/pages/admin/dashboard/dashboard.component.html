@@ -622,6 +622,225 @@
           <app-bulk-booking></app-bulk-booking>
         </div>
 
+
+        <div *ngIf="bookVenueModal"    class="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-70">
+          <div class="relative p-4 w-full max-w-3xl max-h-full">
+              <!-- Modal content -->
+              <div class="relative bg-[#f9f9f9] rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="p-4 md:p-5 border-b rounded-t dark:border-gray-600" >
+                    <!-- First line: Heading and Close Button -->
+                    <div class="flex items-center justify-between">
+                    <img src="../../../assets/logo/Icon.svg" alt="Logo" class="w-5 h-5 mr-2"> 
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                        My Booking
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-xs w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" (click)="closebookVenueModal()">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    </div>
+    
+                    <!-- Second line: Paragraph -->
+                    <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                    DATE | {{heading}} | {{address}}
+                    </p>
+                    <!-- Component -->
+                    <div class="mt-4">
+                        <app-badge [badges]="selectedButtons" badgeClass="w-1/4 text-[12px] max-w-[calc(20%-0.5rem)]"></app-badge>
+                    </div>
+                </div>
+    
+                  <!-- Modal body -->
+                  <form class="p-4 md:p-5 mb-8 overflow-auto max-h-screen">
+    
+                    <div class="flex items-center space-x-4 mb-0">
+                        <label class="w-2/5 text-black text-xs text-left ">Event Name <span class="text-red-700">*</span></label>
+                        <input type="text" class="w-3/5 h-12 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[12px]">
+                        <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
+                    </div>
+                
+                    <div class="flex items-center space-x-4 mb-0">
+                        <label class="w-2/5 text-black text-xs text-left ">Resource Person / Chief Guest Name <span class="text-red-700">*</span></label>
+                        <input type="text" class="w-3/5 px-3 h-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
+                        <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
+                    </div>
+                
+                    <div class="flex items-center space-x-4 mb-0">
+                        <label class="w-2/5 text-black text-xs text-left ">Department / Club / Association / Deanery / Institutional Name <span class="text-red-700">*</span></label>
+                        <input type="text" class="w-3/5 px-3 h-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
+                        <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
+                    </div>
+    
+                    <div class="flex items-center space-x-4 mb-0">
+                        <label class="w-2/5 text-black text-xs text-left ">Fest / Conference /Meeting / Seminar /Workshop / Training Programme / FDP <span class="text-red-700">*</span></label>
+                        <input type="text" class="w-3/5 h-12 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
+                        <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
+                    </div>
+    
+                    <div class="flex items-center space-x-4 mb-2">
+                        <label class="w-2/5 text-black text-xs text-left ">Additional Requirements</label>
+    
+                        <div class="flex w-3/5 flex-wrap gap-1">
+                                <div class="flex items-center ps-3">
+                                    <input id="photography" type="checkbox" value="" name="photography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="photography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Photography</label>
+                                </div>
+    
+                                <div class="flex items-center ps-3">
+                                    <input id="videography" type="checkbox" value="" name="videography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="videography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Videography</label>
+                                </div>
+    
+                                <div class="flex items-center ps-3">
+                                    <input id="choir" type="checkbox" value="" name="choir" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="choir" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Choir</label>
+                                </div>
+    
+                                <div class="flex items-center ps-3">
+                                    <input id="lamp" type="checkbox" value="" name="lamp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="lamp" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Lamp</label>
+                                </div>
+    
+                                <div class="flex items-center ps-3">
+                                    <input id="studentReporters" type="checkbox" value="" name="studentReporters" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="studentReporters" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Student Reporters</label>
+                                </div>
+    
+                                <div class="flex  items-center ps-3">
+                                    <input id="whiteboard" type="checkbox" value="" name="whiteboard" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="whiteboard" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Whiteboard</label>
+                                </div>
+    
+                                <!-- ---------------sapling----------------------  -->
+                               <div class="flex items-center ps-3 space-x-2">
+                                    
+                                <input id="saplings-radio" 
+                                    type="checkbox" 
+                                    value="saplings" 
+                                    [(ngModel)]="saplingsSelected" 
+                                    (ngModelChange)="onSaplingsChange()" 
+                                    name="saplings-radio" 
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="saplings-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
+    
+                               
+                                <div *ngIf="saplingsSelected" class="flex items-center">
+                                    <input type="number" 
+                                        id="saplings-quantity" 
+                                        [(ngModel)]="saplingsQuantity" 
+                                        name="saplings-quantity" 
+                                        class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
+                                        min="1" 
+                                        placeholder="Enter number">
+                                </div>
+                            </div>
+                                
+                                <!-- ------------------------ Mementos -------------------------  -->
+                                <div class="flex items-center ps-3 space-x-2">
+                                    
+                                    <input id="mementos-radio" 
+                                        type="checkbox" 
+                                        value="mementos" 
+                                        [(ngModel)]="mementosSelected" 
+                                        (ngModelChange)="onMementosChange()" 
+                                        name="memntos-radio" 
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                    <label for="memntos-radio" class="text-xs font-medium text-gray-900 ">Mementos</label>
+    
+                                    
+                                    <div *ngIf="mementosSelected" class="flex items-center">
+                                        <input type="number" 
+                                            id="memntos-quantity" 
+                                            [(ngModel)]="mementosQuantity" 
+                                            name="mementos-quantity" 
+                                            class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
+                                            min="1" 
+                                            placeholder="Enter number">
+                                    </div>
+                                </div>
+    
+                                <!-- --------------------Laptop----------------------  -->
+                                <div class="flex items-center ps-3 space-x-2">
+                                    
+                                    <input id="laptop-radio" 
+                                        type="checkbox" 
+                                        value="laptop" 
+                                        [(ngModel)]="laptopsSelected" 
+                                        (ngModelChange)="onLaptopsChange()" 
+                                        name="laptop-radio" 
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="laptop-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Laptop</label>
+    
+                                    
+                                    <div *ngIf="laptopsSelected" class="flex items-center">
+                                        <input type="number" 
+                                            id="laptop-quantity" 
+                                            [(ngModel)]="laptopQuantity" 
+                                            name="laptop-quantity" 
+                                            class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" 
+                                            min="1" 
+                                            placeholder="Enter number">
+                                    </div>
+                                </div>
+    
+                                
+    
+                        </div>
+                        
+                    </div>
+    
+                    <div class="flex items-center space-x-4 mb-0">
+                        <label class="w-2/5 text-black text-xs text-left ">Extra Requirements, if needed</label>
+                        <textarea id="message" rows="2" class="w-3/5 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" placeholder=""></textarea>
+                        <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
+                    </div>
+    
+                    <div class="flex items-center space-x-4 mb-2">
+                         <p class="text-xs">Is the event scheduled as per the academic calendar?</p>
+    
+                        <input id="yes" type="radio" value="Yes" name="academic_calender" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                        <label for="yes" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Yes</label>
+    
+                        <input checked id="no" type="radio" value="No" name="academic_calender" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                        <label for="no" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">No</label>
+    
+                    </div>
+    
+                    <div class="flex items-center space-x-4 mb-2">
+                        <p class="text-xs">Mode of Event</p>
+    
+                       <input id="offline" type="radio" value="offline" name="mode" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                       <label for="offline" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Offline</label>
+    
+                       <input checked id="hybrid" type="radio" value="hybrid" name="mode" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                       <label for="hybrid" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Hybrid</label>
+    
+                   </div>
+    
+                    <div class="flex mt-8">
+                        <div class="flex-1 flex justify-center" >
+                            <button type="button" (click)="closebookVenueModal()" class="py-2.5 px-5 me-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 w-full">Cancel</button>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <button 
+                                type="button"
+                                (click)="openSucessBookingModal(); closebookVenueModal() "
+                                data-modal-target="default-modal" data-modal-toggle="default-modal"
+                                class="py-2.5 px-5 me-2 mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800 w-full">
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                    
+                </form>
+                
+              </div>
+          </div>
+      </div> 
+
   </div>
 
 </div>
