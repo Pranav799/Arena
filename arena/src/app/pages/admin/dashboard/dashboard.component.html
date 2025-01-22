@@ -329,6 +329,25 @@
         </div>
 
         <div *ngIf="activeSection === 'report'" >
+
+          <ag-grid-angular
+          [rowData]="rowData"
+          [columnDefs]="colDefs"
+          [pagination]="true"
+          [paginationPageSize]="paginationPageSize"
+          [paginationPageSizeSelector]="paginationPageSizeSelector"
+          [rowSelection]="rowSelection"
+          [domLayout]="domLayout"
+          class="ag-theme-alpine"
+          style="width: 70%; height: 800px;"
+          (gridReady)="onGridReady($event)"
+          (selectionChanged)="onSelectionChanged()"
+          (paginationChanged)="onPaginationChanged()">
+        </ag-grid-angular>
+        <div class="grid-footer">
+          <button (click)="downloadCSV()">Download CSV</button>
+        </div>
+
         </div>
 
         <div *ngIf="activeSection === 'bulkbooking'" class="flex justify-center mt-6 bg-[#f3f6fe]">
