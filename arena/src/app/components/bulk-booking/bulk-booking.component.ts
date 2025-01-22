@@ -7,4 +7,22 @@ import { Component } from '@angular/core';
 })
 export class BulkBookingComponent {
 
+  buttonName: string = 'Venue Type'; 
+  isDropdownOpen = false;
+  activeItem: string = 'All Venues'; 
+
+
+
+  setDropdown(status : boolean){
+    this.isDropdownOpen = status;
+  }
+
+  setActiveItem(item: string): void {
+    this.activeItem = item; 
+  }
+
+  setButtonName(item: string): void {
+    this.buttonName = item; 
+  }
+
 }
