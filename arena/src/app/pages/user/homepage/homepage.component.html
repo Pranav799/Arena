@@ -1,25 +1,29 @@
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg ">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-      <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse"><img src="assets/images/applogo.png" class="h-8" alt="App Logo" /></a>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <button 
-                type="button" 
-                class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-sky-900 focus:outline-none bg-sky-100 rounded-lg border border-gray-200 hover:bg-sky-300 hover:text-blue-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                (click)="navigateToBooking()" >
-                My Bookings
-              </button>
-            </li>
-          </ul>
-      </div>
 
-    </div>
-  </nav>
+  <div *ngIf="activeSection === 'homepage'" >  
+
+     <nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg ">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   
-  <div style="height: 200px; background: #d1e5f4; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 80px;">
+        <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse"><img src="assets/images/applogo.png" class="h-8" alt="App Logo" /></a>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <li>
+                <button 
+                  type="button" 
+                  class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-sky-900 focus:outline-none bg-sky-100 rounded-lg border border-gray-200 hover:bg-sky-300 hover:text-blue-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  (click)="navigateToBooking()" >
+                  My Bookings
+                </button>
+              </li>
+            </ul>
+        </div>
+  
+      </div>
+     </nav>
+
+     <div style="height: 200px; background: #d1e5f4; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 80px;">
       <h2 class="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
         Welcome to <span class="text-blue-800">Kristu Jayanti ARENA</span>
       </h2>
@@ -78,12 +82,16 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input 
-                        datepicker 
-                        id="default-datepicker" 
-                        type="text" 
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                        placeholder="Select date"/>
+                    
+                    <div class="relative max-w-sm">
+                      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                          </svg>
+                      </div>
+                      <input id="datepicker" datepicker datepicker-autohide type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="Select date" (change)="onDateChange($event)">
+                    </div>
+
                 </div>
                 </div>
 
@@ -104,14 +112,13 @@
         </div>
       </div>
       
-  </div>
+     </div>
 
-
-  <div class="mt-24 max-w-screen-xl mx-auto px-2">
+     <div class="mt-24 max-w-screen-xl mx-auto px-2">
     <div class="mb-6 flex justify-between items-center">
       <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left">{{activeItem}}</h3>
       <div class="relative max-w-sm">
-        <p>{{selectedDate}}</p>
+        <p>{{ selectedDate | date: 'd MMM yyyy' }}</p>
       </div>
     </div>
     
@@ -132,17 +139,52 @@
       </app-card>
     </div>
     
+     </div>
+
+     <footer class="bg-white rounded-lg shadow mt-20 dark:bg-gray-800">
+      <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
+        <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          Copyright® 2024 Kristu Jayanti Software Development Centre
+        </span>
+      </div>
+    </footer>
+  
   </div>
 
-  <footer class="bg-white rounded-lg shadow mt-20 dark:bg-gray-800">
-    <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
-      <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
-      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-        Copyright® 2024 Kristu Jayanti Software Development Centre
-      </span>
-    </div>
-  </footer>
 
+  <div *ngIf="activeSection === 'bookingpage'" >
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="assets/images/applogo.png" class="h-8" alt="App Logo" />
+        </a>
+  
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <button 
+                 type="button" 
+                 class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-sky-900 focus:outline-none bg-sky-100 rounded-lg border border-gray-200 hover:bg-sky-300 hover:text-blue-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                 (click)="navigateToHome()" >
+                 Home
+              </button>
+            </li>
+          </ul>
+        </div>
+  
+      </div>
+    </nav>
+    <app-bookingpage></app-bookingpage>
+  </div>
+
+
+  
+  
+
+
+
+  
 
 
 

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './pages/user/homepage/homepage.component';
@@ -37,7 +36,7 @@ import { AgGridModule } from 'ag-grid-angular';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AgGridModule
+    AgGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

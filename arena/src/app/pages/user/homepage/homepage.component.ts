@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+
+declare var flowbite: any;
 
 @Component({
   selector: 'app-homepage',
@@ -8,14 +10,26 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./homepage.component.css'],
   providers: [DatePipe]
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit {
+
 
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
-  selectedDate: string = '';
+  selectedDate: Date | null = null;
   isDropdownOpen: boolean = false;
+  activeSection: string = 'homepage';
 
+  ngOnInit(): void {
+    this.initializeDatepicker();
+  }
 
+  initializeDatepicker(): void {
+    const datepickerElement = document.getElementById('datepicker') as HTMLInputElement;
+
+    if (datepickerElement) {
+      new flowbite.Datepicker(datepickerElement);
+    }
+  }
 
   cards = [
     { 
@@ -23,7 +37,7 @@ export class HomepageComponent {
       location: 'PG Block', 
       capacity: 11, 
       acstatus: 'AC', 
-      imagepath: 'assets/images/audi4.jpg', 
+      imagepath: 'assets/images/audi1.jpg', 
       address: '2nd Floor PG Block', 
       buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
     , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
@@ -54,6 +68,78 @@ export class HomepageComponent {
       ], 
       selectedButtons: [] as string[]
     },
+    { 
+      heading: 'Meeting Room', 
+      location: 'PG Block', 
+      capacity: 11, 
+      acstatus: 'AC', 
+      imagepath: 'assets/images/', 
+      address: '2nd Floor PG Block', 
+      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+      ], 
+      selectedButtons: [] as string[]
+    },
+    { 
+      heading: 'Meeting Room', 
+      location: 'PG Block', 
+      capacity: 11, 
+      acstatus: 'AC', 
+      imagepath: 'assets/images/audi5.webp', 
+      address: '2nd Floor PG Block', 
+      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+      ], 
+      selectedButtons: [] as string[]
+    },
+    { 
+      heading: 'Meeting Room', 
+      location: 'PG Block', 
+      capacity: 11, 
+      acstatus: 'AC', 
+      imagepath: 'assets/images/audi6.jpeg', 
+      address: '2nd Floor PG Block', 
+      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+      ], 
+      selectedButtons: [] as string[]
+    },
+    { 
+      heading: 'Meeting Room', 
+      location: 'PG Block', 
+      capacity: 11, 
+      acstatus: 'AC', 
+      imagepath: 'assets/images/audi7.webp', 
+      address: '2nd Floor PG Block', 
+      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+      ], 
+      selectedButtons: [] as string[]
+    },
+    { 
+      heading: 'Meeting Room', 
+      location: 'PG Block', 
+      capacity: 11, 
+      acstatus: 'AC', 
+      imagepath: 'assets/images/audi8.jpg', 
+      address: '2nd Floor PG Block', 
+      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+      ], 
+      selectedButtons: [] as string[]
+    },
+    { 
+      heading: 'Meeting Room', 
+      location: 'PG Block', 
+      capacity: 11, 
+      acstatus: 'AC', 
+      imagepath: 'assets/images/audi9.jpeg', 
+      address: '2nd Floor PG Block', 
+      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+      ], 
+      selectedButtons: [] as string[]
+    },
   ];
 
   constructor(private router: Router, private datePipe: DatePipe)  {}
@@ -75,7 +161,11 @@ export class HomepageComponent {
   }
 
   navigateToBooking() {
-    this.router.navigate(['/booking']);
+    this.activeSection = 'bookingpage';
+  }
+
+  navigateToHome() {
+    this.activeSection = 'homepage';
   }
 
   setActiveItem(item: string): void {
@@ -90,20 +180,13 @@ export class HomepageComponent {
     this.isDropdownOpen = isOpen;
   }
 
-  onDateChange(): void {
-    // Format the selected date
-    if (this.selectedDate) {
-      this.selectedDate = this.datePipe.transform(this.selectedDate, 'dd MMM yyyy')!;
-    }
-    console.log('Formatted Date:', this.selectedDate);
-    this.closeDatePicker();
-  }
+  onDateChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const selectedDateString = input.value;  // Date in string format (e.g., '2025-01-21')
 
-
-  closeDatePicker(): void {
-    const datepickerElement = document.getElementById('default-datepicker');
-    if (datepickerElement) {
-      datepickerElement.blur();
+    if (selectedDateString) {
+      this.selectedDate = new Date(selectedDateString);  // Convert string to Date object
+      console.log('Selected Date:', this.selectedDate); // For debugging
     }
   }
 
