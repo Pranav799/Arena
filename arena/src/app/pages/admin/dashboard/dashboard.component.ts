@@ -26,6 +26,7 @@ export class DashboardComponent {
   myTheme: any;
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
+  createVenueModal: boolean = false;
 
   constructor(private venueService: VenueService) {}
   
@@ -193,7 +194,13 @@ rowData = [
     this.buttonName = item; 
   }
 
+  closeCreateVenueModal(){
+    this.createVenueModal=false;
+  }
 
+  openCreateVenueModal(){
+    this.createVenueModal=true;
+  }
 
   
 
