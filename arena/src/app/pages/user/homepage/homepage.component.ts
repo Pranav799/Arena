@@ -176,8 +176,8 @@ export class HomepageComponent implements OnInit {
     this.buttonName = item; 
   }
   
-  setDropdown(isOpen: boolean): void {
-    this.isDropdownOpen = isOpen;
+  setDropdown(){
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   onDateChange(event: Event): void {

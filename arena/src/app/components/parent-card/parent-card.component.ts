@@ -12,6 +12,7 @@ export class ParentCardComponent {
   @Input() acstatus!: string;
   @Input() imagepath!: string;
   @Input() address!: string;
+  @Input() module!: string;
   @Input() buttons: string[] = []; // List of buttons (slots) for this card
   @Input() selectedButtons: string[] = []; // Array to track selected buttons (multiple allowed)
 
@@ -59,6 +60,7 @@ export class ParentCardComponent {
 
   closeSucessBookingModal() {
     this.sucessBookingModal = false;
+    window.location.reload();
   }
 
   openbookVenueModal() {
