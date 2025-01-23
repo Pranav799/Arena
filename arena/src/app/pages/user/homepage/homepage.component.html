@@ -23,18 +23,18 @@
       </div>
      </nav>
 
-     <div style="height: 200px; background: #d1e5f4; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 80px;">
+     <div style="height: 270px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 80px;">
       <h2 class="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
-        Welcome to <span class="text-blue-800">Kristu Jayanti ARENA</span>
+        Welcome to <span class="text-[#0284c7]">Kristu Jayanti ARENA</span>
       </h2>
-      <p class="mb-20 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48 dark:text-gray-400">
+      <p class="mb-20 mt-8 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48 dark:text-gray-400">
         Discover the Perfect Campus Space for Every Event.
       </p>
   
       <div class="absolute top-full transform -translate-y-1/2 left-1/2 -translate-x-1/2">
         <div class="flex justify-center mt-12">
           <div class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8">
-            <p class="mb-4 text-blue-800 text-sm font-semibold flex justify-center">Check Availability</p>
+            <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
             <div class="flex gap-2">
       
               <!-- Dropdown Button Section -->
@@ -97,7 +97,7 @@
               <div class="w-1/7 ml-auto">
                 <button 
                   type="button" 
-                  class="flex items-center justify-center w-12 h-10 bg-blue-700 text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg "
                   style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
                   <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
@@ -116,8 +116,12 @@
      <div class="mt-24 max-w-screen-xl mx-auto px-2">
     <div class="mb-6 flex justify-between items-center">
       <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left">{{activeItem}}</h3>
-      <div class="relative max-w-sm">
-        <p>{{ selectedDate | date: 'd MMM yyyy' }}</p>
+      <div class="flex items-center space-x-2">
+        <!-- Conditionally render the image only if there's a selected date -->
+        <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
+    
+        <!-- Display the formatted selected date -->
+        <p *ngIf="selectedDate" class="text-sm">{{ selectedDate | date: 'd MMM yyyy' }}</p>
       </div>
     </div>
     
