@@ -61,12 +61,12 @@ cards = [
     location: 'PG Block', 
     capacity: 11, 
     acstatus: 'AC', 
-    imagepath: 'assets/images/audi4.jpg', 
+    imagepath: 'assets/images/audi1.jpg', 
     address: '2nd Floor PG Block', 
     buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
   , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
 ], 
-    selectedButtons: [] as string[] // Can store multiple selected slots
+    selectedButtons: [] as string[] 
   },
   { 
     heading: 'P2 Conference Hall', 
@@ -78,7 +78,7 @@ cards = [
     buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
   , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
 ], 
-    selectedButtons: [] as string[] // Can store multiple selected slots
+    selectedButtons: [] as string[] 
   },
   { 
     heading: 'Meeting Room', 
@@ -90,7 +90,79 @@ cards = [
     buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
       , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
     ], 
-    selectedButtons: [] as string[] // Can store multiple selected slots
+    selectedButtons: [] as string[]
+  },
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/10.jpg', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+      , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+    ], 
+    selectedButtons: [] as string[]
+  },
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi5.webp', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+      , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+    ], 
+    selectedButtons: [] as string[]
+  },
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi6.jpeg', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+      , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+    ], 
+    selectedButtons: [] as string[]
+  },
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi7.webp', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+      , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+    ], 
+    selectedButtons: [] as string[]
+  },
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi8.jpg', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+      , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+    ], 
+    selectedButtons: [] as string[]
+  },
+  { 
+    heading: 'Meeting Room', 
+    location: 'PG Block', 
+    capacity: 11, 
+    acstatus: 'AC', 
+    imagepath: 'assets/images/audi9.jpeg', 
+    address: '2nd Floor PG Block', 
+    buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
+      , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
+    ], 
+    selectedButtons: [] as string[]
   },
 ];
 
