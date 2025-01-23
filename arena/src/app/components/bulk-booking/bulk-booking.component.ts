@@ -13,8 +13,8 @@ export class BulkBookingComponent {
 
 
 
-  setDropdown(status : boolean){
-    this.isDropdownOpen = status;
+  setDropdown(){
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   setActiveItem(item: string): void {

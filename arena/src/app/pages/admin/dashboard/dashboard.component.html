@@ -502,82 +502,96 @@
 
         <div *ngIf="activeSection === 'slotbooking'" >
 
-          <div class="flex  justify-center mt-12">
-            <div class="w-full max-w-xl bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8"> 
-                <p class="mb-4 text-blue-800 text-sm font-semibold flex justify-center">Check Availability</p>
-                <div class="flex gap-2">
-
-                  <div class="w-2/5 text-left">
-                    <button 
-                          id="dropdownDefaultButton" 
-                          class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center rounded-lg " 
-                          type="button" 
-                          (click)="setDropdown(true)">
-                          {{buttonName}}
-                          <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                          </svg>
-                        </button>
-
-                        <div 
-                        *ngIf="isDropdownOpen"  
-                        class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                        <li>
-                          <a (click)="setActiveItem('All Venue'); setDropdown(false); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
-                        </li>
-                        <li>
-                          <a (click)="setActiveItem('Auditorium'); setDropdown(false); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
-                        </li>
-                        <li>
-                          <a (click)="setActiveItem('Conference Hall'); setDropdown(false); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
-                        </li>
-                        <li>
-                          <a (click)="setActiveItem('Mini Auditorium'); setDropdown(false); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
-                        </li>
-                        <li>
-                          <a (click)="setActiveItem('Panel Room'); setDropdown(false); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
-                        </li>
-                        <li>
-                          <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(false); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
-                        </li>
-                      </ul>
-                      </div>
+          <div class="flex justify-center mt-12">
+            <div class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8">
+              <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
+              <div class="flex gap-2">
+        
+                <!-- Dropdown Button Section -->
+                <div class="w-2/5 text-left">
+                  <button 
+                    id="dropdownDefaultButton" 
+                    class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg h-[40px]" 
+                    type="button" 
+                    (click)="setDropdown(true)"
+                    style="min-width: 150px; height: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center;">
+                    <!-- Display button name, truncating if it's too long -->
+                    <span class="flex-1 overflow-hidden text-ellipsis">{{buttonName}}</span>
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                  </button>
+                
+                  <!-- Dropdown Menu -->
+                  <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                      <li>
+                        <a (click)="setActiveItem('All Venue'); setDropdown(false); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Auditorium'); setDropdown(false); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Conference Hall'); setDropdown(false); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Mini Auditorium'); setDropdown(false); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Panel Room'); setDropdown(false); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                      </li>
+                      <li>
+                        <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(false); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                      </li>
+                    </ul>
                   </div>
-
-                  <div class="w-2/5 text-left">
-                    <div class="relative flex-1"> 
-                      <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                          </svg>
-                      </div>
-                      <input 
-                          datepicker 
-                          id="default-datepicker" 
-                          type="text" 
-                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                          placeholder="Select date"/>
-                  </div>
-                  </div>
-
-                  <div class="w-1/7 ml-auto ">
-                    <button 
-                          type="button" 
-                          class="flex items-center justify-center w-12 h-10 bg-blue-700 text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                        <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-                        </svg>
-                        
-                        </button>
-                  </div>
-
                 </div>
+                
+        
+                <!-- Date Picker Section -->
+                <div class="w-2/5 text-left">
+                  <div class="relative flex-1">
+                    <div class="relative max-w-sm">
+                      <input 
+                        id="date" 
+                        type="date" 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
+                        placeholder="Select date" 
+                        (change)="onDateChange($event)"
+                        style="height: 40px;" /> <!-- Fixed height -->
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Search Button Section -->
+                <div class="w-1/7 ml-auto">
+                  <button 
+                    type="button" 
+                    class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg "
+                    style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
+                    <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                    </svg>
+                  </button>
+                </div>
+        
+              </div>
             </div>
           </div>
+
+          <div class="mt-4 max-w-screen-xl mx-auto px-2 mb-2 ">
+            <div class="mb-1 flex justify-between items-center">
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left">{{activeItem}}</h3>
+              <div class="flex items-center space-x-2">
+                <!-- Conditionally render the image only if there's a selected date -->
+                <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
+            
+                <!-- Display the formatted selected date -->
+                <p *ngIf="selectedDate" class="text-sm">{{ selectedDate | date: 'd MMM yyyy' }}</p>
+              </div>
+            </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-6 lg:p-14">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-6">
             
             <app-card 
                 *ngFor="let card of cards; let i = index"
@@ -593,6 +607,8 @@
           </app-card>
       
           </div>
+
+        </div>
 
         </div>
 

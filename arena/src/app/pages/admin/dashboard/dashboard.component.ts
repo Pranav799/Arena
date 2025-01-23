@@ -27,6 +27,8 @@ export class DashboardComponent {
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
   createVenueModal: boolean = false;
+  selectedDate: Date | null = null;
+
 
   constructor(private venueService: VenueService) {}
   
@@ -200,6 +202,15 @@ rowData = [
 
   openCreateVenueModal(){
     this.createVenueModal=true;
+  }
+
+  onDateChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const selectedDateString = input.value;  
+    if (selectedDateString) {
+      this.selectedDate = new Date(selectedDateString);  
+      console.log('Selected Date:', this.selectedDate); 
+    }
   }
 
   
