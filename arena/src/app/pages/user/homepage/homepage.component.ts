@@ -182,11 +182,10 @@ export class HomepageComponent implements OnInit {
 
   onDateChange(event: Event): void {
     const input = event.target as HTMLInputElement;
-    const selectedDateString = input.value;  // Date in string format (e.g., '2025-01-21')
-
+    const selectedDateString = input.value;  
     if (selectedDateString) {
-      this.selectedDate = new Date(selectedDateString);  // Convert string to Date object
-      console.log('Selected Date:', this.selectedDate); // For debugging
+      this.selectedDate = new Date(selectedDateString);  
+      console.log('Selected Date:', this.selectedDate); 
     }
   }
 
