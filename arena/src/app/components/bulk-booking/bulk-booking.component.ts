@@ -10,6 +10,7 @@ export class BulkBookingComponent {
   buttonName: string = 'Venue Type'; 
   isDropdownOpen = false;
   activeItem: string = 'All Venues'; 
+  sucessBookingModal:boolean = false;
 
 
 
@@ -23,6 +24,14 @@ export class BulkBookingComponent {
 
   setButtonName(item: string): void {
     this.buttonName = item; 
+  }
+
+  closeSucessBookingModal(){
+    this.sucessBookingModal = false;
+  }
+
+  openSucessBookingModal(){
+    this.sucessBookingModal = true;
   }
 
 }
