@@ -18,6 +18,7 @@ export class HomepageComponent implements OnInit {
   selectedDate: Date | null = null;
   isDropdownOpen: boolean = false;
   activeSection: string = 'homepage';
+  tomorrowDate: string;
 
   ngOnInit(): void {
     this.initializeDatepicker();
@@ -142,7 +143,15 @@ export class HomepageComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router, private datePipe: DatePipe)  {}
+  constructor()  {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    // Format it as 'yyyy-mm-dd'
+    this.tomorrowDate = tomorrow.toISOString().split('T')[0];
+  }
+
+
 
   onButtonSelect(cardIndex: number, button: string): void {
 
