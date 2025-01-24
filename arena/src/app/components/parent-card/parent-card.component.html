@@ -129,13 +129,13 @@
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Event Name <span class="text-red-700">*</span></label>
-                    <input type="text" name="eventName" placeholder="Event" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md text-[12px]">
+                    <input type="text" name="eventName" [(ngModel)]="eventName" placeholder="Event" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md text-[12px]">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
             
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Resource Person / Chief Guest Name <span class="text-red-700">*</span></label>
-                    <input type="text" class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="XYZ">
+                    <input type="text" [(ngModel)]="chiefperson" class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="XYZ">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
             
@@ -299,6 +299,7 @@
                         <button 
                             type="button"
                             (click)="openSucessBookingModal(); closebookVenueModal() "
+                            [disabled]="!eventName || !chiefperson"
                             class="py-2.5 px-5 me-2 mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800 w-full">
                             Confirm
                         </button>

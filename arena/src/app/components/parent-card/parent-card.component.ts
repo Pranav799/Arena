@@ -29,6 +29,9 @@ export class ParentCardComponent {
   
   sucessBookingModal: boolean = false;
   bookVenueModal: boolean = false;
+  eventName: string = '';
+  chiefperson: string = '';
+
 
   mementosSelected: boolean = false; 
   laptopsSelected: boolean = false; 

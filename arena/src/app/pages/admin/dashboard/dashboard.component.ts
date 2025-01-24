@@ -28,9 +28,17 @@ export class DashboardComponent {
   buttonName: string = 'Venue Type'; 
   createVenueModal: boolean = false;
   selectedDate: Date | null = null;
+  tommorowDate: string;
 
 
-  constructor(private venueService: VenueService) {}
+
+  constructor(private venueService: VenueService) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    // Format it as 'yyyy-mm-dd'
+    this.tommorowDate = tomorrow.toISOString().split('T')[0];
+  }
   
   isSidePanelOpen = true;  
   isDropdownOpen = false;
