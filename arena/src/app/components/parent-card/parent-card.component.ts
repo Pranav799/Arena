@@ -15,6 +15,8 @@ export class ParentCardComponent {
   @Input() module!: string;
   @Input() buttons: string[] = []; // List of buttons (slots) for this card
   @Input() selectedButtons: string[] = []; // Array to track selected buttons (multiple allowed)
+  @Input() selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+
 
   @Output() buttonSelect = new EventEmitter<string>();
 

@@ -118,7 +118,7 @@
                 
                 <!-- Second line: Paragraph -->
                 <p class="mt-2 text-sm ml-7 text-gray-700 dark:text-gray-300">
-                DATE | {{heading}} | {{address}}
+                    {{ selectedDate | date: 'd MMM yyyy' }} | {{heading}} | {{address}}
                 </p>
                 <!-- Component -->
                 <div class="mt-4 ml-7">

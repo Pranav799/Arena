@@ -145,7 +145,8 @@
           [buttons]="card.buttons"
           [module]="'user'"
           [selectedButtons]="card.selectedButtons"  
-          (buttonSelect)="onButtonSelect(i, $event)"> 
+          (buttonSelect)="onButtonSelect(i, $event)"
+          [selectedDate]="selectedDate"> 
       </app-card>
     </div>
     
