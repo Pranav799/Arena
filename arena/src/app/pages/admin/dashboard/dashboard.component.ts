@@ -218,24 +218,19 @@ rowData = [
 
   ngOnInit() {}
 
-  // Handle slot selection in a card
   onButtonSelect(cardIndex: number, button: string): void {
-    // Clear selected slots in all other cards
     this.cards.forEach((card, index) => {
       if (index !== cardIndex) {
-        card.selectedButtons = []; // Clear selection in other cards
+        card.selectedButtons = []; 
       }
     });
-
-    // Toggle the selected button in the current card
+    
     const selectedButtons = this.cards[cardIndex].selectedButtons;
     const buttonIndex = selectedButtons.indexOf(button);
-    
+
     if (buttonIndex === -1) {
-      // If the button is not already selected, add it
       selectedButtons.push(button);
     } else {
-      // If the button is already selected, remove it
       selectedButtons.splice(buttonIndex, 1);
     }
   }
@@ -292,10 +287,5 @@ rowData = [
       console.log('Selected Date:', this.selectedDate); 
     }
   }
-
-
-  
-
-  
 
 }
