@@ -31,6 +31,10 @@ export class ParentCardComponent {
   bookVenueModal: boolean = false;
   eventName: string = '';
   chiefperson: string = '';
+  department: string = '';
+  eventKind: string = '';
+
+
   error: boolean = false;
 
 

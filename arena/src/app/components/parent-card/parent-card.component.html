@@ -143,13 +143,13 @@
             
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Department / Club / Association / Deanery / Institutional Name <span class="text-red-700">*</span></label>
-                    <input type="text" class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
+                    <input type="text" [(ngModel)]="department" name="department" #departmentInput="ngModel" required class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Fest / Conference /Meeting / Seminar /Workshop / Training Programme / FDP <span class="text-red-700">*</span></label>
-                    <input type="text" class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
+                    <input type="text" [(ngModel)]="eventKind" name="eventKind" #eventKindInput="ngModel" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
@@ -288,7 +288,7 @@
                    <input id="offline" type="radio" value="offline" name="mode" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
                    <label for="offline" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Offline</label>
 
-                   <input checked id="hybrid" type="radio" value="hybrid" name="mode" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                   <input id="hybrid" type="radio" value="hybrid" name="mode" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
                    <label for="hybrid" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Hybrid</label>
 
                </div>
