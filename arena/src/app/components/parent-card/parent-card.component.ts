@@ -13,18 +13,15 @@ export class ParentCardComponent {
   @Input() imagepath!: string;
   @Input() address!: string;
   @Input() module!: string;
-  @Input() buttons: string[] = []; // List of buttons (slots) for this card
-  @Input() selectedButtons: string[] = []; // Array to track selected buttons (multiple allowed)
+  @Input() buttons: string[] = []; 
+  @Input() selectedButtons: string[] = []; 
   @Input() selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
-
-
   @Output() buttonSelect = new EventEmitter<string>();
 
   onButtonSelect(button: string): void {
-    this.buttonSelect.emit(button);  // Emit the selected button to the parent
+    this.buttonSelect.emit(button);  
   }
 
-  // Check if a slot is selected in this card
   isSelected(button: string): boolean {
     return this.selectedButtons.includes(button);
   }
@@ -35,19 +32,13 @@ export class ParentCardComponent {
   chiefperson: string = '';
   department: string = '';
   eventKind: string = '';
-
-
   error: boolean = false;
-
-
   mementosSelected: boolean = false; 
   laptopsSelected: boolean = false; 
   saplingsSelected: boolean = false; 
-
   mementos: string = '';
   laptops: string = '';
   saplings: string = '';
-
   saplingsQuantity: number = 1;
   mementosQuantity: number = 1;
   laptopQuantity: number = 1;
