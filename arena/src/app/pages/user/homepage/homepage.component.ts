@@ -146,12 +146,8 @@ export class HomepageComponent implements OnInit {
   constructor()  {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    
-    // Format it as 'yyyy-mm-dd'
     this.tomorrowDate = tomorrow.toISOString().split('T')[0];
   }
-
-
 
   onButtonSelect(cardIndex: number, button: string): void {
 
