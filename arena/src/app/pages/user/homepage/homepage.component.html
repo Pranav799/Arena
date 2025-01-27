@@ -40,7 +40,7 @@
               <!-- Dropdown Button Section -->
               <div class="w-2/5 text-left">
                 <button 
-                  id="dropdownDefaultButton" 
+                  id="venutype" 
                   class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg h-[40px]" 
                   type="button" 
                   (click)="setDropdown()"
@@ -94,6 +94,7 @@
                       (change)="onDateChange($event)"
                       [min]="tomorrowDate"
                       style="height: 40px;" /> <!-- Fixed height -->
+                      <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date </label>
                   </div>
                 </div>
               </div>
