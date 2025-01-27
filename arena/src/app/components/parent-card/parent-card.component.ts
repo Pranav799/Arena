@@ -31,6 +31,7 @@ export class ParentCardComponent {
   bookVenueModal: boolean = false;
   eventName: string = '';
   chiefperson: string = '';
+  error: boolean = false;
 
 
   mementosSelected: boolean = false; 
@@ -81,6 +82,20 @@ export class ParentCardComponent {
     } else {
       this.selectedButtons.splice(index, 1);
     }
+  }
+
+  bookSlot() {
+    this.error = false; 
+    this.openSucessBookingModal(); 
+    this.closebookVenueModal();
+  }
+
+  errorBookSlot() {
+    this.error = true; 
+  }
+
+  closeErrorMessage(){
+    this.error=false
   }
 
 }
