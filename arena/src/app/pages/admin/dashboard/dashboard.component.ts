@@ -27,7 +27,7 @@ export class DashboardComponent {
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
   createVenueModal: boolean = false;
-  selectedDate: Date | null = null;
+  selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   tommorowDate: string;
 
 
