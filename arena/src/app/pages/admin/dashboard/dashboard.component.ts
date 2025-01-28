@@ -310,7 +310,7 @@ rowData = [
   }
 
   isMobileScreen(): boolean {
-    return window.innerWidth < 640; // Tailwind's `sm` breakpoint is 640px
+    return window.innerWidth < 640; 
   }
 
 }

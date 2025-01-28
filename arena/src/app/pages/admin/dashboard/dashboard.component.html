@@ -69,20 +69,23 @@
               <img src="../../../../assets/logo/burger.svg" class="h-5" alt="Flowbite Logo" />
           </button>
   
-          <!-- Centered Text on Desktop -->
-          <div class="hidden md:flex flex-grow items-center justify-center md:order-1">
-              <p class="text-[32px] sm:text-lg text-center">
+          <!-- Centered Text (with Flexbox Centering) -->
+          <div class="flex-1 flex justify-center items-center md:block">
+              <p class="text-[32px] sm:text-lg text-center" *ngIf="!isMobileScreen()">
                   Welcome to <span class="text-[#5a6acf]" style="font-weight: 500;">Kristu Jayanti ARENA</span>
               </p>
           </div>
   
           <!-- Right-aligned Logo -->
-          <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse justify-end flex-grow">
-              <img src="../../../../assets/images/applogo.png" class="h-10 sm:h-6 md:h-10" alt="Flowbite Logo" />
+          <div class="flex items-center justify-end">
+              <img src="../../../../assets/images/applogo.png" class="h-6 sm:h-6 md:h-10" alt="Flowbite Logo" />
           </div>
   
       </div>
   </nav>
+  
+  
+  
   
   
   
@@ -936,7 +939,7 @@
 
 </div>
 
-<div *ngIf="isSidePanelOpen" [@slideIn] class="fixed md:hidden z-50 top-1/2 left-4 transform -translate-y-1/2 flex flex-col items-center space-y-3 bg-white border border-gray-200 rounded-full p-2 shadow-lg dark:bg-gray-700 dark:border-gray-600">
+<div *ngIf="isSidePanelOpen" [@slideIn] class="fixed md:hidden z-50 top-1/2 left-4 transform -translate-y-1/2 flex flex-col items-center space-y-3 bg-gray-100 border border-gray-200 rounded-full p-2 shadow-3xl dark:bg-gray-700 dark:border-gray-600">
   <div class="grid grid-cols-1 gap-8 py-6">
      
       <button type="button" (click)="toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
