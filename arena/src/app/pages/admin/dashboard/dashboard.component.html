@@ -62,7 +62,7 @@
   
           <!-- Button: Visible on mobile when sidepanel is closed, always visible on desktop -->
           <button 
-              *ngIf="(isMobileScreen() && !isSidePanelOpen) || !isMobileScreen()"
+              *ngIf="!isMobileScreen()"
               class="font-medium rounded-lg px-5 py-2.5 flex items-center space-x-3 absolute left-4"
               type="button" 
               (click)="toggleSidePanel()">
@@ -762,7 +762,7 @@
 
         <div *ngIf="activeSection === 'slotbooking'" >
 
-          <div class="flex justify-center mt-12">
+          <div class="flex justify-center mt-12 mb-6">
             <div class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8" >
               <p class="mb-4 text-[#5a6acf] text-sm font-semibold flex justify-center">Check Availability</p>
               <div class="flex gap-2">
@@ -845,19 +845,19 @@
             </div>
           </div>
 
-          <div class="mt-4 max-w-screen-xl mx-auto px-2 mb-2 ">
+          <div class="mt-4 max-w-screen-xl mx-auto mt-4 ">
             <div class="mb-1 flex justify-between items-center">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left">{{activeItem}}</h3>
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left ml-6">{{activeItem}}</h3>
               <div class="flex items-center space-x-2">
                 <!-- Conditionally render the image only if there's a selected date -->
                 <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
             
                 <!-- Display the formatted selected date -->
-                <p *ngIf="selectedDate" class="text-sm">{{ selectedDate | date: 'd MMM yyyy' }}</p>
+                <p *ngIf="selectedDate" class="text-sm mr-6">{{ selectedDate | date: 'd MMM yyyy' }}</p>
               </div>
             </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2 px-6">
             
             <app-card 
                 *ngFor="let card of cards; let i = index"
@@ -939,17 +939,11 @@
 
 </div>
 
-<div *ngIf="isSidePanelOpen" [@slideIn] class="fixed md:hidden z-50 top-1/2 left-4 transform -translate-y-1/2 flex flex-col items-center space-y-3 bg-gray-100 border border-gray-200 rounded-full p-2 shadow-3xl dark:bg-gray-700 dark:border-gray-600">
+<div *ngIf="isSidePanelOpen" [@slideIn] class="fixed md:hidden z-50 top-1/2 left-4 transform -translate-y-1/2 flex flex-col items-center space-y-3 bg-white border border-gray-200 rounded-full p-2 shadow-3xl dark:bg-gray-700 dark:border-gray-600">
   <div class="grid grid-cols-1 gap-8 py-6">
-     
-      <button type="button" (click)="toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-          <svg class="w-5 h-5 mb-1 ml-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9"/>
-          </svg> 
-      </button>
 
-      <button type="button" (click)="setActiveSection('dashboard')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-          <img src="../../../../assets/icons/dashboard.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
+      <button type="button" (click)="setActiveSection('dashboard')" class="inline-flex flex-col items-center justify-center ">
+          <img src="../../../../assets/icons/dashboard.svg" class="w-5 h-5 mb-1 "/>
       </button>
 
       <button type="button" (click)="setActiveSection('createvenue')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -974,6 +968,19 @@
    
   </div>
 </div>
+
+<button type="button"  (click)="toggleSidePanel()"
+        class="fixed md:hidden bottom-4 p-4 left-7 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center z-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <svg *ngIf="!isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+        </svg>
+
+        <svg *ngIf="isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9"/>
+      </svg>
+  <span class="sr-only">Icon description</span>
+</button>
+
 
 
 
