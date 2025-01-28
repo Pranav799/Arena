@@ -14,6 +14,7 @@ import { MyBookingComponent } from './components/my-booking/my-booking.component
 import { BulkBookingComponent } from './components/bulk-booking/bulk-booking.component';
 import { LoginComponent } from './pages/shared/login/login.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -37,6 +38,7 @@ import { AgGridModule } from 'ag-grid-angular';
     FormsModule,
     HttpClientModule,
     AgGridModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,11 +2,32 @@ import { Component } from '@angular/core';
 import { VenueService } from 'src/app/service/venue.service';
 import { AgGridAngular } from 'ag-grid-angular'; 
 import type { ColDef, GridApi } from 'ag-grid-community'; 
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+    trigger('slideIn', [
+      state('void', style({
+        opacity: 0,
+        transform: 'translateY(100%)',  
+      })),
+      transition(':enter', [
+        animate('0.4s ease-out', style({
+          opacity: 1,
+          transform: 'translateY(0)',  
+        }))
+      ]),
+      transition(':leave', [
+        animate('0.4s ease-in', style({
+          opacity: 0,
+          transform: 'translateY(100%)',  
+        }))
+      ])
+    ])
+  ]
 })
 export class DashboardComponent {
 
@@ -15,8 +36,8 @@ export class DashboardComponent {
     venueName: '',
     block: '',
     seatingCapacity: '',
-    ac: 'Non A/C',
-    permission: 'No',
+    ac: '',
+    permission: '',
     location: '',
     venueType: '',
     picture: '',
@@ -224,7 +245,7 @@ rowData = [
         card.selectedButtons = []; 
       }
     });
-    
+
     const selectedButtons = this.cards[cardIndex].selectedButtons;
     const buttonIndex = selectedButtons.indexOf(button);
 
@@ -286,6 +307,10 @@ rowData = [
       this.selectedDate = new Date(selectedDateString);  
       console.log('Selected Date:', this.selectedDate); 
     }
+  }
+
+  isMobileScreen(): boolean {
+    return window.innerWidth < 640; // Tailwind's `sm` breakpoint is 640px
   }
 
 }
