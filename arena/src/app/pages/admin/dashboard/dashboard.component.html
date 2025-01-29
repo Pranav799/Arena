@@ -942,27 +942,27 @@
 <div *ngIf="isSidePanelOpen" [@slideIn] class="fixed md:hidden z-50 top-1/2 left-4 transform -translate-y-1/2 flex flex-col items-center space-y-3 bg-white border border-gray-200 rounded-full p-2 shadow-3xl dark:bg-gray-700 dark:border-gray-600">
   <div class="grid grid-cols-1 gap-8 py-6">
 
-      <button type="button" (click)="setActiveSection('dashboard')" class="inline-flex flex-col items-center justify-center ">
+      <button type="button" (click)="setActiveSection('dashboard'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center ">
           <img src="../../../../assets/icons/dashboard.svg" class="w-5 h-5 mb-1 "/>
       </button>
 
-      <button type="button" (click)="setActiveSection('createvenue')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <button type="button" (click)="setActiveSection('createvenue'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <img src="../../../../assets/icons/createvenue.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
       </button>
 
-      <button type="button" (click)="setActiveSection('editvenue')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <button type="button" (click)="setActiveSection('editvenue'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <img src="../../../../assets/icons/createvenue.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
       </button>
 
-      <button type="button" (click)="setActiveSection('slotbooking')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <button type="button" (click)="setActiveSection('slotbooking'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <img src="../../../../assets/icons/dashboard.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
       </button>
 
-      <button type="button" (click)="setActiveSection('report')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <button type="button" (click)="setActiveSection('report'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <img src="../../../../assets/icons/report.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
       </button>
 
-     <button type="button" (click)="setActiveSection('bulkbooking')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+     <button type="button" (click)="setActiveSection('bulkbooking'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
        <img src="../../../../assets/icons/slotbooking.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
      </button>
    
