@@ -849,11 +849,10 @@
             <div class="mb-1 flex justify-between items-center">
               <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left ml-6">{{activeItem}}</h3>
               <div class="flex items-center space-x-2">
-                <!-- Conditionally render the image only if there's a selected date -->
+                
                 <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
-            
-                <!-- Display the formatted selected date -->
                 <p *ngIf="selectedDate" class="text-sm mr-6">{{ selectedDate | date: 'd MMM yyyy' }}</p>
+                
               </div>
             </div>
           
