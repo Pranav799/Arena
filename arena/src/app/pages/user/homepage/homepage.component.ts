@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+
 declare var flowbite: any;
 
 @Component({
@@ -19,6 +20,9 @@ export class HomepageComponent implements OnInit {
   isDropdownOpen: boolean = false;
   activeSection: string = 'homepage';
   tomorrowDate: string;
+  isLoading = false;
+
+  
 
   ngOnInit(): void {
     this.initializeDatepicker();
@@ -170,8 +174,17 @@ export class HomepageComponent implements OnInit {
   }
 
   navigateToHome() {
-    this.activeSection = 'homepage';
+      this.activeSection = 'homepage2';
   }
+
+  landingtohome(){
+    this.isLoading = true;
+    setTimeout(() => {
+      this.activeSection = 'homepage2';
+      this.isLoading = false;
+    }, 2000); 
+  }
+
 
   setActiveItem(item: string): void {
     this.activeItem = item; 

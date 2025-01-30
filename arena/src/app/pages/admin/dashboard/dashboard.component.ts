@@ -16,13 +16,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       })),
       transition(':enter', [
         animate('0.2s ease-out', style({
-          opacity: 1,
+          opacity: 10,
           transform: 'translateY(0)',  
         }))
       ]),
       transition(':leave', [
         animate('0.2s ease-in', style({
-          opacity: 0,
+          opacity: 10,
           transform: 'translateY(100%)',  
         }))
       ])

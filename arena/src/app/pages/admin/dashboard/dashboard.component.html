@@ -763,12 +763,12 @@
         <div *ngIf="activeSection === 'slotbooking'" >
 
           <div class="flex justify-center mt-12 mb-6">
-            <div class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8" >
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8" ngClass="isMobileScreen() ? 'w-[300px]' : 'w-[500px]'" >
               <p class="mb-4 text-[#5a6acf] text-sm font-semibold flex justify-center">Check Availability</p>
               <div class="flex gap-2">
         
                 <!-- Dropdown Button Section -->
-                <div class="w-2/5 text-left">
+                <div class="text-left" ngClass="isMobileScreen() ? 'w-[290px]' : 'w-2/5'">
                   <button 
                     id="dropdownDefaultButton" 
                     class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg h-[40px]" 
@@ -787,7 +787,7 @@
                   </button>
                 
                   <!-- Dropdown Menu -->
-                  <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
+                  <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" >
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                       <li>
                         <a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
@@ -813,7 +813,7 @@
                 
         
                 <!-- Date Picker Section -->
-                <div class="w-2/5 text-left">
+                <div class="w-[100px] text-left">
                   <div class="relative flex-1">
                     <div class="relative max-w-sm">
                       <input 
@@ -846,17 +846,17 @@
           </div>
 
           <div class="mt-4 max-w-screen-xl mx-auto mt-4 ">
-            <div class="mb-1 flex justify-between items-center">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left ml-6">{{activeItem}}</h3>
+            <div class="mb-1 flex justify-between items-center m-5">
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left ">{{activeItem}}</h3>
               <div class="flex items-center space-x-2">
                 
                 <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
-                <p *ngIf="selectedDate" class="text-sm mr-6">{{ selectedDate | date: 'd MMM yyyy' }}</p>
-                
+                <p *ngIf="selectedDate" class="text-sm ">{{ selectedDate | date: 'd MMM yyyy' }}</p>
+
               </div>
             </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2 px-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2 px-4">
             
             <app-card 
                 *ngFor="let card of cards; let i = index"

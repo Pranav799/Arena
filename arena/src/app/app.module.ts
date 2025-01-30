@@ -15,8 +15,14 @@ import { BulkBookingComponent } from './components/bulk-booking/bulk-booking.com
 import { LoginComponent } from './pages/shared/login/login.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { LoandingpageAnimationComponent } from './components/loandingpage-animation/loandingpage-animation.component';
+import { LoadingAnimationComponent } from './components/loading-animation/loading-animation.component';
 
-
+export function playerFactory() {
+  return player;
+}
 
 
 
@@ -31,6 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MyBookingComponent,
     BulkBookingComponent,
     LoginComponent,
+    LoandingpageAnimationComponent,
+    LoadingAnimationComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     AgGridModule,
     BrowserAnimationsModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
