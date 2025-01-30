@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 
@@ -8,6 +8,9 @@ import { AnimationOptions } from 'ngx-lottie';
   styleUrls: ['./loandingpage-animation.component.css']
 })
 export class LoandingpageAnimationComponent {
+
+  @Input() heigth:string = ""
+  @Input() width:string = ""
 
   options: AnimationOptions = {
     path: '../../../assets/animation/Animation1.json',

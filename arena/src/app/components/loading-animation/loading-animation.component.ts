@@ -9,6 +9,9 @@ import { AnimationOptions } from 'ngx-lottie';
 })
 export class LoadingAnimationComponent {
 
+  
+
+
   options: AnimationOptions = {
       path: '../../../assets/animation/Animation2.json',
     };

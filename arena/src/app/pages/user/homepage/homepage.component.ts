@@ -18,7 +18,7 @@ export class HomepageComponent implements OnInit {
   buttonName: string = 'Venue Type'; 
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   isDropdownOpen: boolean = false;
-  activeSection: string = 'homepage';
+  activeSection: string = 'landingpage';
   tomorrowDate: string;
   isLoading = false;
 
@@ -174,13 +174,13 @@ export class HomepageComponent implements OnInit {
   }
 
   navigateToHome() {
-      this.activeSection = 'homepage2';
+      this.activeSection = 'homepage';
   }
 
   landingtohome(){
     this.isLoading = true;
     setTimeout(() => {
-      this.activeSection = 'homepage2';
+      this.activeSection = 'homepage';
       this.isLoading = false;
     }, 2000); 
   }
@@ -205,6 +205,10 @@ export class HomepageComponent implements OnInit {
       this.selectedDate = new Date(selectedDateString);  
       console.log('Selected Date:', this.selectedDate); 
     }
+  }
+
+  isMobileScreen(): boolean {
+    return window.innerWidth < 1054; 
   }
 
 }

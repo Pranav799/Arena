@@ -124,4 +124,8 @@ export class BookingpageComponent implements OnInit {
     this.buttonName = item; 
   }
 
+  isMobileScreen(): boolean {
+    return window.innerWidth < 640; 
+  }
+
 }

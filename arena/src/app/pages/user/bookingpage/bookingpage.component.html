@@ -1,16 +1,16 @@
 
 <!-- Booking History -->
   <div 
-    style="height: 270px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 80px;">
-    <h2 class="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
+    style="height: 270px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 50px;">
+    <h2 [ngClass]="{'text-xl': isMobileScreen()}"  class="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
       Welcome to <span class="text-[#0284c7]">Kristu Jayanti ARENA</span>
     </h2>
-    <p class="mb-20 mt-8 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48 dark:text-gray-400">
+    <p [ngClass]="{'mt-2 mb-20 text-[9px]':isMobileScreen(), 'mt-8 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48': !isMobileScreen() }" class="mb-20 mt-8 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48 dark:text-gray-400">
       Discover the Perfect Campus Space for Every Event.
     </p>
   
     <!-- Card -->
-    <div class="absolute top-full transform -translate-y-1/2 left-1/2 -translate-x-1/2">
+    <div class="absolute top-full mt-12 -translate-y-1/2 left-1/2 -translate-x-1/2">
         
          
 
@@ -38,6 +38,9 @@
 
             </div>
         </div>
+        
+        
+
     </div>
      
   </div>
