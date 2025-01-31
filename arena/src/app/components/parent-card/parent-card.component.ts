@@ -62,7 +62,7 @@ export class ParentCardComponent {
 
   closeSucessBookingModal() {
     this.sucessBookingModal = false;
-    window.location.reload();
+    // window.location.reload();
   }
 
   openbookVenueModal() {

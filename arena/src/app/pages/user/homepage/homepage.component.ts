@@ -17,6 +17,8 @@ export class HomepageComponent implements OnInit {
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  startDate: Date | null = null;
+  endDate: Date | null = null;
   isDropdownOpen: boolean = false;
   activeSection: string = 'landingpage';
   tomorrowDate: string;
@@ -219,6 +221,24 @@ export class HomepageComponent implements OnInit {
       this.dateSelected = true;
     }
   }
+
+setStartDate(event: Event): void {
+  const startdate = event.target as HTMLInputElement;
+  const selectedStartdate = startdate.value;  
+
+  if (selectedStartdate) {
+    this.startDate = new Date(selectedStartdate);
+  }
+}
+
+setEndDate(event: Event): void {
+  const enddate = event.target as HTMLInputElement;
+  const selectedEnddate = enddate.value;
+
+  if (selectedEnddate) {
+    this.endDate = new Date(selectedEnddate);
+  }
+}
 
   isMobileScreen(): boolean {
     return window.innerWidth < 1054; 
