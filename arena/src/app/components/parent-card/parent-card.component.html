@@ -117,7 +117,7 @@
                 </div>
                 
                 <!-- Second line: Paragraph -->
-                <p class="mt-2 text-sm ml-7 text-gray-700 dark:text-gray-300">
+                <p [ngClass]="{'mt-2 text-sm ml-7 text-gray-700 dark:text-gray-300':!isMobileScreen(), 'mt-2 text-[12px] ml-7 text-gray-700 dark:text-gray-300':isMobileScreen() }">
                     {{ selectedDate | date: 'd MMM yyyy' }} | {{heading}} | {{address}}
                 </p>
                 <!-- Component -->
