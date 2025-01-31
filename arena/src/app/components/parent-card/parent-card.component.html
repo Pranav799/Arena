@@ -127,7 +127,7 @@
             </div>
 
               <!-- Modal body -->
-              <form  #eventForm="ngForm" class="p-4 md:p-5 mb-8 overflow-scroll h-[70] max-h-screen">
+              <form  #eventForm="ngForm" class="p-4 md:p-5 mb-8 overflow-scroll  max-h-screen" [ngClass]="{'h-80':isMobileScreen()}">
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Event Name <span class="text-red-700">*</span></label>
