@@ -42,6 +42,7 @@ export class ParentCardComponent {
   saplingsQuantity: number = 1;
   mementosQuantity: number = 1;
   laptopQuantity: number = 1;
+  showMessage:boolean = false;
 
   onMementosChange(): void {
     this.mementos = this.mementosSelected ? 'mementos' : '';
@@ -99,6 +100,15 @@ export class ParentCardComponent {
     return window.innerWidth < 700; 
   }
 
+  setShowMessage(){
+    this.showMessage = true;  
+    setTimeout(() => {
+      this.showMessage = false; 
+    }, 3000); 
+  }
+
+  }
+
   
 
-}
+
