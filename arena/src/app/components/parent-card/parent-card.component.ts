@@ -95,4 +95,10 @@ export class ParentCardComponent {
     this.error=false
   }
 
+  isMobileScreen(): boolean {
+    return window.innerWidth < 700; 
+  }
+
+  
+
 }

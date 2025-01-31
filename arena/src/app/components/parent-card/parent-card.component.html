@@ -122,12 +122,12 @@
                 </p>
                 <!-- Component -->
                 <div class="mt-4 ml-7">
-                    <app-badge [badges]="selectedButtons" badgeClass="w-1/4 text-[12px] max-w-[calc(20%-0.5rem)]"></app-badge>
+                    <app-badge [badges]="selectedButtons"></app-badge>
                 </div>
             </div>
 
               <!-- Modal body -->
-              <form  #eventForm="ngForm" class="p-4 md:p-5 mb-8 overflow-auto max-h-screen">
+              <form  #eventForm="ngForm" class="p-4 md:p-5 mb-8 overflow-scroll max-h-screen">
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Event Name <span class="text-red-700">*</span></label>

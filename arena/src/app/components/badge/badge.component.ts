@@ -8,7 +8,6 @@ import { Component, Input } from '@angular/core';
 export class BadgeComponent {
   // Input property to accept the badge data
   @Input() badges: string[] = [];
-  @Input() badgeClass: string = '';
 
   isMobileScreen(): boolean {
     return window.innerWidth < 640; 
