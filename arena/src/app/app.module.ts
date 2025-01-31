@@ -19,6 +19,7 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { LoandingpageAnimationComponent } from './components/loandingpage-animation/loandingpage-animation.component';
 import { LoadingAnimationComponent } from './components/loading-animation/loading-animation.component';
+import { MenuAnimationComponent } from './components/animations/menu-animation/menu-animation.component';
 
 export function playerFactory() {
   return player;
@@ -39,6 +40,7 @@ export function playerFactory() {
     LoginComponent,
     LoandingpageAnimationComponent,
     LoadingAnimationComponent,
+    MenuAnimationComponent,
   ],
   imports: [
     BrowserModule,
