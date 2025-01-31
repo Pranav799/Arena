@@ -1,4 +1,6 @@
-<div *ngIf="activeSection === 'landingpage' && !isMobileScreen()" >
+  
+  
+  <div *ngIf="activeSection === 'landingpage' && !isMobileScreen()" >
 
         <section class="bg-gray-50 dark:bg-gray-900">
             <div class="flex md:h-screen">
@@ -116,10 +118,10 @@
           <app-loading-animation></app-loading-animation>
         </div>
 
-</div>
+  </div>
 
 
-<div *ngIf="activeSection === 'landingpage' && isMobileScreen()" >
+  <div *ngIf="activeSection === 'landingpage' && isMobileScreen()" >
 
   <div style="height: 350px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative ">
     
@@ -209,7 +211,7 @@
   </footer>
   
 
-</div>
+  </div>
 
 
 
@@ -259,6 +261,251 @@
         Welcome to <span class="text-[#0284c7]">Kristu Jayanti ARENA</span>
       </h2>
       <p [ngClass]="{'mt-2 mb-20 text-[9px]':isMobileScreen(), 'mt-8 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48': !isMobileScreen() }" >
+        Discover the Perfect Campus Space for Every Event.
+      </p>
+  
+      <div class="absolute top-full transform -translate-y-1/2 left-1/2 -translate-x-1/2">
+        <div class="flex justify-center mt-8">
+
+          <div *ngIf="!isMobileScreen()" class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8">
+            <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
+            <div class="flex gap-2">
+      
+              <!-- Dropdown Button Section -->
+              <div class="w-2/5 text-left">
+                <button 
+                  id="venutype" 
+                  class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-left inline-flex items-center justify-between rounded-lg h-[40px]" 
+                  type="button" 
+                  (click)="setDropdown()"
+                  style="min-width: 150px; height: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center;">
+                  <!-- Display button name, truncating if it's too long -->
+                  <span class="flex-1 overflow-hidden text-ellipsis">{{buttonName}}</span>
+                  <svg *ngIf="isDropdownOpen === false" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                 </svg>
+
+                 <svg *ngIf="isDropdownOpen === true" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
+                  </svg>
+                </button>
+              
+                <!-- Dropdown Menu -->
+                <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
+                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                      <a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                    </li>
+                    <li>
+                      <a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                    </li>
+                    <li>
+                      <a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                    </li>
+                    <li>
+                      <a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                    </li>
+                    <li>
+                      <a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                    </li>
+                    <li>
+                      <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+      
+              <!-- Date Picker Section -->
+              <div class="w-2/5 text-left">
+                <div class="relative flex-1">
+                  <div class="relative max-w-sm">
+                    <input 
+                      id="date" 
+                      type="date" 
+                      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
+                      placeholder="Select date" 
+                      (change)="onDateChange($event)"
+                      [min]="tomorrowDate"
+                      style="height: 40px;" /> 
+                      <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date </label>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Search Button Section -->
+              <div class="w-1/7 ml-auto">
+                <button 
+                  type="button" 
+                  class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg "
+                  style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
+                  <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                  </svg>
+                </button>
+              </div>
+      
+            </div>
+          </div>
+
+          <div *ngIf="isMobileScreen()" class="w-[300px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8 mb-13">
+            <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
+          
+            <!-- First section: Dropdown Button -->
+            <div class="w-full mb-4"> <!-- Use w-full to make it full width, and mb-4 for spacing -->
+                <button 
+                  id="venutype" 
+                  class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full inline-flex items-center justify-between rounded-lg h-[40px]" 
+                  type="button" 
+                  (click)="setDropdown()"
+                  style="min-width: 150px; height: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  <span class="text-ellipsis" style="overflow: hidden;">{{buttonName}}</span>
+                  <svg *ngIf="isDropdownOpen === false" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                  </svg>
+                  <svg *ngIf="isDropdownOpen === true" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
+                  </svg>
+              </button>
+            
+              <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                  <li><a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a></li>
+                  <li><a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a></li>
+                  <li><a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a></li>
+                  <li><a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a></li>
+                  <li><a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a></li>
+                  <li><a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a></li>
+                </ul>
+              </div>
+            </div>
+          
+            <!-- Second section: Date Picker -->
+            <div class="w-full mb-4"> <!-- w-full for full width and mb-4 for spacing -->
+              <div class="relative flex-1">
+                <div class="relative max-w-sm">
+                  <input 
+                    id="date" 
+                    type="date" 
+                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
+                    placeholder="Select date" 
+                    (change)="onDateChange($event)"
+                    [min]="tomorrowDate"
+                    style="height: 40px; text-align: left;" /> 
+                  <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date </label>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Third section: Search Button -->
+            <div class="w-full text-right flex justify-end"> <!-- w-full for full width and text-right to align the button to the right -->
+              <button 
+                type="button" 
+                (click)="landingtohome()"
+                class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg"
+                style="height: 40px; width: 50px;"> 
+                <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      
+     </div>
+
+     <div [ngClass]="{'px-4 ':isMobileScreen()}" class=" max-w-screen-xl mx-auto px-2">
+        <div class="mb-3 mt-48 flex justify-between items-center">
+          <h3 [ngClass]="{'text-lg':isMobileScreen(), 'text-2xl':!isMobileScreen()}" class=" font-bold text-gray-800 dark:text-white text-left">{{activeItem}}</h3>
+          <div class="flex items-center space-x-2">
+            <!-- Conditionally render the image only if there's a selected date -->
+            <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
+        
+            <!-- Display the formatted selected date -->
+            <p *ngIf="selectedDate" class="text-sm">{{ selectedDate | date: 'd MMM yyyy' }}</p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <app-card 
+              *ngFor="let card of cards; let i = index"
+              [heading]="card.heading"
+              [location]="card.location"
+              [capacity]="card.capacity"
+              [acstatus]="card.acstatus"
+              [imagepath]="card.imagepath"
+              [address]="card.address"
+              [buttons]="card.buttons"
+              [module]="'user'"
+              [selectedButtons]="card.selectedButtons"  
+              (buttonSelect)="onButtonSelect(i, $event)"
+              [selectedDate]="selectedDate"> 
+          </app-card>
+        </div>
+     </div>
+
+     <footer class="mt-10 dark:bg-gray-800">
+      <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
+        <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
+        <span [ngClass]="{'text-[9px]':isMobileScreen()}" class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          Copyright® 2024 Kristu Jayanti Software Development Centre
+        </span>
+      </div>
+     </footer>
+  
+  </div>
+
+
+
+  <div *ngIf="activeSection === 'bookingpage'" >  
+
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        
+        <!-- Logo Section -->
+        <a routerLink="" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="assets/images/applogo.png" class="h-8" alt="App Logo" />
+        </a>
+    
+        <!-- Navbar Links for Desktop -->
+        <div class="hidden md:flex w-full md:w-auto" id="navbar-default">
+          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li class="flex justify-end w-full">
+              <button 
+                type="button" 
+                class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-sky-900 focus:outline-none bg-sky-100 rounded-lg border border-gray-200 hover:bg-sky-300 hover:text-blue-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                (click)="navigateToHome()">
+                Home
+              </button>
+            </li>
+          </ul>
+        </div>
+    
+        <!-- Mobile Menu Button (Optional for toggle on mobile) -->
+        <div class="md:hidden flex items-center">
+          <button 
+            type="button" 
+            (click)="navigateToHome()"
+            class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 rounded-lg"
+            aria-label="Toggle mobile menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+        
+      </div>
+    </nav>
+    
+
+     <div style="height: 270px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 50px;">
+      <h2 [ngClass]="{'text-xl ': isMobileScreen()}" class=" mt-4 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
+        Welcome to <span class="text-[#0284c7]">Kristu Jayanti ARENA</span>
+      </h2>
+      <p [ngClass]="{'mt-2 mb-40 text-[9px]':isMobileScreen(), 'mt-8 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48': !isMobileScreen() }" >
         Discover the Perfect Campus Space for Every Event.
       </p>
   
@@ -346,7 +593,7 @@
             </div>
           </div>
 
-          <div *ngIf="isMobileScreen()" class="w-[300px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8 mb-13">
+          <div *ngIf="isMobileScreen()" class="w-[300px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8 mb-36">
             <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
           
             <!-- First section: Dropdown Button -->
@@ -415,38 +662,7 @@
       
      </div>
 
-     <div class=" max-w-screen-xl mx-auto px-4">
-    <div class="mb-6 mt-40 flex justify-between items-center">
-      <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left">{{activeItem}}</h3>
-      <div class="flex items-center space-x-2">
-        <!-- Conditionally render the image only if there's a selected date -->
-        <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
-    
-        <!-- Display the formatted selected date -->
-        <p *ngIf="selectedDate" class="text-sm">{{ selectedDate | date: 'd MMM yyyy' }}</p>
-      </div>
-    </div>
-    
-  
-    <!-- Grid of App Card Components -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <app-card 
-          *ngFor="let card of cards; let i = index"
-          [heading]="card.heading"
-          [location]="card.location"
-          [capacity]="card.capacity"
-          [acstatus]="card.acstatus"
-          [imagepath]="card.imagepath"
-          [address]="card.address"
-          [buttons]="card.buttons"
-          [module]="'user'"
-          [selectedButtons]="card.selectedButtons"  
-          (buttonSelect)="onButtonSelect(i, $event)"
-          [selectedDate]="selectedDate"> 
-      </app-card>
-    </div>
-    
-     </div>
+     <app-bookingpage class="mt-60"></app-bookingpage>
 
      <footer class="bg-white rounded-lg shadow mt-20 dark:bg-gray-800">
       <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
@@ -460,30 +676,12 @@
   </div>
 
 
-  <div *ngIf="activeSection === 'bookingpage'" >
-    <nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="assets/images/applogo.png" class="h-8" alt="App Logo" />
-        </a>
-  
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <button 
-                 type="button" 
-                 class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-sky-900 focus:outline-none bg-sky-100 rounded-lg border border-gray-200 hover:bg-sky-300 hover:text-blue-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                 (click)="navigateToHome()" >
-                 Home
-              </button>
-            </li>
-          </ul>
-        </div>
-  
-      </div>
-    </nav>
+  <div *ngIf="activeSection === ''">
     <app-bookingpage></app-bookingpage>
   </div>
+  
+  
+  
 
 
   
