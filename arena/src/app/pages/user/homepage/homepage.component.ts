@@ -21,6 +21,10 @@ export class HomepageComponent implements OnInit {
   activeSection: string = 'landingpage';
   tomorrowDate: string;
   isLoading = false;
+  dropdownSelected:boolean = false;
+  dateSelected:boolean = false;
+
+  requiredFieldError:boolean = false;
 
   
 
@@ -178,16 +182,24 @@ export class HomepageComponent implements OnInit {
   }
 
   landingtohome(){
+    if(this.dropdownSelected && this.dateSelected){
     this.isLoading = true;
+    this.requiredFieldError=false;
+    this.dateSelected = false;
     setTimeout(() => {
       this.activeSection = 'homepage';
       this.isLoading = false;
     }, 2000); 
   }
+  else{
+    this.requiredFieldError=true;
+  }
+  }
 
 
   setActiveItem(item: string): void {
     this.activeItem = item; 
+    this.dropdownSelected = true;
   }
 
   setButtonName(item: string): void {
@@ -204,6 +216,7 @@ export class HomepageComponent implements OnInit {
     if (selectedDateString) {
       this.selectedDate = new Date(selectedDateString);  
       console.log('Selected Date:', this.selectedDate); 
+      this.dateSelected = true;
     }
   }
 

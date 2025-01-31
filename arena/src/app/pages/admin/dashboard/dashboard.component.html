@@ -763,7 +763,7 @@
         <div *ngIf="activeSection === 'slotbooking'" >
 
           <div class="flex justify-center mt-12 mb-6">
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8" ngClass="isMobileScreen() ? 'w-[300px]' : 'w-[500px]'" >
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8" [ngClass]="{'w-[500px]':!isMobileScreen(), 'w-[300px]':isMobileScreen()}" >
               <p class="mb-4 text-[#5a6acf] text-sm font-semibold flex justify-center">Check Availability</p>
               <div class="flex gap-2">
         
@@ -813,7 +813,7 @@
                 
         
                 <!-- Date Picker Section -->
-                <div class="w-[100px] text-left">
+                <div class="w-full text-left">
                   <div class="relative flex-1">
                     <div class="relative max-w-sm">
                       <input 
@@ -969,14 +969,14 @@
 </div>
 
 <button type="button"  (click)="toggleSidePanel()"
-        class="fixed md:hidden bottom-4 p-4 left-7 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center z-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <svg *ngIf="!isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+        class="fixed md:hidden bottom-4 p-1 left-7 text-white bg-gray-300 shadow-lg font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center z-50 ">
+        <!-- <svg *ngIf="!isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
-        </svg>
-
-        <svg *ngIf="isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+        </svg> -->
+        <app-menu-animation></app-menu-animation>
+        <!-- <svg *ngIf="isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9"/>
-      </svg>
+      </svg> -->
   <span class="sr-only">Icon description</span>
 </button>
 

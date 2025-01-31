@@ -26,7 +26,7 @@
                             type="button" 
                             (click)="setDropdown()"
                             style="min-width: 150px; height: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center;">
-                            <!-- Display button name, truncating if it's too long -->
+                            
                             <span class="flex-1 overflow-hidden text-ellipsis">{{buttonName}}</span>
                             <svg *ngIf="isDropdownOpen === false" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
                               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
@@ -92,6 +92,9 @@
                           </button>
                         </div>
                   
+                      </div>
+                      <div *ngIf="requiredFieldError" class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 mt-4" role="alert">
+                        <span class="font-medium">Info alert!</span> Please select both fields before proceeding
                       </div>
                     </div>
                   </div>
@@ -327,6 +330,7 @@
                       placeholder="Select date" 
                       (change)="onDateChange($event)"
                       [min]="tomorrowDate"
+                      [value]="selectedDate ? selectedDate.toISOString().split('T')[0] : ''" 
                       style="height: 40px;" /> 
                       <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date </label>
                   </div>
@@ -391,6 +395,7 @@
                     placeholder="Select date" 
                     (change)="onDateChange($event)"
                     [min]="tomorrowDate"
+                    [value]="selectedDate ? selectedDate.toISOString().split('T')[0] : ''" 
                     style="height: 40px; text-align: left;" /> 
                   <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date </label>
                 </div>
@@ -679,7 +684,8 @@
   <div *ngIf="activeSection === ''">
     <app-bookingpage></app-bookingpage>
   </div>
-  
+
+
   
   
 
