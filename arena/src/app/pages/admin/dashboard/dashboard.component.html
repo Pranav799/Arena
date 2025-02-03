@@ -463,7 +463,7 @@
         </div>
 
         <div *ngIf="activeSection === 'createvenue'" class="flex justify-center mt-12 " >
-          <div class="w-[90%] p-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <form #eventForm="ngForm" class="w-[90%] p-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <h5 class="mb-5 mt-4 ml-5 text-2xl font-medium tracking-tight text-[#5a6acf] dark:text-white">Create a Venue</h5>
           
             <!-- Using grid for responsiveness: 1 item per row on mobile, 2 items per row on large screens -->
@@ -472,25 +472,25 @@
               <!-- Venue ID -->
               <div class="mb-2">
                 <label for="venue-id" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue ID</label>
-                <input id="venue-id" [(ngModel)]="venue.venueId" name="venueId" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. M2">
+                <input id="venue-id" [(ngModel)]="venue.venueId" name="venueId" #venueIdInput="ngModel" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. M2">
               </div>
           
               <!-- Venue Name -->
               <div class="mb-2">
                 <label for="venue-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Name</label>
-                <input id="venue-name" [(ngModel)]="venue.venueName" name="venueName" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Auditorium M2">
+                <input id="venue-name" [(ngModel)]="venue.venueName" name="venueName" #venueNameInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Auditorium M2">
               </div>
           
               <!-- Block -->
               <div class="mb-2">
                 <label for="venue-block" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Block</label>
-                <input id="venue-block" [(ngModel)]="venue.block" name="block" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter block">
+                <input id="venue-block" [(ngModel)]="venue.block" name="block" #blockInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter block">
               </div>
           
               <!-- Seating Capacity -->
               <div class="mb-2">
                 <label for="seating-capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seating Capacity</label>
-                <input id="seating-capacity" [(ngModel)]="venue.seatingCapacity" name="seatingCapacity" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. 100">
+                <input id="seating-capacity" [(ngModel)]="venue.seatingCapacity" name="seatingCapacity" #seatingCapacityInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. 100">
               </div>
           
               <!-- A/C -->
@@ -498,12 +498,12 @@
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">A/C</label>
                 <div class="flex items-center space-x-4">
                   <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="ac" [(ngModel)]="venue.ac" name="ac" type="radio" value="A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="A/C">
+                    <input id="ac" [(ngModel)]="venue.ac" name="ac" #acInput="ngModel" required type="radio" value="A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="A/C">
                     <label for="ac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">A/C</label>
                   </div>
           
                   <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="noac" [(ngModel)]="venue.ac" name="ac" type="radio" value="Non A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Non A/C">
+                    <input id="noac" [(ngModel)]="venue.ac" name="ac" #acInput="ngModel" required type="radio" value="Non A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Non A/C">
                     <label for="noac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non A/C</label>
                   </div>
                 </div>
@@ -514,12 +514,12 @@
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">Permission for Auditorium</label>
                 <div class="flex items-center space-x-4">
                   <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="intreval" [(ngModel)]="venue.permission" name="Intreval" type="radio" value="Yes" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
+                    <input id="intreval" [(ngModel)]="venue.permission" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="Yes" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
                     <label for="intreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
                   </div>
           
                   <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="nointreval" [(ngModel)]="venue.permission" name="Intreval" type="radio" value="No" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
+                    <input id="nointreval" [(ngModel)]="venue.permission" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="No" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
                     <label for="nointreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
                   </div>
                 </div>
@@ -528,7 +528,7 @@
               <!-- Venue Location -->
               <div class="mb-2">
                 <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Location</label>
-                <input id="venue-location" [(ngModel)]="venue.location" name="location" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Main Block 3rd Floor">
+                <input id="venue-location" [(ngModel)]="venue.location" name="location" #locationInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Main Block 3rd Floor">
               </div>
           
               <!-- Venue Type Dropdown -->
@@ -588,27 +588,34 @@
 
               <div class="mb-2 mt-8">
                 <label class="inline-flex items-center cursor-pointer">
-                  <input type="checkbox" value="" class="sr-only peer">
+                  <input type="checkbox" value="" required class="sr-only peer">
                   <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Interval Timings</span>
                   <div class="relative w-11 h-6 ml-2 bg-gray-200 peer-focus:outline-none rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#5a6acf]"></div>
                 </label>
                 <p class="ml-3 text-gray-500 text-sm mt-2 ">Toggle this if the venue timings is in break time (Eg. Qudrangle)</p>
               </div> 
-          
-              
-
             </div>
+
+            <div *ngIf="errorVenueCreation" class="flex items-center p-4 mb-4 m-6 mt-6 text-blue-800 rounded-lg bg-blue-50 " role="alert">
+              <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+              </svg>
+              <span class="sr-only">Info</span>
+              <div class="ms-3 text-sm font-medium">
+                  Please fill in all the required fields to book your slot
+              </div>
+             </div>
             
             <div class="w-full text-center mt-4 mb-4">
               <button 
                 type="button" 
-                (click)="onSubmit(); openCreateVenueModal()" 
+                (click)="eventForm.valid ? createVenue() : errorCreateVenue()"
                 class="text-white bg-[#5a6acf] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-0 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 col-span-2 mx-auto">
                 Add Venue
               </button>
             </div>
 
-          </div>
+          </form>
         </div>
 
         <div *ngIf="activeSection === 'editvenue'" class="flex justify-center mt-12 "  >

@@ -48,6 +48,7 @@ export class DashboardComponent {
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
   createVenueModal: boolean = false;
+  errorVenueCreation: boolean = false;
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   tommorowDate: string;
 
@@ -305,6 +306,18 @@ rowData = [
       this.selectedDate = new Date(selectedDateString);  
       console.log('Selected Date:', this.selectedDate); 
     }
+  }
+
+  createVenue(){
+    this.onSubmit();
+    this.openCreateVenueModal()
+  }
+
+  errorCreateVenue(){
+    this.errorVenueCreation=true
+    setTimeout(()=>{
+      this.errorVenueCreation = false;
+    },3000)
   }
 
   isMobileScreen(): boolean {
