@@ -19,7 +19,7 @@ export class ParentCardComponent {
   @Output() buttonSelect = new EventEmitter<string>();
 
   isSelected(button: string): boolean {
-    return this.selectedButtons.includes(button);  // Check if the button is in the selectedButtons array
+    return this.selectedButtons.includes(this.getButtonLabel(button));  // Check if the button is in the selectedButtons array
   }
 
   onButtonSelect(button: string): void {
