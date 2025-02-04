@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { VenueService } from 'src/app/service/venue.service';
+import { DashboardService } from './dashboard.service';
 import { AgGridAngular } from 'ag-grid-angular'; 
 import type { ColDef, GridApi } from 'ag-grid-community'; 
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -32,16 +33,16 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class DashboardComponent {
 
  venue = {
-    venueId: '',
-    venueName: '',
-    block: '',
-    seatingCapacity: '',
-    ac: '',
-    permission: '',
-    location: '',
-    venueType: '',
-    picture: '',
-    intervalTimings: ''
+    arenaVenueId_VenueCreation_text: '',
+    arenaVenueName_VenueCreation_text: '',
+    arenaBlockName_VenueCreation_text: '',
+    arenaSeatingCapacityOfVenue_VenueCreation_Integer:0,
+    arenaIsVenueAirConditionedOrNot_VenueCreation_text: '',
+    arenaIsPermissionRequiredForAuditorium_VenueCreation_text: '',
+    arenaVenueLocation_VenueCreation_text: '',
+    arenaTypeOfVenue_VenueCreation_text: '',
+    aernaIntervalTiming_VenueCreation_boolean: false,
+    arenaVenueImage_VenueCreation_Image:''
   };
 
   myTheme: any;
@@ -54,7 +55,7 @@ export class DashboardComponent {
 
 
 
-  constructor(private venueService: VenueService) {
+  constructor(private venueService: VenueService,private dashboardService: DashboardService) {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.tommorowDate = tomorrow.toISOString().split('T')[0];
@@ -73,7 +74,7 @@ export class DashboardComponent {
   }
 
   onSubmit() {
-    this.venueService.addVenue(this.venue).subscribe(response => {
+    this.dashboardService.addVenue(this.venue).subscribe(response => {
       console.log('Venue added successfully', response);
     }, error => {
       console.error('Error adding venue', error);
@@ -255,6 +256,10 @@ rowData = [
     }
   }
 
+  onSeatingCapacityChange(value: string) {
+    this.venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer = parseInt(value, 10);
+  }
+
   onGridReady(params: any): void {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -289,6 +294,7 @@ rowData = [
 
   setButtonName(item: string): void {
     this.buttonName = item; 
+    this.venue.arenaTypeOfVenue_VenueCreation_text = item;
   }
 
   closeCreateVenueModal(){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { HomepageService } from './homepage.service';
 
 
 declare var flowbite: any;
@@ -32,6 +33,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeDatepicker();
+    this.fetchVenues();
   }
 
   initializeDatepicker(): void {
@@ -42,138 +44,59 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  cards = [
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi1.jpg', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-    , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-  ], 
-      selectedButtons: [] as string[] 
-    },
-    { 
-      heading: 'P2 Conference Hall', 
-      location: 'Humanities Block', 
-      capacity: 180, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi3.jpg', 
-      address: '1st Floor Humanities Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-    , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-  ], 
-      selectedButtons: [] as string[] 
-    },
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi4.jpg', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-      ], 
-      selectedButtons: [] as string[]
-    },
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/10.jpg', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-      ], 
-      selectedButtons: [] as string[]
-    },
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi5.webp', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-      ], 
-      selectedButtons: [] as string[]
-    },
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi6.jpeg', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-      ], 
-      selectedButtons: [] as string[]
-    },
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi7.webp', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-      ], 
-      selectedButtons: [] as string[]
-    },
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi8.jpg', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-      ], 
-      selectedButtons: [] as string[]
-    },
-    { 
-      heading: 'Meeting Room', 
-      location: 'PG Block', 
-      capacity: 11, 
-      acstatus: 'AC', 
-      imagepath: 'assets/images/audi9.jpeg', 
-      address: '2nd Floor PG Block', 
-      buttons: ['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 01:00', '01:00 - 02:00', '02:00 - 03:00'
-        , '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00'
-      ], 
-      selectedButtons: [] as string[]
-    },
-  ];
+  cards: any[] = [];
 
-  constructor()  {
+  constructor(private homepageService: HomepageService)  {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.tomorrowDate = tomorrow.toISOString().split('T')[0];
   }
 
-  onButtonSelect(cardIndex: number, button: string): void {
-
-    this.cards.forEach((card, index) => {
-      if (index !== cardIndex) {
-        card.selectedButtons = [];       }
-    });
-
-    const selectedButtons = this.cards[cardIndex].selectedButtons;
-    const buttonIndex = selectedButtons.indexOf(button);
-    if (buttonIndex === -1) {
-      selectedButtons.push(button);
-    } else {
-      selectedButtons.splice(buttonIndex, 1);
-    }
+  fetchVenues(): void {
+    this.homepageService.getVenue().subscribe(
+      (response: any) => {
+        console.log('API Response:', response); // Debugging
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          // Map API data to cards array
+          this.cards = response.responseData.data.map((venue: any) => ({
+            heading: venue.arenaVenueName_VenueCreation_text,
+            location: venue.arenaBlockName_VenueCreation_text,
+            capacity: venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer,
+            acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
+            imagepath: venue.arenaVenueImage_VenueCreation_Image,
+            address: venue.arenaVenueLocation_VenueCreation_text,
+            buttons: venue.arenaBookedSlots_UserBooking_TextArray,
+            selectedButtons: []  // Initialize selectedButtons to an empty array for each card
+          }));
+          console.log('Mapped Cards:', this.cards); // Debugging
+        } else {
+          console.error('Invalid or empty API response:', response);
+          this.cards = []; // Set cards to an empty array if the response is invalid
+        }
+      },
+      (error) => {
+        console.error('Error fetching venues:', error);
+        this.cards = []; // Set cards to an empty array if there's an error
+      }
+    );
   }
+  
+
+  onButtonSelect(index: number, selectedButton: string): void {
+    if (!this.cards[index].selectedButtons) {
+      this.cards[index].selectedButtons = [];
+    }
+  
+    const buttonIndex = this.cards[index].selectedButtons.indexOf(selectedButton);
+    if (buttonIndex === -1) {
+      this.cards[index].selectedButtons.push(selectedButton); 
+    } else {
+      this.cards[index].selectedButtons.splice(buttonIndex, 1); 
+    }
+  
+    // After updating selectedButtons, you can call any additional actions if necessary
+  }
+  
 
   navigateToBooking() {
     this.activeSection = 'bookingpage';

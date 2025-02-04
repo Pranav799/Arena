@@ -6,25 +6,26 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./parent-card.component.css']
 })
 export class ParentCardComponent {
-  @Input() heading!: string;
-  @Input() location!: string;
-  @Input() capacity!: number;
-  @Input() acstatus!: string;
-  @Input() imagepath!: string;
-  @Input() address!: string;
-  @Input() module!: string;
-  @Input() buttons: string[] = []; 
-  @Input() selectedButtons: string[] = []; 
-  @Input() selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  @Input() heading: string = '';
+  @Input() location: string = '';
+  @Input() capacity: number = 0;
+  @Input() acstatus: string = '';
+  @Input() imagepath: string = '';
+  @Input() address: string = '';
+  @Input() buttons: string[] = [];
+  @Input() module: string = '';
+  @Input() selectedButtons: string[] = [];
+  @Input() selectedDate: Date | null = null;
   @Output() buttonSelect = new EventEmitter<string>();
 
-  onButtonSelect(button: string): void {
-    this.buttonSelect.emit(button);  
+  isSelected(button: string): boolean {
+    return this.selectedButtons.includes(button);  // Check if the button is in the selectedButtons array
   }
 
-  isSelected(button: string): boolean {
-    return this.selectedButtons.includes(button);
+  onButtonSelect(button: string): void {
+    this.buttonSelect.emit(this.getButtonLabel(button));  // Emit selected button to the parent
   }
+  
   
   sucessBookingModal: boolean = false;
   bookVenueModal: boolean = false;
@@ -105,6 +106,11 @@ export class ParentCardComponent {
     setTimeout(() => {
       this.showMessage = false; 
     }, 3000); 
+  }
+
+  getButtonLabel(button: any): string {
+    // Extract the key (time range) from the button object
+    return Object.keys(button)[0];
   }
 
   }

@@ -126,7 +126,7 @@
 
   <div style="height: 350px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative ">
     
-    <app-loandingpage-animation class="mb-0"></app-loandingpage-animation>
+    <!-- <app-loandingpage-animation class="mb-0"></app-loandingpage-animation> -->
     
     <div class="absolute top-full transform -translate-y-1/2 left-1/2 -translate-x-1/2">
       <div class="flex justify-center mt-12">
@@ -433,18 +433,18 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <app-card 
-              *ngFor="let card of cards; let i = index"
-              [heading]="card.heading"
-              [location]="card.location"
-              [capacity]="card.capacity"
-              [acstatus]="card.acstatus"
-              [imagepath]="card.imagepath"
-              [address]="card.address"
-              [buttons]="card.buttons"
-              [module]="'user'"
-              [selectedButtons]="card.selectedButtons"  
-              (buttonSelect)="onButtonSelect(i, $event)"
-              [selectedDate]="selectedDate"> 
+            *ngFor="let card of cards; let i = index"
+            [heading]="card.heading"
+            [location]="card.location"
+            [capacity]="card.capacity"
+            [acstatus]="card.acstatus"
+            [imagepath]="card.imagepath"
+            [address]="card.address"
+            [buttons]="card.buttons"
+            [module]="'user'"
+            [selectedButtons]="card.selectedButtons"  
+            (buttonSelect)="onButtonSelect(i, $event)"
+            [selectedDate]="selectedDate">
           </app-card>
         </div>
      </div>

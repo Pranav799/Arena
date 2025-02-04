@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class VenueService {
-  private apiUrl = 'http://localhost:3000/venues'; // API URL for JSON server
+  private apiUrl = 'https://jsonplaceholder.typicode.com/posts'; // API URL for JSON server
 
   constructor(private http: HttpClient) {}
 
   // Method to add a new venue
   addVenue(venueData: any): Observable<any> {
-    return this.http.post(this.apiUrl, venueData);
+    return this.http.get(this.apiUrl);
   }
 }
