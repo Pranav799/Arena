@@ -109,8 +109,11 @@ export class ParentCardComponent {
   }
 
   getButtonLabel(button: any): string {
-    // Extract the key (time range) from the button object
     return Object.keys(button)[0];
+  }
+
+  getButtonValue(button: any): any {
+    return Object.values(button)[0];
   }
 
   }
