@@ -65,6 +65,7 @@ export class HomepageComponent implements OnInit {
             acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
             imagepath: venue.arenaVenueImage_VenueCreation_Image,
             address: venue.arenaVenueLocation_VenueCreation_text,
+            venueId: venue.arenaVenueId_VenueCreation_text,
             buttons: venue.arenaTimeslots_VenueCreation_Array,
             selectedButtons: []  // Initialize selectedButtons to an empty array for each card
           }));

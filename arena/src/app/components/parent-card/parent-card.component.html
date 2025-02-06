@@ -136,25 +136,25 @@
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Event Name <span class="text-red-700">*</span></label>
-                    <input type="text" name="eventName" #eventNameInput="ngModel" [(ngModel)]="eventName" placeholder="Event" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md text-[12px]">
+                    <input type="text" name="eventName" #eventNameInput="ngModel" [(ngModel)]="bookingDetails.arenaEventName_UserBooking_Text" placeholder="Event" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md text-[12px]">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
             
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Resource Person / Chief Guest Name <span class="text-red-700">*</span></label>
-                    <input type="text" [(ngModel)]="chiefperson" name="chiefPerson" #chiefPersonInput="ngModel" required class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="XYZ">
+                    <input type="text" [(ngModel)]="bookingDetails.arenaResourcePerson_UserBooking_Text" name="chiefPerson" #chiefPersonInput="ngModel" required class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="XYZ">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
             
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Department / Club / Association / Deanery / Institutional Name <span class="text-red-700">*</span></label>
-                    <input type="text" [(ngModel)]="department" name="department" #departmentInput="ngModel" required class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
+                    <input type="text" [(ngModel)]="bookingDetails.arenaDepartmentName_UserBooking_Text" name="department" #departmentInput="ngModel" required class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Fest / Conference /Meeting / Seminar /Workshop / Training Programme / FDP <span class="text-red-700">*</span></label>
-                    <input type="text" [(ngModel)]="eventKind" name="eventKind" #eventKindInput="ngModel" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
+                    <input type="text" [(ngModel)]="bookingDetails.arenaEventType_UserBooking_Text" name="eventKind" #eventKindInput="ngModel" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
@@ -163,32 +163,32 @@
 
                     <div class="flex w-3/5 flex-wrap gap-1">
                             <div class="flex items-center ps-3">
-                                <input id="photography" type="checkbox" value="" name="photography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="photography" type="checkbox" value="" name="photography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                                 <label for="photography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Photography</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="choir" type="checkbox" value="" name="choir" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="choir" type="checkbox" value="" name="choir" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                                 <label for="choir" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Choir</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="videography" type="checkbox" value="" name="videography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="videography" type="checkbox" value="" name="videography" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                                 <label for="videography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Videography</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="lamp" type="checkbox" value="" name="lamp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="lamp" type="checkbox" value="" name="lamp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                                 <label for="lamp" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Lamp</label>
                             </div>
 
                             <div class="flex items-center ps-3">
-                                <input id="studentReporters" type="checkbox" value="" name="studentReporters" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="studentReporters" type="checkbox" value="" name="studentReporters" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                                 <label for="studentReporters" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Student Reporters</label>
                             </div>
 
                             <div class="flex  items-center ps-3">
-                                <input id="whiteboard" type="checkbox" value="" name="whiteboard" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="whiteboard" type="checkbox" value="" name="whiteboard" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                                 <label for="whiteboard" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Whiteboard</label>
                             </div>
 
@@ -201,7 +201,7 @@
                                 [(ngModel)]="saplingsSelected" 
                                 (ngModelChange)="onSaplingsChange()" 
                                 name="saplings-radio" 
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                             <label for="saplings-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
 
                            
@@ -272,7 +272,7 @@
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left ">Extra Requirements, if needed</label>
-                    <textarea id="message" rows="6" class="w-3/5 px-3 py-1 mb-6 mt-6 border border-gray-300 rounded-md text-xs" placeholder=""></textarea>
+                    <textarea id="message" [(ngModel)]="bookingDetails.arenaExtraRequirements_UserBooking_text" rows="6" class="w-3/5 px-3 py-1 mb-6 mt-6 border border-gray-300 rounded-md text-xs" placeholder=""></textarea>
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
@@ -290,7 +290,7 @@
                 <div class="flex items-center space-x-4 mb-2">
                     <p class="text-xs">Mode of Event</p>
 
-                   <input id="offline" type="radio" value="offline" name="mode" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                   <input id="offline" type="radio" value="offline" name="mode" [(ngModel)]="bookingDetails.arenaModeOfEvent_UserBooking_Text" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
                    <label for="offline" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Offline</label>
 
                    <input id="hybrid" type="radio" value="hybrid" name="mode" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
