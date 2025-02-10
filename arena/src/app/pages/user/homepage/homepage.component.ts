@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { HomepageService } from './homepage.service';
-
 
 declare var flowbite: any;
 
@@ -26,24 +24,10 @@ export class HomepageComponent implements OnInit {
   isLoading = false;
   dropdownSelected:boolean = false;
   dateSelected:boolean = false;
-
   requiredFieldError:boolean = false;
 
   
-
-  ngOnInit(): void {
-    this.initializeDatepicker();
-    this.fetchVenues();
-  }
-
-  initializeDatepicker(): void {
-    const datepickerElement = document.getElementById('datepicker') as HTMLInputElement;
-
-    if (datepickerElement) {
-      new flowbite.Datepicker(datepickerElement);
-    }
-  }
-
+  ngOnInit(): void {}
   cards: any[] = [];
 
   constructor(private homepageService: HomepageService)  {
@@ -51,87 +35,47 @@ export class HomepageComponent implements OnInit {
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.tomorrowDate = tomorrow.toISOString().split('T')[0];
   }
-
-  fetchVenues(): void {
-    this.homepageService.getVenue().subscribe(
-      (response: any) => {
-        console.log('API Response:', response); // Debugging
-        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
-          // Map API data to cards array
-          this.cards = response.responseData.data.map((venue: any) => ({
-            heading: venue.arenaVenueName_VenueCreation_text,
-            location: venue.arenaBlockName_VenueCreation_text,
-            capacity: venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer,
-            acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
-            imagepath: venue.arenaVenueImage_VenueCreation_Image,
-            address: venue.arenaVenueLocation_VenueCreation_text,
-            venueId: venue.arenaVenueId_VenueCreation_text,
-            buttons: venue.arenaTimeslots_VenueCreation_Array,
-            selectedButtons: []  // Initialize selectedButtons to an empty array for each card
-          }));
-          console.log('Mapped Cards:', this.cards); // Debugging
-        } else {
-          console.error('Invalid or empty API response:', response);
-          this.cards = []; // Set cards to an empty array if the response is invalid
-        }
-      },
-      (error) => {
-        console.error('Error fetching venues:', error);
-        this.cards = []; // Set cards to an empty array if there's an error
-      }
-    );
-  }
   
-
   onButtonSelect(index: number, selectedButton: string): void {
     if (!this.cards[index].selectedButtons) {
       this.cards[index].selectedButtons = [];
     }
-  
     const buttonIndex = this.cards[index].selectedButtons.indexOf(selectedButton);
     if (buttonIndex === -1) {
       this.cards[index].selectedButtons.push(selectedButton); 
     } else {
       this.cards[index].selectedButtons.splice(buttonIndex, 1); 
     }
-  
-    // After updating selectedButtons, you can call any additional actions if necessary
   }
   
-
-  navigateToBooking() {
-    this.activeSection = 'bookingpage';
-  }
-
-  navigateToHome() {
-      this.activeSection = 'homepage';
+  navigatePages(page: string) {
+    this.activeSection = page;
   }
 
   landingtohome(){
-    if(this.dropdownSelected && this.dateSelected){
+    // if(this.dropdownSelected && this.dateSelected){
     this.isLoading = true;
     this.requiredFieldError=false;
     this.dateSelected = false;
+    this.fetchVenue(this.formatDate(this.selectedDate),this.activeItem);
+
     setTimeout(() => {
       this.activeSection = 'homepage';
       this.isLoading = false;
     }, 2000); 
-  }
-  else{
-    this.requiredFieldError=true;
-  }
-  }
-
-
-  setActiveItem(item: string): void {
-    this.activeItem = item; 
-    this.dropdownSelected = true;
-  }
-
-  setButtonName(item: string): void {
-    this.buttonName = item; 
+  // }
+  // else{
+    // this.requiredFieldError=true;
+  // }
   }
   
+  selectVenue(item: string): void {
+    this.activeItem = item; 
+    this.dropdownSelected = true;
+    this.buttonName = item; 
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
   setDropdown(){
     this.isDropdownOpen = !this.isDropdownOpen;
   }
@@ -146,26 +90,67 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-setStartDate(event: Event): void {
-  const startdate = event.target as HTMLInputElement;
-  const selectedStartdate = startdate.value;  
+  setStartDate(event: Event): void {
+    const startdate = event.target as HTMLInputElement;
+    const selectedStartdate = startdate.value;  
 
-  if (selectedStartdate) {
-    this.startDate = new Date(selectedStartdate);
+    if (selectedStartdate) {
+      this.startDate = new Date(selectedStartdate);
+    }
   }
-}
 
-setEndDate(event: Event): void {
-  const enddate = event.target as HTMLInputElement;
-  const selectedEnddate = enddate.value;
+  setEndDate(event: Event): void {
+    const enddate = event.target as HTMLInputElement;
+    const selectedEnddate = enddate.value;
 
-  if (selectedEnddate) {
-    this.endDate = new Date(selectedEnddate);
+    if (selectedEnddate) {
+      this.endDate = new Date(selectedEnddate);
+    }
   }
-}
 
   isMobileScreen(): boolean {
     return window.innerWidth < 1054; 
   }
+
+  fetchVenue(selectedDate: string, activeItem: string): void {  
+    this.homepageService.getVenue(selectedDate, activeItem).subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          this.cards = response.responseData.data.map((venue: any) => ({
+            heading: venue.arenaVenueName_VenueCreation_text,
+            location: venue.arenaBlockName_VenueCreation_text,
+            capacity: venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer,
+            acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
+            imagepath: venue.arenaVenueImage_VenueCreation_Image,
+            address: venue.arenaVenueLocation_VenueCreation_text,
+            venueId: venue.arenaVenueId_VenueCreation_text,
+            venueObjID:venue._id,
+            typeOfVenue: venue.arenaTypeOfVenue_VenueCreation_text,
+            venueLocation: venue.arena_VenueSpot_UserBooking_Text,
+            buttons: venue.arenaTimeslots_VenueCreation_Array,
+            selectedButtons: []
+          }));
+          console.log('Mapped Cards:', this.cards);
+        } else {
+          console.error('Invalid or empty API response:', response);
+          this.cards = [];
+        }
+      },
+      (error) => {
+        console.error('Error fetching venue slots:', error);
+        this.cards = [];
+      }
+    );
+  }
+
+  formatDate(date: Date | null): string {
+    if (!date) return ''; 
+    const day = date.getDate().toString().padStart(2, '0'); 
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
 
 }

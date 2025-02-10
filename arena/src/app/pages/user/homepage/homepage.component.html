@@ -39,22 +39,22 @@
                           <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                               <li>
-                                <a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                                <a (click)="selectVenue('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
                               </li>
                               <li>
-                                <a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                                <a (click)="selectVenue('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
                               </li>
                               <li>
-                                <a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                                <a (click)="selectVenue('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
                               </li>
                               <li>
-                                <a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                                <a (click)="selectVenue('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
                               </li>
                               <li>
-                                <a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                                <a (click)="selectVenue('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
                               </li>
                               <li>
-                                <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                                <a (click)="selectVenue('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
                               </li>
                             </ul>
                           </div>
@@ -126,7 +126,7 @@
 
   <div style="height: 350px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative ">
     
-    <!-- <app-loandingpage-animation class="mb-0"></app-loandingpage-animation> -->
+    <app-loandingpage-animation class="mb-0"></app-loandingpage-animation>
     
     <div class="absolute top-full transform -translate-y-1/2 left-1/2 -translate-x-1/2">
       <div class="flex justify-center mt-12">
@@ -152,12 +152,24 @@
         
             <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
               <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                <li><a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a></li>
-                <li><a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a></li>
-                <li><a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a></li>
-                <li><a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a></li>
-                <li><a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a></li>
-                <li><a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a></li>
+                <li>
+                  <a (click)="selectVenue('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                </li>
+                <li>
+                  <a (click)="selectVenue('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                </li>
+                <li>
+                  <a (click)="selectVenue('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                </li>
+                <li>
+                  <a (click)="selectVenue('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                </li>
+                <li>
+                  <a (click)="selectVenue('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                </li>
+                <li>
+                  <a (click)="selectVenue('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -233,7 +245,7 @@
               <button 
                 type="button" 
                 class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-sky-900 focus:outline-none bg-sky-100 rounded-lg border border-gray-200 hover:bg-sky-300 hover:text-blue-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                (click)="navigateToBooking()">
+                (click)="navigatePages('bookingpage')">
                 My Bookings
               </button>
             </li>
@@ -244,7 +256,7 @@
         <div class="md:hidden flex items-center">
           <button 
             type="button" 
-            (click)="navigateToBooking()"
+            (click)="navigatePages('bookingpage')"
             class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 rounded-lg"
             aria-label="Toggle mobile menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -294,22 +306,22 @@
                 <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
                   <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                     <li>
-                      <a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                      <a (click)="selectVenue('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
                     </li>
                     <li>
-                      <a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                      <a (click)="selectVenue('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
                     </li>
                     <li>
-                      <a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                      <a (click)="selectVenue('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
                     </li>
                     <li>
-                      <a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                      <a (click)="selectVenue('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
                     </li>
                     <li>
-                      <a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                      <a (click)="selectVenue('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
                     </li>
                     <li>
-                      <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                      <a (click)="selectVenue('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
                     </li>
                   </ul>
                 </div>
@@ -338,6 +350,7 @@
               <div class="w-1/7 ml-auto">
                 <button 
                   type="button" 
+                  (click)="landingtohome()"
                   class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg "
                   style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
                   <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -371,12 +384,24 @@
             
               <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                  <li><a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a></li>
-                  <li><a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a></li>
-                  <li><a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a></li>
-                  <li><a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a></li>
-                  <li><a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a></li>
-                  <li><a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a></li>
+                  <li>
+                    <a (click)="selectVenue('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                  </li>
+                  <li>
+                    <a (click)="selectVenue('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                  </li>
+                  <li>
+                    <a (click)="selectVenue('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                  </li>
+                  <li>
+                    <a (click)="selectVenue('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                  </li>
+                  <li>
+                    <a (click)="selectVenue('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                  </li>
+                  <li>
+                    <a (click)="selectVenue('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -433,19 +458,22 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <app-card 
-            *ngFor="let card of cards; let i = index"
-            [heading]="card.heading"
-            [location]="card.location"
-            [capacity]="card.capacity"
-            [acstatus]="card.acstatus"
-            [imagepath]="card.imagepath"
-            [address]="card.address"
-            [buttons]="card.buttons"
-            [module]="'user'"
-            [selectedButtons]="card.selectedButtons"  
-            (buttonSelect)="onButtonSelect(i, $event)"
-            [selectedDate]="selectedDate">
-          </app-card>
+          *ngFor="let card of cards; let i = index"
+          [heading]="card.heading"
+          [location]="card.location"
+          [capacity]="card.capacity"
+          [acstatus]="card.acstatus"
+          [imagepath]="card.imagepath"
+          [address]="card.address"
+          [buttons]="card.buttons"
+          [module]="'user'"
+          [selectedButtons]="card.selectedButtons"
+          (buttonSelect)="onButtonSelect(i, $event)"
+          [selectedDate]="selectedDate"
+          [venuType]="card.typeOfVenue"
+          [venueID]="card.venueId"
+          [objID]="card.venueObjID"> 
+        </app-card>
         </div>
      </div>
 
@@ -477,7 +505,7 @@
               <button 
                 type="button" 
                 class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-sky-900 focus:outline-none bg-sky-100 rounded-lg border border-gray-200 hover:bg-sky-300 hover:text-blue-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                (click)="navigateToHome()">
+                (click)="navigatePages('homepage')">
                 Home
               </button>
             </li>
@@ -488,7 +516,7 @@
         <div class="md:hidden flex items-center">
           <button 
             type="button" 
-            (click)="navigateToHome()"
+            (click)="navigatePages('homepage')"
             class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 rounded-lg"
             aria-label="Toggle mobile menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
