@@ -16,15 +16,18 @@ export class HomepageComponent implements OnInit {
   activeItem: string = 'All Venues'; 
   buttonName: string = 'Venue Type'; 
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+  Date: Date | null = null;
   startDate: Date | null = null;
   endDate: Date | null = null;
   isDropdownOpen: boolean = false;
   activeSection: string = 'landingpage';
   tomorrowDate: string;
   isLoading = false;
+  isSearching = false;
   dropdownSelected:boolean = false;
   dateSelected:boolean = false;
   requiredFieldError:boolean = false;
+  isDataAvailable: boolean = false;
 
   
   ngOnInit(): void {}
@@ -50,27 +53,53 @@ export class HomepageComponent implements OnInit {
   
   navigatePages(page: string) {
     this.activeSection = page;
+    this.fetchVenue(this.formatDate(this.selectedDate),this.activeItem);
   }
 
   landingtohome(){
-    // if(this.dropdownSelected && this.dateSelected){
+    if(this.dropdownSelected && this.dateSelected){
     this.isLoading = true;
     this.requiredFieldError=false;
     this.dateSelected = false;
+    this.activeItem = this.buttonName; 
+    this.Date = this.selectedDate;
+
     this.fetchVenue(this.formatDate(this.selectedDate),this.activeItem);
 
     setTimeout(() => {
       this.activeSection = 'homepage';
       this.isLoading = false;
     }, 2000); 
-  // }
-  // else{
-    // this.requiredFieldError=true;
-  // }
+  }
+  else{
+    this.requiredFieldError=true;
+  }
+  }
+
+  searchforVenue(){
+    this.isSearching = true;
+    this.requiredFieldError=false;
+    this.dateSelected = false;
+    this.activeItem = this.buttonName; 
+    this.Date = this.selectedDate;
+
+    this.fetchVenue(this.formatDate(this.selectedDate),this.activeItem);
+
+    setTimeout(() => {
+      this.activeSection = 'homepage';
+      this.isSearching = false;
+    }, 2000); 
+  }
+
+  onBookingCompleted(success: boolean, venueID: string) {
+    if (success) {
+     this.fetchVenue(this.formatDate(this.selectedDate),this.activeItem);
+    } else {
+      console.log('Booking failed. No API call made.');
+    }
   }
   
   selectVenue(item: string): void {
-    this.activeItem = item; 
     this.dropdownSelected = true;
     this.buttonName = item; 
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -132,9 +161,11 @@ export class HomepageComponent implements OnInit {
             selectedButtons: []
           }));
           console.log('Mapped Cards:', this.cards);
+          this.isDataAvailable = true;
         } else {
           console.error('Invalid or empty API response:', response);
           this.cards = [];
+          this.isDataAvailable = false;
         }
       },
       (error) => {

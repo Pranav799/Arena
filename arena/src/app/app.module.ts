@@ -17,9 +17,10 @@ import { AgGridModule } from 'ag-grid-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
-import { LoandingpageAnimationComponent } from './components/loandingpage-animation/loandingpage-animation.component';
-import { LoadingAnimationComponent } from './components/loading-animation/loading-animation.component';
 import { MenuAnimationComponent } from './components/animations/menu-animation/menu-animation.component';
+import { SearchAnimationComponent } from './components/animations/search-animation/search-animation.component';
+import { LandingpageAnimationComponent } from './components/animations/landingpage-animation/landingpage-animation.component';
+import { LoadingComponent } from './components/animations/loading/loading.component';
 
 export function playerFactory() {
   return player;
@@ -38,9 +39,10 @@ export function playerFactory() {
     MyBookingComponent,
     BulkBookingComponent,
     LoginComponent,
-    LoandingpageAnimationComponent,
-    LoadingAnimationComponent,
     MenuAnimationComponent,
+    SearchAnimationComponent,
+    LandingpageAnimationComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

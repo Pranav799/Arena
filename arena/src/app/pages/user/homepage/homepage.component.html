@@ -101,7 +101,7 @@
                 <!-- Right Div: This will take 50% space and contain the login form -->
                 <div class="flex-1 flex items-center justify-center bg-white dark:bg-gray-800">
                   <div class="flex flex-col items-center">
-                    <app-loandingpage-animation class="mb-0"></app-loandingpage-animation> 
+                    <app-landingpage-animation class="mb-0"></app-landingpage-animation> 
                     <footer class="bg-transparent fixed bottom-0 left-0 right-0 flex justify-center items-center rounded-lg shadow dark:bg-gray-800">
                       <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
                         <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
@@ -116,7 +116,7 @@
         </section>
 
         <div *ngIf="isLoading" class="absolute inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50 z-10">
-          <app-loading-animation></app-loading-animation>
+          <app-loading></app-loading>
         </div>
 
   </div>
@@ -126,7 +126,7 @@
 
   <div style="height: 350px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative ">
     
-    <app-loandingpage-animation class="mb-0"></app-loandingpage-animation>
+    <app-landingpage-animation class="mb-0"></app-landingpage-animation>
     
     <div class="absolute top-full transform -translate-y-1/2 left-1/2 -translate-x-1/2">
       <div class="flex justify-center mt-12">
@@ -211,7 +211,7 @@
    </div>
 
   <div *ngIf="isLoading" class="absolute inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50 z-10">
-    <app-loading-animation></app-loading-animation>
+    <app-loading></app-loading>
   </div>
 
   <footer class="bg-transparent fixed bottom-0 left-0 right-0 flex justify-center items-center rounded-lg shadow dark:bg-gray-800">
@@ -350,7 +350,7 @@
               <div class="w-1/7 ml-auto">
                 <button 
                   type="button" 
-                  (click)="landingtohome()"
+                  (click)="searchforVenue()"
                   class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg "
                   style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
                   <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -428,7 +428,7 @@
             <div class="w-full text-right flex justify-end"> <!-- w-full for full width and text-right to align the button to the right -->
               <button 
                 type="button" 
-                (click)="landingtohome()"
+                (click)="searchforVenue()"
                 class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg"
                 style="height: 40px; width: 50px;"> 
                 <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -440,23 +440,33 @@
 
         </div>
       </div>
-      
-      
+
      </div>
+
+     
 
      <div [ngClass]="{'px-4 ':isMobileScreen()}" class=" max-w-screen-xl mx-auto px-2">
         <div class="mb-3 mt-48 flex justify-between items-center">
           <h3 [ngClass]="{'text-lg':isMobileScreen(), 'text-2xl':!isMobileScreen()}" class=" font-bold text-gray-800 dark:text-white text-left">{{activeItem}}</h3>
           <div class="flex items-center space-x-2">
             <!-- Conditionally render the image only if there's a selected date -->
-            <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
+            <img *ngIf="Date" src="../../../../assets/icons/Vector.svg" alt="Icon" />
         
             <!-- Display the formatted selected date -->
-            <p *ngIf="selectedDate" class="text-sm">{{ selectedDate | date: 'd MMM yyyy' }}</p>
+            <p *ngIf="Date" class="text-sm">{{ Date | date: 'd MMM yyyy' }}</p>
           </div>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+        <div *ngIf="isSearching" class="flex justify-center">
+          <app-search-animation></app-search-animation>
+        </div>
+
+        <div *ngIf="!isDataAvailable" class="flex justify-center items-center">
+          no data found
+        </div>
+
+        <div *ngIf="!isSearching" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-36">
+          
           <app-card 
           *ngFor="let card of cards; let i = index"
           [heading]="card.heading"
@@ -472,12 +482,15 @@
           [selectedDate]="selectedDate"
           [venuType]="card.typeOfVenue"
           [venueID]="card.venueId"
-          [objID]="card.venueObjID"> 
+          [objID]="card.venueObjID"
+          (bookingCompleted)="onBookingCompleted($event, card.venueId)"> 
         </app-card>
+
         </div>
+
      </div>
 
-     <footer class="mt-10 dark:bg-gray-800">
+     <footer class="fixed bottom-0 w-full flex justify-center dark:bg-gray-800 bg-white">
       <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
         <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
         <span [ngClass]="{'text-[9px]':isMobileScreen()}" class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
@@ -540,7 +553,7 @@
         <div class="flex justify-center mt-8">
 
           <div *ngIf="!isMobileScreen()" class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8">
-            <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
+            <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Booking History</p>
             <div class="flex gap-2">
       
               <!-- From Date -->
@@ -645,7 +658,7 @@
       
      </div>
 
-     <div [ngClass]="{'px-6 ':isMobileScreen()}" class="max-w-screen-xl mx-auto">
+     <div [ngClass]="{'px-6 ':isMobileScreen()}" class="max-w-screen-xl mx-auto mb-36">
       <div class="mb-3 mt-28 flex justify-center items-center">
         <div class="flex items-center space-x-2">
           <app-bookingpage></app-bookingpage>
@@ -653,7 +666,7 @@
       </div>
     </div>
     
-     <footer class="mt-10 dark:bg-gray-800">
+    <footer class="fixed bottom-0 w-full flex justify-center dark:bg-gray-800 bg-white">
       <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
         <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
         <span [ngClass]="{'text-[9px]':isMobileScreen()}" class="text-sm text-gray-500 sm:text-center dark:text-gray-400">

@@ -23,6 +23,7 @@ export class ParentCardComponent  {
   @Input() selectedButtons: string[] = [];
   @Input() selectedDate: Date | null = null;
   @Output() buttonSelect = new EventEmitter<string>();
+  @Output() bookingCompleted: EventEmitter<boolean> = new EventEmitter();
 
   isSelected(button: string): boolean {
     return this.selectedButtons.includes(this.getButtonLabel(button));  // Check if the button is in the selectedButtons array
@@ -122,6 +123,7 @@ export class ParentCardComponent  {
 
   closeSucessBookingModal() {
     this.sucessBookingModal = false;
+    this.bookingCompleted.emit(true);
   }
 
   openbookVenueModal() {

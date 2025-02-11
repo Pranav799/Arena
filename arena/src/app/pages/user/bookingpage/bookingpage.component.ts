@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
+import { BookingService } from './booking.service';
 
 @Component({
   selector: 'app-bookingpage',
@@ -8,21 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class BookingpageComponent implements OnInit {
-  bookings = [
-    { bookingid: '070125', eventname: 'Shells Inauguration', address: 'Main Block PG', venue: 'P1 Conference Hall', status: 'Scheduled' },
-    { bookingid: '070126', eventname: 'Incubation Programme', address: 'Admin Block', venue: 'A2 Auditorium', status: 'Cancelled' },
-    { bookingid: '070126', eventname: 'Incubation Programme', address: 'Admin Block', venue: 'Panel Room M4', status: 'Completed' },
-    { bookingid: '070126', eventname: 'Incubation Programme', address: 'Admin Block', venue: 'A1 Auditorium', status: 'Completed' },
-    { bookingid: '070126', eventname: 'Incubation Programme', address: 'Admin Block', venue: 'SKE Auditorium', status: 'Completed' },
-    { bookingid: '070127', eventname: 'Conference', address: 'Main Block', venue: 'Conference Hall 2', status: 'Scheduled' },
-    { bookingid: '070128', eventname: 'Team Meeting', address: 'Admin Block', venue: 'Meeting Room 3', status: 'Completed' },
-    { bookingid: '070129', eventname: 'Workshop', address: 'Training Block', venue: 'Workshop Room 5', status: 'Scheduled' },
-    { bookingid: '070130', eventname: 'Seminar', address: 'Main Block', venue: 'Seminar Hall 1', status: 'Scheduled' },
-    { bookingid: '070131', eventname: 'Networking Event', address: 'Admin Block', venue: 'Networking Room', status: 'Scheduled' },
-    { bookingid: '070132', eventname: 'Leadership Forum', address: 'Conference Center', venue: 'Leadership Hall', status: 'Completed' },
-    { bookingid: '070133', eventname: 'Annual Gathering', address: 'Main Block', venue: 'Grand Hall', status: 'Cancelled' },
-  ];
 
+  bookings = [];
   currentPage: number = 1;  
   itemsPerPage: number = 5;  
   totalItems: number = 0;    
@@ -32,12 +20,12 @@ export class BookingpageComponent implements OnInit {
   buttonName: string = 'Venue Type'; 
   activeItem: string = 'All Venues'; 
   filterItem: string = 'All'; 
+  userID:string = "20cs1a4198";
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private bookingService: BookingService) {}
 
   ngOnInit() {
-    this.totalItems = this.bookings.length;  // Update totalItems whenever bookings are populated
-    this.paginatedBookings = this.getPaginatedBookings();  // Get initial paginated bookings
+    this.fetchBooking(this.userID)
   }
 
   // Calculate total pages based on totalItems and itemsPerPage
@@ -126,6 +114,46 @@ export class BookingpageComponent implements OnInit {
 
   isMobileScreen(): boolean {
     return window.innerWidth < 640; 
+  }
+
+  onCancelCompletion(success: boolean, venueID: string) {
+    if (success) {
+     this.fetchBooking(this.userID);
+    } else {
+      console.log('Booking Cancellation Failed');
+    }
+  }
+
+  fetchBooking(userID: string): void {  
+    this.bookingService.getAllBookings(userID).subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          this.bookings = response.responseData.data.map((bookings: any) => ({
+            bookingid: bookings.arenaBookingId_UserBooking_Text,
+            eventname: bookings.arenaEventName_UserBooking_Text,
+            address:bookings.arena_VenueSpot_UserBooking_Text,
+            venue:bookings.arena_SpotName_UserBooking_Text,
+            status:bookings.arenaStatus_UserBoooking_Text,
+            eventDate:bookings.arenaEventDate_UserBooking_Date,
+            bookingDate:bookings.arenaBookingDateAndTime_UserBooking_DateTime,
+            timeSlots: bookings.arenaStatus_UserBoooking_Text === "Cancelled"
+              ? bookings.arenaCancelledSlots_UserBooking_Array
+              : bookings.arenaBookedSlots_UserBooking_Array
+          }));
+          console.log('Mapped All Bookings:', this.bookings);
+          this.totalItems = this.bookings.length;
+          this.paginatedBookings = this.getPaginatedBookings();
+        } else {
+          console.error('Invalid or empty API response:', response);
+          this.bookings = [];
+        }
+      },
+      (error) => {
+        console.error('Error fetching venue bookings:', error);
+        this.bookings = [];
+      }
+    );
   }
 
 }
