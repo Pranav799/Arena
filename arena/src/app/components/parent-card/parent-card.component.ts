@@ -134,6 +134,7 @@ export class ParentCardComponent  {
     this.bookingDetails.arena_venueIdCounter_UserBooking_Text = this.venueID;
     this.bookingDetails.arena_venueType_UserBooking_Text = this.venuType;
     this.bookingDetails.arena_ObjectId_UserBooking_Text = this.objID;
+    this.bookingDetails.arenaBookedSlots_UserBooking_Array = this.selectedButtons;
     
   }
 

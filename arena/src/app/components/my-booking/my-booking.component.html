@@ -66,10 +66,13 @@
 
      <!-- Third Row -->
      <div class="grid grid-cols-3 m-2 mb-2 sm:grid-cols-6 md:grid-cols-9 gap-4 mb-0 rounded-lg">
-      <span *ngFor="let timeSLot of timeSlots" class="bg-green-100 text-black text-[12px] gap-4 font-normal px-2.5 py-1 rounded border border-green-400 flex justify-center items-center whitespace-nowrap">
-        {{ timeSLot }}
-      </span>
-    </div>
+  <span 
+    *ngFor="let timeSlot of timeSlots" 
+    [ngClass]="{'bg-gray-300 border-gray-400': status === 'Cancelled', 'bg-green-100 border-green-400': status !== 'Cancelled'}"
+    class="text-black text-[12px] gap-4 font-normal px-2.5 py-1 rounded border flex justify-center items-center whitespace-nowrap">
+    {{ timeSlot }}
+  </span>
+</div>
 
    
 

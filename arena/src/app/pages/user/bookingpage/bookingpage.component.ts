@@ -11,6 +11,7 @@ import { BookingService } from './booking.service';
 export class BookingpageComponent implements OnInit {
 
   bookings = [];
+  filteredBookings: any[] = [];
   currentPage: number = 1;  
   itemsPerPage: number = 5;  
   totalItems: number = 0;    
@@ -21,6 +22,10 @@ export class BookingpageComponent implements OnInit {
   activeItem: string = 'All Venues'; 
   filterItem: string = 'All'; 
   userID:string = "20cs1a4198";
+
+  fromDate: string = '';  
+  toDate: string = '';
+  
 
   constructor(private router: Router, private bookingService: BookingService) {}
 
