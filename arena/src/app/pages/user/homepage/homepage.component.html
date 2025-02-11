@@ -660,9 +660,15 @@
 
      <div [ngClass]="{'px-6 ':isMobileScreen()}" class="max-w-screen-xl mx-auto mb-36">
       <div class="mb-3 mt-28 flex justify-center items-center">
-        <div class="flex items-center space-x-2">
+
+        <div *ngIf="isSearching" class="flex justify-center">
+          <app-search-animation></app-search-animation>
+        </div>
+
+        <div *ngIf="!isSearching" class="flex items-center space-x-2">
           <app-bookingpage></app-bookingpage>
         </div>
+
       </div>
     </div>
     

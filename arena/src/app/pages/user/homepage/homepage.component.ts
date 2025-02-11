@@ -54,6 +54,10 @@ export class HomepageComponent implements OnInit {
   navigatePages(page: string) {
     this.activeSection = page;
     this.fetchVenue(this.formatDate(this.selectedDate),this.activeItem);
+    this.isSearching = true;
+    setTimeout(() => {
+      this.isSearching = false;
+    }, 2000); 
   }
 
   landingtohome(){
