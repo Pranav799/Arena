@@ -2,6 +2,17 @@ import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { BookingService } from './booking.service';
 
+interface Booking {
+  bookingid: string;
+  eventname: string;
+  address: string;
+  venue: string;
+  status: string; 
+  eventDate: Date;
+  bookingDate: Date;
+  timeSlots: string[]; 
+}
+
 @Component({
   selector: 'app-bookingpage',
   templateUrl: './bookingpage.component.html',
@@ -10,51 +21,53 @@ import { BookingService } from './booking.service';
 
 export class BookingpageComponent implements OnInit {
 
-  bookings = [];
+  bookings: Booking[] = []; 
+  paginatedBookings: Booking[] = [];
   filteredBookings: any[] = [];
+
   currentPage: number = 1;  
   itemsPerPage: number = 5;  
   totalItems: number = 0;    
-  paginatedBookings: any[] = [];  
+
   isDropdownOpen: boolean = false;
   isFilterDropdownOpen: boolean = false;
+
   buttonName: string = 'Venue Type'; 
   activeItem: string = 'All Venues'; 
   filterItem: string = 'All'; 
   userID:string = "20cs1a4198";
+  startDate: string  = ''  
+  endDate: string  = ''  
+  isSearching = false;
+  searchTerm: string = '';
 
-  fromDate: string = '';  
-  toDate: string = '';
-  
 
   constructor(private router: Router, private bookingService: BookingService) {}
 
   ngOnInit() {
+
+    this.isSearching = true;
+    setTimeout(() => {
+      this.isSearching = false;
+    }, 2000); 
+
     this.fetchBooking(this.userID)
   }
 
-  // Calculate total pages based on totalItems and itemsPerPage
   get totalPages(): number {
     return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
-  // Generate page numbers dynamically to show only 3 pages at a time
   get pageNumbers(): number[] {
     const totalPages = this.totalPages;
-    let startPage = Math.max(1, this.currentPage - 1);  // Start at current page minus 1, but at least 1
-    let endPage = Math.min(totalPages, this.currentPage + 1);  // End at current page plus 1, but at most totalPages
-
-    // If we're near the beginning, shift the range to start from 1
+    let startPage = Math.max(1, this.currentPage - 1);  
+    let endPage = Math.min(totalPages, this.currentPage + 1); 
     if (this.currentPage === 1) {
-      endPage = Math.min(3, totalPages);  // Show up to 3 pages
+      endPage = Math.min(3, totalPages);  
     }
-    
-    // If we're near the end, shift the range to end at totalPages
     if (this.currentPage === totalPages) {
-      startPage = Math.max(totalPages - 2, 1);  // Show up to 3 pages from the end
+      startPage = Math.max(totalPages - 2, 1);  
     }
-
-    // Generate page numbers
     const pages: number[] = [];
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
@@ -62,13 +75,16 @@ export class BookingpageComponent implements OnInit {
     return pages;
   }
 
-  // Get the bookings for the current page
-  getPaginatedBookings() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.bookings.slice(startIndex, startIndex + this.itemsPerPage);
+  setStartDate(event: Event): void {
+    this.startDate = (event.target as HTMLInputElement).value;
+    console.log('Start Date:', this.startDate); 
+  }
+  
+  setEndDate(event: Event): void {
+    this.endDate = (event.target as HTMLInputElement).value;
+    console.log('End Date:', this.endDate); 
   }
 
-  // Method for going to the previous page
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -76,7 +92,6 @@ export class BookingpageComponent implements OnInit {
     }
   }
 
-  // Method for going to the next page
   nextPage() {
     if (this.currentPage * this.itemsPerPage < this.totalItems) {
       this.currentPage++;
@@ -84,7 +99,6 @@ export class BookingpageComponent implements OnInit {
     }
   }
 
-  // Method for setting the current page
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
@@ -92,7 +106,6 @@ export class BookingpageComponent implements OnInit {
     }
   }
 
-  // Navigate to the home page
   navigateToHome() {
     this.router.navigate(['/home']);
   }
@@ -101,16 +114,8 @@ export class BookingpageComponent implements OnInit {
     this.activeItem = item; 
   }
 
-  setFilterItem(item: string): void {
-    this.filterItem = item; 
-  }
-
   setDropdown(isOpen: boolean): void {
     this.isDropdownOpen = isOpen;
-  }
-
-  setFilterDropdown(isOpen: boolean): void {
-    this.isFilterDropdownOpen = isOpen;
   }
   
   setButtonName(item: string): void {
@@ -129,7 +134,7 @@ export class BookingpageComponent implements OnInit {
     }
   }
 
-  fetchBooking(userID: string): void {  
+  fetchBooking(userID: string): void {
     this.bookingService.getAllBookings(userID).subscribe(
       (response: any) => {
         console.log('API Response:', response);
@@ -137,16 +142,16 @@ export class BookingpageComponent implements OnInit {
           this.bookings = response.responseData.data.map((bookings: any) => ({
             bookingid: bookings.arenaBookingId_UserBooking_Text,
             eventname: bookings.arenaEventName_UserBooking_Text,
-            address:bookings.arena_VenueSpot_UserBooking_Text,
-            venue:bookings.arena_SpotName_UserBooking_Text,
-            status:bookings.arenaStatus_UserBoooking_Text,
-            eventDate:bookings.arenaEventDate_UserBooking_Date,
-            bookingDate:bookings.arenaBookingDateAndTime_UserBooking_DateTime,
+            address: bookings.arena_VenueSpot_UserBooking_Text,
+            venue: bookings.arena_SpotName_UserBooking_Text,
+            status: bookings.arenaStatus_UserBoooking_Text, 
+            eventDate: new Date(bookings.arenaEventDate_UserBooking_Date), 
+            bookingDate: new Date(bookings.arenaBookingDateAndTime_UserBooking_DateTime),
             timeSlots: bookings.arenaStatus_UserBoooking_Text === "Cancelled"
               ? bookings.arenaCancelledSlots_UserBooking_Array
               : bookings.arenaBookedSlots_UserBooking_Array
           }));
-          console.log('Mapped All Bookings:', this.bookings);
+          console.log('Mapped Bookings:', this.bookings);
           this.totalItems = this.bookings.length;
           this.paginatedBookings = this.getPaginatedBookings();
         } else {
@@ -160,5 +165,54 @@ export class BookingpageComponent implements OnInit {
       }
     );
   }
+
+  filterBookings(): void {
+    let filteredList = [...this.bookings]; 
+
+    if (this.searchTerm) {
+      filteredList = filteredList.filter(booking => 
+        booking.venue.toLowerCase().includes(this.searchTerm.toLowerCase()) // Filter based on venue
+      );
+    }
+
+    if (this.filterItem && this.filterItem !== 'All') {
+      filteredList = filteredList.filter(booking => booking.status === this.filterItem);
+    }
+
+    if (this.startDate && this.endDate) {
+      const start = new Date(this.startDate);
+      const end = new Date(this.endDate);
+      end.setHours(23, 59, 59, 999); 
+
+      filteredList = filteredList.filter(booking => {
+        const eventDate = new Date(booking.eventDate);
+        return eventDate >= start && eventDate <= end;
+      });
+    }
+
+    console.log('Filtered Bookings:', filteredList); 
+    this.totalItems = filteredList.length;
+    this.bookings = filteredList;
+    this.paginatedBookings = this.getPaginatedBookings();  // Update paginated bookings after filter
+  }
+
+  setFilterItem(filter: string): void {
+    this.filterItem = filter;
+    this.filterBookings();
+  }
+
+  setFilterDropdown(isOpen: boolean): void {
+    this.isFilterDropdownOpen = isOpen;
+  }
+
+  getPaginatedBookings(): Booking[] {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  const endIndex = startIndex + this.itemsPerPage;
+  return this.bookings.slice(startIndex, endIndex);
+}
+
+onSearchChange(): void {
+  this.filterBookings(); 
+}
 
 }

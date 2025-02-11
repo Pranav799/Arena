@@ -21,6 +21,7 @@ import { MenuAnimationComponent } from './components/animations/menu-animation/m
 import { SearchAnimationComponent } from './components/animations/search-animation/search-animation.component';
 import { LandingpageAnimationComponent } from './components/animations/landingpage-animation/landingpage-animation.component';
 import { LoadingComponent } from './components/animations/loading/loading.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 export function playerFactory() {
   return player;
@@ -43,6 +44,7 @@ export function playerFactory() {
     SearchAnimationComponent,
     LandingpageAnimationComponent,
     LoadingComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -462,7 +462,7 @@
         </div>
 
         <div *ngIf="!isDataAvailable" class="flex justify-center items-center">
-          no data found
+          <span>No Data Found !!</span>
         </div>
 
         <div *ngIf="!isSearching" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-36">
@@ -490,14 +490,7 @@
 
      </div>
 
-     <footer class="fixed bottom-0 w-full flex justify-center dark:bg-gray-800 bg-white">
-      <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
-        <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
-        <span [ngClass]="{'text-[9px]':isMobileScreen()}" class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          Copyright® 2024 Kristu Jayanti Software Development Centre
-        </span>
-      </div>
-     </footer>
+     <app-footer></app-footer>
   
   </div>
 
@@ -541,145 +534,8 @@
       </div>
     </nav>
     
-     <div style="height: 270px; background: #e9f1f8; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; margin-top: 60px;">
-      <h2 [ngClass]="{'text-xl': isMobileScreen()}" class=" mt-4 text-2xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
-        Welcome to <span class="text-[#0284c7]">Kristu Jayanti ARENA</span>
-      </h2>
-      <p [ngClass]="{'mt-2 mb-20 text-[9px]':isMobileScreen(), 'mt-8 text-base font-normal text-gray-500 lg:text-lg sm:px-16 xl:px-48': !isMobileScreen() }" >
-        Discover the Perfect Campus Space for Every Event.
-      </p>
-  
-      <div class="absolute top-full transform -translate-y-1/2 left-1/2 -translate-x-1/2">
-        <div class="flex justify-center mt-8">
-
-          <div *ngIf="!isMobileScreen()" class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8">
-            <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Booking History</p>
-            <div class="flex gap-2">
-      
-              <!-- From Date -->
-              <div class="w-2/5 text-left">
-                <div class="relative max-w-sm">
-                  <input 
-                    id="start-date" 
-                    type="date" 
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-                    placeholder="Select date" 
-                    (change)="setStartDate($event)"
-                    [max]="startDate | date: 'yyyy-MM-dd'"
-                    style="height: 40px;" /> 
-                  <label for="start-date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">From Date</label>
-                </div>
-              </div>
-              
-      
-              <!-- To Date -->
-              <div class="w-2/5 text-left">
-                <div class="relative flex-1">
-                  <div class="relative max-w-sm">
-                    <input 
-                      id="end-date" 
-                      type="date" 
-                      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-                      placeholder="Select date" 
-                      (change)="setEndDate($event)"
-                      [min]="startDate | date: 'yyyy-MM-dd'" 
-                      style="height: 40px;" /> 
-                    <label for="end-date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">To Date</label>
-                  </div>
-                </div>
-              </div>
-      
-              <!-- Search Button Section -->
-              <div class="w-1/7 ml-auto">
-                <button 
-                  type="button" 
-                  class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg "
-                  style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
-                  <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-                  </svg>
-                </button>
-              </div>
-      
-            </div>
-          </div>
-
-          <div *ngIf="isMobileScreen()" class="w-[300px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8 mb-13">
-            <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Booking History</p>
-          
-            <!-- From Date -->
-            <div class="w-full mb-4"> <!-- Use w-full to make it full width, and mb-4 for spacing -->
-              <div class="relative max-w-sm">
-                <input 
-                  id="start-date" 
-                  type="date" 
-                  class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-                  placeholder="Select date" 
-                  (change)="setStartDate($event)"
-                  [max]="startDate | date: 'yyyy-MM-dd'"
-                  style="height: 40px;" /> 
-                <label for="start-date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">From Date</label>
-              </div>
-            </div>
-          
-            <!-- To Date -->
-            <div class="w-full mb-4"> <!-- w-full for full width and mb-4 for spacing -->
-              <div class="relative flex-1">
-                <div class="relative max-w-sm">
-                  <input 
-                    id="end-date" 
-                    type="date" 
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-                    placeholder="Select date" 
-                    (change)="setEndDate($event)"
-                    [min]="startDate | date: 'yyyy-MM-dd'" 
-                    style="height: 40px;" /> 
-                  <label for="end-date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">To Date</label>
-                </div>
-              </div>
-            </div>
-          
-            <!-- Search Section -->
-            <div class="w-full text-right flex justify-end"> <!-- w-full for full width and text-right to align the button to the right -->
-              <button 
-                type="button" 
-                class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg"
-                style="height: 40px; width: 50px;"> 
-                <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      
-      
-     </div>
-
-     <div [ngClass]="{'px-6 ':isMobileScreen()}" class="max-w-screen-xl mx-auto mb-36">
-      <div class="mb-3 mt-28 flex justify-center items-center">
-
-        <div *ngIf="isSearching" class="flex justify-center">
-          <app-search-animation></app-search-animation>
-        </div>
-
-        <div *ngIf="!isSearching" class="flex items-center space-x-2">
-          <app-bookingpage></app-bookingpage>
-        </div>
-
-      </div>
-    </div>
-    
-    <footer class="fixed bottom-0 w-full flex justify-center dark:bg-gray-800 bg-white">
-      <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center">
-        <img src="assets/images/sdc.png" alt="" class="w-10 h-10 mb-2" />
-        <span [ngClass]="{'text-[9px]':isMobileScreen()}" class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          Copyright® 2024 Kristu Jayanti Software Development Centre
-        </span>
-      </div>
-     </footer>
+    <app-bookingpage ></app-bookingpage>
+    <app-footer></app-footer>
   
   </div>
 
