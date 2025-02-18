@@ -39,4 +39,9 @@ export class DashboardService {
     return this.http.post('http://172.19.3.173:8089/kjusys-api/intern-project/update-Venues', body);
   }
 
+  getBookings(arenaReportDate_Report_Date: string,): Observable<any> {
+    const body = {arenaReportDate_Report_Date}; 
+    return this.http.post('http://172.19.3.173:8089/kjusys-api/intern-project/booking-Reports', body);
+  }
+
 }

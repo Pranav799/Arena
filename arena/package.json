@@ -20,6 +20,8 @@
     "@angular/router": "^16.0.0",
     "ag-grid-angular": "^31.3.4",
     "flowbite": "^2.5.2",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "lottie-web": "^5.12.2",
     "ngx-datepicker": "^0.0.0",
     "ngx-lottie": "^10.0.0",
