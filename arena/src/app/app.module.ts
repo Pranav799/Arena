@@ -22,6 +22,10 @@ import { SearchAnimationComponent } from './components/animations/search-animati
 import { LandingpageAnimationComponent } from './components/animations/landingpage-animation/landingpage-animation.component';
 import { LoadingComponent } from './components/animations/loading/loading.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ErrorComponent } from './components/animations/error/error.component';
+import { ViewOthersBookingComponent } from './components/view-others-booking/view-others-booking.component';
+import { AllVenueCollectionComponent } from './components/all-venue-collection/all-venue-collection.component';
+import { SlotbookingComponent } from './components/slotbooking/slotbooking.component';
 
 export function playerFactory() {
   return player;
@@ -45,6 +49,10 @@ export function playerFactory() {
     LandingpageAnimationComponent,
     LoadingComponent,
     FooterComponent,
+    ErrorComponent,
+    ViewOthersBookingComponent,
+    AllVenueCollectionComponent,
+    SlotbookingComponent,
   ],
   imports: [
     BrowserModule,

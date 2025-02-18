@@ -52,7 +52,22 @@ export class DashboardComponent {
   errorVenueCreation: boolean = false;
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   tommorowDate: string;
-
+  venues: any[] = [];
+  
+  editVenueModal:boolean = false;  
+  editpage:boolean = false;
+  venueID: string = '';
+  venueName: string = '';
+  blockName: string = '';
+  seatingCapacity: number = 0;
+  acStatus: string = '';
+  permissionRequired: string = '';
+  venueLocation: string = '';
+  venueType: string = '';
+  intrevalTiming: boolean = false;
+  venueImage: string = '';
+  venueObjId: string = '';
+  creationTimeStamp: string = '';
 
 
   constructor(private venueService: VenueService,private dashboardService: DashboardService) {
@@ -71,6 +86,8 @@ export class DashboardComponent {
 
   setActiveSection(section: string) {
     this.activeSection = section;
+    this.fetchVenue();
+    console.log(this.venues)
   }
 
   onSubmit() {
@@ -292,6 +309,11 @@ rowData = [
     this.activeItem = item; 
   }
 
+  setItemForEdit(item: string): void {
+    this.venueType = item; 
+    this.setDropdown();
+  }
+
   setButtonName(item: string): void {
     this.buttonName = item; 
     this.venue.arenaTypeOfVenue_VenueCreation_text = item;
@@ -300,6 +322,10 @@ rowData = [
   closeCreateVenueModal(){
     this.createVenueModal=false;
   }
+
+  setEditVenueModal() {
+    this.editVenueModal = !this.editVenueModal;
+}
 
   openCreateVenueModal(){
     this.createVenueModal=true;
@@ -319,6 +345,22 @@ rowData = [
     this.openCreateVenueModal()
   }
 
+  editVenue(){
+    this.setEditVenueModal()
+    this.editCreatedVenue(this.venueID,
+      this.venueName,
+      this.blockName,
+      this.seatingCapacity,
+      this.acStatus,
+      this.permissionRequired,
+      this.venueLocation,
+      this.venueType,
+      this.intrevalTiming,
+      this.venueImage,
+      this.venueObjId,
+      this.creationTimeStamp)
+  }
+
   errorCreateVenue(){
     this.errorVenueCreation=true
     setTimeout(()=>{
@@ -327,7 +369,98 @@ rowData = [
   }
 
   isMobileScreen(): boolean {
-    return window.innerWidth < 640; 
+    return window.innerWidth < 1000; 
+  }
+
+  fetchVenue(): void {  
+    this.dashboardService.getVenue().subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          this.venues = response.responseData.data.map((venue: any) => ({
+            venueID: venue.arenaVenueId_VenueCreation_text,
+            venueName: venue.arenaVenueName_VenueCreation_text,
+            blockName: venue.arenaBlockName_VenueCreation_text,
+            seatingCapacity:venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer,
+            acStatus:venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
+            permissionRequired:venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_text,
+            venueLocation: venue.arenaVenueLocation_VenueCreation_text,
+            venueType: venue.arenaTypeOfVenue_VenueCreation_text,
+            intrevalTiming:venue.aernaIntervalTiming_VenueCreation_boolean,
+            venueImage: venue.arenaVenueImage_VenueCreation_Image,
+            venueObjId:venue._id,
+            creationTimeStamp:venue.arenaVenueCreationTimeStamp_VenueCreation_DateTime,
+          }));
+          console.log('Mapped Cards:', this.venues);
+
+        } else {
+          console.error('Invalid or empty API response:', response);
+          this.venues = [];
+
+        }
+      },
+      (error) => {
+        console.error('Error fetching venue slots:', error);
+        this.venues = [];
+      }
+    );
+  }
+
+  editCreatedVenue(arenaVenueId_VenueCreation_text: string,
+    arenaVenueName_VenueCreation_text: string,
+    arenaBlockName_VenueCreation_text: string,
+    arenaSeatingCapacityOfVenue_VenueCreation_Integer: number,
+    arenaIsVenueAirConditionedOrNot_VenueCreation_text: string,
+    arenaIsPermissionRequiredForAuditorium_VenueCreation_text: string,
+    arenaVenueLocation_VenueCreation_text: string,
+    arenaTypeOfVenue_VenueCreation_text: string,
+    aernaIntervalTiming_VenueCreation_boolean: boolean,
+    arenaVenueImage_VenueCreation_Image:string,
+    arena_VenueObjectId_UpdateVenue_Text:string,
+    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string): void {  
+    this.dashboardService.editVenue(arenaVenueId_VenueCreation_text, arenaVenueName_VenueCreation_text, arenaBlockName_VenueCreation_text,
+      arenaSeatingCapacityOfVenue_VenueCreation_Integer, arenaIsVenueAirConditionedOrNot_VenueCreation_text, arenaIsPermissionRequiredForAuditorium_VenueCreation_text, arenaVenueLocation_VenueCreation_text,
+      arenaTypeOfVenue_VenueCreation_text, aernaIntervalTiming_VenueCreation_boolean, arenaVenueImage_VenueCreation_Image,
+      arena_VenueObjectId_UpdateVenue_Text, arenaVenueCreationTimeStamp_VenueCreation_DateTime).subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          
+        } else {
+         
+        }
+      },
+      (error) => {
+        console.error('Error fetching venue slots:', error);
+      }
+    );
+  }
+
+  editBooking(event:{venueID: string;
+    venueName: string;
+    blockName: string;
+    seatingCapacity: number;
+    acStatus: string;
+    permissionRequired: string;
+    venueLocation: string;
+    venueType: string;
+    intrevalTiming: boolean;
+    venueImage: string;
+    venueObjId: string;
+    creationTimeStamp: string;}){
+        this.editpage=true;
+        this.venueID=event.venueID;
+        this.venueName=event.venueName;
+        this.blockName=event.blockName;
+        this.seatingCapacity=event.seatingCapacity;
+        this.acStatus=event.acStatus;
+        this.permissionRequired=event.permissionRequired;
+        this.venueLocation=event.venueLocation;
+        this.venueType=event.venueType;
+        this.intrevalTiming=event.intrevalTiming;
+        this.venueImage=event.venueImage;
+        this.venueObjId=event.venueObjId;
+        this.creationTimeStamp=event.creationTimeStamp;
   }
 
 }

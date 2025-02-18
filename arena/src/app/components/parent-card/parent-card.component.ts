@@ -12,7 +12,7 @@ export class ParentCardComponent  {
   @Input() location: string = '';
   @Input() capacity: number = 0;
   @Input() acstatus: string = '';
-  @Input() imagepath: string = '';
+  @Input() imagepath: string = 'assets/images/audi.jpg';
   @Input() address: string = '';
   @Input() venueID: string = '';
   @Input() venuType: string = '';
@@ -22,8 +22,14 @@ export class ParentCardComponent  {
   @Input() module: string = '';
   @Input() selectedButtons: string[] = [];
   @Input() selectedDate: Date | null = null;
+  userID: string  = "20cs1a4198";
+
+
+
   @Output() buttonSelect = new EventEmitter<string>();
   @Output() bookingCompleted: EventEmitter<boolean> = new EventEmitter();
+  @Output() viewOthersBooking: EventEmitter<{ userID: string; venueObID: string; bookingDate: Date | null}> = new EventEmitter();
+
 
   isSelected(button: string): boolean {
     return this.selectedButtons.includes(this.getButtonLabel(button));  // Check if the button is in the selectedButtons array
@@ -57,6 +63,9 @@ export class ParentCardComponent  {
     arenaUserId_UserBooking_Text:string;
     arenaUsername_UserBooking_Text:string;
     arena_ObjectId_UserBooking_Text:string;
+    arena_UserEmail_UserBooking_Text:string;
+    arena_UserPhoneNumber_UserBooking_Text:string;
+
   } = {
     arenaEventName_UserBooking_Text: "",
     arenaResourcePerson_UserBooking_Text: "",
@@ -77,7 +86,9 @@ export class ParentCardComponent  {
     arena_venueType_UserBooking_Text:"",
     arenaUserId_UserBooking_Text:"20cs1a4198",
     arenaUsername_UserBooking_Text:"suryansh singh",
-    arena_ObjectId_UserBooking_Text:""
+    arena_ObjectId_UserBooking_Text:"",
+    arena_UserEmail_UserBooking_Text:"23mcab34@kristujayanti.com",
+    arena_UserPhoneNumber_UserBooking_Text:"83038333916"
   };
 
   sucessBookingModal: boolean = false;
@@ -124,6 +135,11 @@ export class ParentCardComponent  {
   closeSucessBookingModal() {
     this.sucessBookingModal = false;
     this.bookingCompleted.emit(true);
+  }
+
+  othersBooking(userID: string, venueObID: string, bookingDate: Date | null) {
+    console.log("hi"+this.selectedDate)
+    this.viewOthersBooking.emit({ userID, venueObID, bookingDate });
   }
 
   openbookVenueModal() {

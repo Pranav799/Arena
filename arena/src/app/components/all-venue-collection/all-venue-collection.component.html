@@ -1,0 +1,55 @@
+<div class="bg-white border border-gray-200 h-[400px] rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+   
+    <div class="p-4">
+        <img class="rounded-lg w-full object-cover shadow-lg w-[100%] h-[200px] opacity-90" src="../../../assets/images/audi3.jpg" alt="" />
+    </div>
+
+
+
+    <div class="p-6 flex justify-between items-center">
+
+        <div class="flex flex-col w-2/3">
+            <h5 class="mb-0 text-[23.13px] font-bold tracking-tight text-gray-900 dark:text-white">{{venueName}}</h5>
+            <p class="mb-2 font-normal text-[15.4px] dark:text-gray-400">{{blockName}}</p>
+        </div>
+        
+
+        <div class="flex space-x-4">
+
+            <div class="flex flex-col items-center">
+
+                <svg class="w-6 h-6 text-orange-500 dark:text-orange-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+                </svg>
+
+                <span class="text-xs font-medium text-orange-500 dark:text-orange-400">{{seatingCapacity}}</span>
+            </div>
+        
+
+            <div class="flex flex-col items-center">
+
+                <img 
+                    src="../../../assets/logo/Union.svg" 
+                    alt="Your Icon" 
+                    [ngStyle]="{'filter': acStatus === 'A/C' ? 'hue-rotate(32deg) saturate(2)' : 'grayscale(1)'}" 
+                    class="w-6 h-6">
+              
+
+                <span 
+                  class="text-xs font-medium" 
+                  [ngClass]="acStatus === 'A/C' ? 'text-blue-500 dark:text-blue-400' : 'text-gray-400 dark:text-gray-500'">
+                  A/C
+                </span>
+
+              </div>
+              
+              <div>
+                <button (click)="edit(venueID, venueName, blockName, seatingCapacity, acStatus, permissionRequired, venueLocation, venueType, intrevalTiming, venueImage, venueObjId, creationTimeStamp)">close</button>
+              </div>
+              
+        </div>
+    </div>
+
+</div>
+
+

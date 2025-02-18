@@ -10,7 +10,7 @@ export class BookingService {
   constructor(private http: HttpClient) { }
 
   bookVenue(bookingData: any): Observable<any> {
-    return this.http.post('http://172.18.0.59:8089/kjusys-api/intern-project/book-User', bookingData);
+    return this.http.post('http://172.19.3.173:8089/kjusys-api/intern-project/book-User', bookingData);
 
   }
 }

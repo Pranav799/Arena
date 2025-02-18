@@ -1,7 +1,7 @@
 
 <div class="flex h-screen">
   
-  <div [ngClass]="{'w-1/6': isSidePanelOpen && !isMobileScreen(), 'w-12': !isSidePanelOpen && !isMobileScreen(),'hidden': isMobileScreen()}" class="transition-all duration-900 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg hidden sm:block">
+  <div  [ngClass]="{'w-1/6': isSidePanelOpen && !isMobileScreen(), 'w-12': !isSidePanelOpen && !isMobileScreen(),'hidden': isMobileScreen()}" class="transition-all duration-900 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg hidden sm:block">
         <div class="py-4">
 
           <h5 id="drawer-navigation-label" *ngIf="isSidePanelOpen" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 mt-3 mb-4">Menu</h5>
@@ -627,125 +627,198 @@
           </form>
         </div>
 
-        <div *ngIf="activeSection === 'editvenue'" class="flex justify-center mt-12 "  >
-        </div>
+        <div *ngIf="activeSection === 'editvenue'" >
+          
+          <div class="mb-3 mt-24 mx-12 flex justify-between items-center">
+            <h3 [ngClass]="{'text-lg':isMobileScreen(), 'text-2xl':!isMobileScreen()}" class=" font-bold text-gray-800 dark:text-white text-left">All Venues</h3>
 
-        <div *ngIf="activeSection === 'slotbooking'" >
+            <div class="flex items-center space-x-2">
+              
+            </div>
+          </div>
 
-          <div class="flex justify-center mt-12 mb-6">
-            <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8" [ngClass]="{'w-[500px]':!isMobileScreen(), 'w-[300px]':isMobileScreen()}" >
-              <p class="mb-4 text-[#5a6acf] text-sm font-semibold flex justify-center">Check Availability</p>
-              <div class="flex gap-2">
-        
-                <!-- Dropdown Button Section -->
-                <div class="text-left" ngClass="isMobileScreen() ? 'w-[290px]' : 'w-2/5'">
-                  <button 
-                    id="dropdownDefaultButton" 
-                    class="text-black bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg h-[40px]" 
-                    type="button" 
-                    (click)="setDropdown()"
-                    style="min-width: 150px; height: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center;">
-                    <!-- Display button name, truncating if it's too long -->
-                    <span class="flex-1 overflow-hidden text-ellipsis">{{buttonName}}</span>
-                    <svg *ngIf="isDropdownOpen === false" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
-                   </svg>
+          <div *ngIf="!editpage" class="flex justify-left mt-12  m-8 grid grid-cols-4 gap-12" >
+            <app-all-venue-collection
+            *ngFor="let venue of venues; let i = index"
+            [venueID]="venue.venueID"
+            [venueName]="venue.venueName"
+            [blockName]="venue.blockName"
+            [seatingCapacity]="venue.seatingCapacity"
+            [acStatus]="venue.acStatus"
+            [permissionRequired]="venue.permissionRequired"
+            [venueLocation]="venue.venueLocation"
+            [venueType]="venue.venueType"
+            [intrevalTiming]="venue.intrevalTiming"
+            [venueImage]="venue.venueImage"
+            [venueObjId]="venue.venueObjId"
+            [creationTimeStamp]="venue.creationTimeStamp"
+            (editBooking)="editBooking($event)"
+            ></app-all-venue-collection>
+          </div>
 
-                   <svg *ngIf="isDropdownOpen === true" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
-                    </svg>
-                  </button>
-                
-                  <!-- Dropdown Menu -->
-                  <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" >
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                      <li>
-                        <a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
-                      </li>
-                      <li>
-                        <a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
-                      </li>
-                      <li>
-                        <a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
-                      </li>
-                      <li>
-                        <a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
-                      </li>
-                      <li>
-                        <a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
-                      </li>
-                      <li>
-                        <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
-                      </li>
-                    </ul>
-                  </div>
+          <div *ngIf="editpage" class="flex justify-center mt-12 " >
+            <form #eventForm="ngForm" class="w-[90%] p-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+              <h5 class="mb-5 mt-4 ml-5 text-2xl font-medium tracking-tight text-[#5a6acf] dark:text-white">Edit Venue</h5>
+            
+              <!-- Using grid for responsiveness: 1 item per row on mobile, 2 items per row on large screens -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
+            
+                <!-- Venue ID -->
+                <div class="mb-2">
+                  <label for="venue-id" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue ID</label>
+                  <input id="venue-id" [(ngModel)]="venueID" name="venueId" #venueIdInput="ngModel" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. M2">
                 </div>
-                
-        
-                <!-- Date Picker Section -->
-                <div class="w-full text-left">
-                  <div class="relative flex-1">
-                    <div class="relative max-w-sm">
-                      <input 
-                        id="date" 
-                        type="date" 
-                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-                        placeholder="Select date" 
-                        (change)="onDateChange($event)"
-                        [min]="tommorowDate"
-                        style="height: 40px;" /> <!-- Fixed height -->
-                      <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date </label>
+            
+                <!-- Venue Name -->
+                <div class="mb-2">
+                  <label for="venue-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Name</label>
+                  <input id="venue-name" [(ngModel)]="venueName" name="venueName" #venueNameInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Auditorium M2">
+                </div>
+            
+                <!-- Block -->
+                <div class="mb-2">
+                  <label for="venue-block" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Block</label>
+                  <input id="venue-block" [(ngModel)]="blockName" name="block" #blockInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter block">
+                </div>
+            
+                <!-- Seating Capacity -->
+                <div class="mb-2">
+                  <label for="seating-capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seating Capacity</label>
+                  <input id="seating-capacity" [(ngModel)]="seatingCapacity" 
+                         name="seatingCapacity" #seatingCapacityInput="ngModel" required type="number"
+                         (ngModelChange)="onSeatingCapacityChange($event)"
+                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. 100">
+                </div>
+            
+                <!-- A/C -->
+                <div class="mb-2">
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">A/C</label>
+                  <div class="flex items-center space-x-4">
+                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                      <input id="ac" [(ngModel)]="acStatus" name="ac" #acInput="ngModel" required type="radio" value="A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="A/C">
+                      <label for="ac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">A/C</label>
+                    </div>
+            
+                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                      <input id="noac" [(ngModel)]="acStatus" name="ac" #acInput="ngModel" required type="radio" value="Non A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Non A/C">
+                      <label for="noac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non A/C</label>
                     </div>
                   </div>
                 </div>
-        
-                <!-- Search Button Section -->
-                <div class="w-1/7 ml-auto">
+            
+                <!-- Permission for Auditorium -->
+                <div class="mb-2">
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">Permission for Auditorium</label>
+                  <div class="flex items-center space-x-4">
+                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                      <input id="intreval" [(ngModel)]="permissionRequired" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="Required" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
+                      <label for="intreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
+                    </div>
+            
+                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                      <input id="nointreval" [(ngModel)]="permissionRequired" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="NotRequired" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
+                      <label for="nointreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
+                    </div>
+                  </div>
+                </div>
+            
+                <!-- Venue Location -->
+                <div class="mb-2">
+                  <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Location</label>
+                  <input id="venue-location" [(ngModel)]="venueLocation" name="location" #locationInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Main Block 3rd Floor">
+                </div>
+            
+                <!-- Venue Type Dropdown -->
+                <div class="mb-2">
+                  <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Choose the type of Venue</label>
                   <button 
+                    id="dropdownDefaultButton" 
+                    class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg"
                     type="button" 
-                    class="flex items-center justify-center w-12 h-10 bg-[#5a6acf] text-white rounded-lg "
-                    style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
-                    <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                    (click)="setDropdown()">
+                    {{venueType}}
+                    <svg *ngIf="!isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                    </svg>
+            
+                    <svg *ngIf="isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
                     </svg>
                   </button>
-                </div>
-        
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-4 max-w-screen-xl mx-auto mt-4 ">
-            <div class="mb-1 flex justify-between items-center m-5">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white text-left ">{{activeItem}}</h3>
-              <div class="flex items-center space-x-2">
-                
-                <img *ngIf="selectedDate" src="../../../../assets/icons/Vector.svg" alt="Icon" />
-                <p *ngIf="selectedDate" class="text-sm ">{{ selectedDate | date: 'd MMM yyyy' }}</p>
-
-              </div>
-            </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2 px-4">
             
-            <app-card 
-                *ngFor="let card of cards; let i = index"
-                [heading]="card.heading"
-                [location]="card.location"
-                [capacity]="card.capacity"
-                [acstatus]="card.acstatus"
-                [imagepath]="card.imagepath"
-                [address]="card.address"
-                [buttons]="card.buttons"
-                [selectedButtons]="card.selectedButtons"  
-                (buttonSelect)="onButtonSelect(i, $event)"
-                [selectedDate]="selectedDate"> 
-          </app-card>
-      
-          </div>
+                  <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                      <li><a (click)="setItemForEdit('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a></li>
+                      <li><a (click)="setItemForEdit('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a></li>
+                      <li><a (click)="setItemForEdit('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a></li>
+                      <li><a (click)="setItemForEdit('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a></li>
+                      <li><a (click)="setItemForEdit('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a></li>
+                      <li><a (click)="setItemForEdit('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a></li>
+                    </ul>
+                  </div>
+                </div>
+  
+                <div class="mb-2">
+                  <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Upload Picture</label>
+              
+                  <!-- Card Container -->
+                  <div class="w-full px-3 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
+                      <div class="flex items-center justify-center w-full">
+                          <!-- Logo Section (30%) -->
+                          <div class="w-[30%] flex justify-center">
+                              <svg class="w-12 h-12 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                              </svg>
+                          </div>
+                          <!-- Text Section (70%) -->
+                          <div class="w-full sm:w-[70%] flex flex-col items-center justify-center pt-3 pb-3 h-[80px]">
+                              <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                  <input id="dropzone-file" type="file" class="hidden" />
+                                  <p class="mb-2 text-[14px] text-gray-600">Select a file or drag and drop here</p>
+                                  <p class="text-center text-[12px] text-gray-500">PDF file size no more than 10MB</p>
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+                </div>
 
+                <div class="mb-2">
+                  <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Preview Picture</label>
+                  <img class="w-[270px] h-[180px] rounded-lg" src="../../../../assets/images/audi2.webp"/>
+                </div>
+              
+  
+              <div class="mb-2 mt-8">
+              </div>
+              
+              </div>
+  
+              <div *ngIf="errorVenueCreation" class="flex items-center p-4 mb-4 m-6 mt-6 text-blue-800 rounded-lg bg-blue-50 " role="alert">
+                <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div class="ms-3 text-sm font-medium">
+                    Please fill in all the required fields to book your slot
+                </div>
+               </div>
+              
+              <div class="w-full text-center mt-4 mb-4">
+                <button 
+                  type="button" 
+                  (click)="eventForm.valid ? editVenue() : errorCreateVenue()"
+                  class="text-white bg-[#5a6acf] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-0 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 col-span-2 mx-auto">
+                  Add Venue
+                </button>
+              </div>
+  
+            </form>
+          </div>
+         
         </div>
 
+        <div *ngIf="activeSection === 'slotbooking'" > 
+            <app-slotbooking></app-slotbooking>
         </div>
 
         <div *ngIf="activeSection === 'report'" class=" flex justify-center mt-16" >
@@ -796,6 +869,33 @@
                 
                   <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button (click)="closeCreateVenueModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Done
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+        </div>
+
+        <div *ngIf="editVenueModal" 
+            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
+              <div class="relative p-4 w-full max-w-lg max-h-full"> 
+              
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                
+                  <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
+                    <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4"> 
+                    
+                    <div class="text-center"> 
+                      <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Venue Edited Successfully !
+                      </h3>
+                    </div>
+                  </div>
+            
+                
+                  <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button (click)="setEditVenueModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                       Done
                     </button>
                   </div>

@@ -13,7 +13,7 @@
                     <div class="relative flex-1"> 
                         
                         <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"> Venue  </label>
-                        <button id="dropdownDefaultButton"  class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg mb-6 " type="button" (click)="setDropdown()"> {{buttonName}}
+                        <button id="dropdownDefaultButton"  class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg " type="button" (click)="setDropdown()"> {{buttonName}}
                               <svg *ngIf="isDropdownOpen === false" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
                               </svg>
@@ -24,29 +24,30 @@
                         </button>
 
                       <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ">
-                          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                              <li>
-                                <a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
-                              </li>
-                              <li>
-                                <a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
-                              </li>
-                              <li>
-                                <a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
-                              </li>
-                              <li>
-                                <a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
-                              </li>
-                              <li>
-                                <a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
-                              </li>
-                              <li>
-                                <a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
-                              </li>
-                          </ul>
+                        
+                        <div class="p-3">
+                          <label for="input-group-search" class="sr-only">Search</label>
+                          <div class="relative">
+                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                              </svg>
+                            </div>
+                            <input type="text" id="input-group-search" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Venue">
+                          </div>
+                        </div>
+
+                        <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
+                          <li *ngFor="let venue of venues; let i = index">
+                            <div class="flex items-center ps-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <a (click)="selectVenue(venue.spotName, venue.bookedSlots, venue.blockName, venue.venueId, venue.venueType, venue.venueObjID )" 
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{venue.spotName}}</a>
+                            </div>
+                          </li>
+                        </ul>
                     </div>
 
-                    <div class="relative flex-1">
+                    <div class="relative flex-1 mt-6">
                        <img src="../../../assets/images/audi4.jpg" class="w-[440px] h-[200px] rounded-2xl shadow-lg">
                     </div>
                         
@@ -58,21 +59,36 @@
                     <div class="relative flex-1"> 
 
                       <div class="relative max-w-sm mb-4 mt-6">
-                        <label for="fromdate" class="text-gray-900 text-sm"> From Date</label>
-                        <input id="fromdate" name="start" type="date" class="bg-gray-50 mt-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="From Date">
-                     </div>
+                        <input 
+                          id="fromdate" 
+                          type="date" 
+                          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
+                          placeholder="Select date" 
+                          (change)="setStartDate($event)"
+                          [min]="tomorrowDate"
+                          style="height: 40px;" /> 
+                          <label for="fromdate" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">From Date </label>
+                       </div>
 
                       <div class="relative max-w-sm mb-4 mt-4">
-                        <label for="fromdate" class="text-gray-900 text-sm"> To Date</label>
-                        <input id="fromdate" name="start" type="date" class="bg-gray-50 mt-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="From Date">
-                     </div>
-
-                      <div>
-                        <label for="fromdate" class="text-gray-900 text-sm"> Event Name</label>
-                        <input type="text" id="eventname" class="bg-gray-50 pl-4 mt-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  mb-5 text-[13px]"  placeholder="Enter the event name" required />
+                        <input 
+                          id="todate" 
+                          type="date" 
+                          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
+                          placeholder="Select date" 
+                          (change)="setToDate($event)"
+                          [min]="dayAfterTomorrowDate"
+                          style="height: 40px;" /> 
+                          <label for="todate" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">To Date </label>
                       </div>
 
-                      <div class="flex justify-end">
+                      <div class="relative">
+                        <input type="text" id="eventname" [(ngModel)]="eventName" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="eventname" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Enter Event Name</label>
+                      </div>
+                    
+
+                      <div class="flex justify-end mt-4">
                           <button type="button" 
                           (click)="openSucessBookingModal()"
                               class="text-white bg-[#5a6acf] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-[12px] px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 whitespace-nowrap flex justify-center items-center">
@@ -96,7 +112,7 @@
                     Venue Booked Successfully !
                   </h3>
                   <p class="text-sm text-gray-600 dark:text-gray-300">
-                    Auditorium A1 | 2nd Floor, Admin Block has been booked!
+                    {{buttonName}} <span> | </span> {{venueSpot}} <span> has been booked Successfully </span>
                   </p>
                 </div>
               </div>
@@ -108,6 +124,30 @@
 
             </div>
           </div>
-  </div>
+        </div>
+
+        <div *ngIf="bookingError" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">
+          <div class="relative p-4 w-full max-w-lg max-h-full"> 
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
+                <app-error></app-error>
+                <div class="text-center"> 
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Booking <span>{{buttonName}}</span> Unsucessfull
+                  </h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">
+                    {{buttonName}} <span> has a booking In between </span>
+                  </p>
+                </div>
+              </div>
+              <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <button (click)="closeErrorBookingModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Done
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
     
     

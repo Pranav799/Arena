@@ -2,7 +2,7 @@
    
     <!-- Image -->
     <div class="p-4">
-        <img class="rounded-lg w-full object-cover shadow-lg w-[100%] h-[230px]" src={{imagepath}} alt="" />
+        <img class="rounded-lg w-full object-cover shadow-lg w-[100%] h-[230px]" src="../../../assets/images/audi8.jpg" alt="" />
     </div>
 
     <!-- Heading and descrption -->
@@ -78,7 +78,7 @@
                 </svg>
                 <p class="mb-0 font-normal text-[13px] dark:text-gray-400">{{address}}</p>
             </div>
-            <a  class="ml-4 font-normal text-xs text-blue-500 hover:text-blue-700">View others Booking </a>
+            <button (click)="othersBooking(userID, objID, selectedDate)" class="ml-4 font-normal text-xs text-blue-500 hover:text-blue-700 text-left">View others Booking </button>
  
         </div>
 

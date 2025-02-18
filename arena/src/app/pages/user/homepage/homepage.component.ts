@@ -8,7 +8,17 @@ declare var flowbite: any;
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
+  styles: [`
+    @keyframes slideInFromLeft {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  `]
 })
 export class HomepageComponent implements OnInit {
 
@@ -28,10 +38,12 @@ export class HomepageComponent implements OnInit {
   dateSelected:boolean = false;
   requiredFieldError:boolean = false;
   isDataAvailable: boolean = false;
+  othersBookings: boolean = false;
 
   
   ngOnInit(): void {}
   cards: any[] = [];
+  othersbookings: any[] = [];
 
   constructor(private homepageService: HomepageService)  {
     const tomorrow = new Date();
@@ -54,6 +66,7 @@ export class HomepageComponent implements OnInit {
   navigatePages(page: string) {
     this.activeSection = page;
     this.fetchVenue(this.formatDate(this.selectedDate),this.activeItem);
+    this.othersBookings=false;
     this.isSearching = true;
     setTimeout(() => {
       this.isSearching = false;
@@ -101,6 +114,11 @@ export class HomepageComponent implements OnInit {
     } else {
       console.log('Booking failed. No API call made.');
     }
+  }
+
+  viewOthersBooking(event: { userID: string; venueObID: string; bookingDate: Date | null }) {
+    const date:string = this.formatDate(event.bookingDate);
+    this.viewotherUsersbooking(event.venueObID, event.userID, date)
   }
   
   selectVenue(item: string): void {
@@ -175,6 +193,37 @@ export class HomepageComponent implements OnInit {
       (error) => {
         console.error('Error fetching venue slots:', error);
         this.cards = [];
+      }
+    );
+  }
+
+  viewotherUsersbooking(arenaOthersBookingVenueObjectId_OthersBooking_Text: string, arenaOthersBookingUserId_OthersBooking_Text: string, 
+    arenaOthersBookingDate_OthersBooking_Date: string): void {  
+    this.homepageService.viewOThersBooking(arenaOthersBookingVenueObjectId_OthersBooking_Text, arenaOthersBookingUserId_OthersBooking_Text, arenaOthersBookingDate_OthersBooking_Date).subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          this.othersbookings = response.responseData.data.map((booking: any) => ({
+            userName: booking.arenaUsername_UserBooking_Text,
+            phoneNumber: booking.arena_UserPhoneNumber_UserBooking_Text,
+            department: booking.arenaDepartmentName_UserBooking_Text,
+            eventName: booking.arenaEventName_UserBooking_Text,
+            timeSlots: booking.arenaBookedSlots_UserBooking_Array,
+          }));
+          console.log('Mapped Cards:', this.othersbookings);
+          this.othersBookings = true;
+        } else {
+          console.error('Invalid or empty API response:', response);
+          this.othersbookings = [];
+          this.othersBookings = false;
+
+        }
+      },
+      (error) => {
+        console.error('Error fetching venue slots:', error);
+        this.othersbookings = [];
+        this.othersBookings = false;
+
       }
     );
   }
