@@ -14,6 +14,8 @@ export class BulkBookingComponent {
   sucessBookingModal:boolean = false;
   isDataAvailable: boolean = false;
   bookingError: boolean = false;
+  filteredVenues: any[] = []; 
+  searchText: string = '';
 
   tomorrowDate: string;
   dayAfterTomorrowDate: string;
@@ -48,6 +50,7 @@ export class BulkBookingComponent {
 
   ngOnInit(): void {
     this.fetchVenue();
+    console.log("filterd venues"+this.filteredVenues)
   }
 
   setDropdown(){
@@ -135,6 +138,8 @@ export class BulkBookingComponent {
           }));
           console.log('Mapped Cards:', this.venues);
           this.isDataAvailable = true;
+          this.filteredVenues = [...this.venues];
+          console.log("filterd venues"+this.filteredVenues)
         } else {
           console.error('Invalid or empty API response:', response);
           this.venues = [];
@@ -173,6 +178,16 @@ export class BulkBookingComponent {
             this.bookingError = true; 
           }
         );
+  }
+
+  filterVenues() {
+    if (!this.searchText) {
+      this.filteredVenues = [...this.venues]; // If search is empty, show all venues
+    } else {
+      this.filteredVenues = this.venues.filter(venue =>
+        venue.spotName.toLowerCase().startsWith(this.searchText.toLowerCase()) 
+      );
+    }
   }
 
 }

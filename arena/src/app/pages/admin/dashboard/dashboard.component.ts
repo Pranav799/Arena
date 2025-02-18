@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { VenueService } from 'src/app/service/venue.service';
 import { DashboardService } from './dashboard.service';
 import { AgGridAngular } from 'ag-grid-angular'; 
@@ -57,6 +57,8 @@ export class DashboardComponent {
   tommorowDate: string;
   venues: any[] = [];
   bookings: any[] = [];
+  filteredVenues: any[] = []; 
+  searchText: string = '';
 
   
   editVenueModal:boolean = false;  
@@ -91,7 +93,7 @@ export class DashboardComponent {
 
   setActiveSection(section: string) {
     this.activeSection = section;
-    this.fetchVenue();
+    this.filteredVenues = [...this.venues]
     console.log(this.venues)
   }
 
@@ -137,7 +139,11 @@ export class DashboardComponent {
     sortable: true,
   };
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchVenue();
+    this.filteredVenues = [...this.venues]
+    this.getBookings(this.formatDate(this.reportDate));
+  }
 
 
   onSeatingCapacityChange(value: string) {
@@ -290,6 +296,19 @@ export class DashboardComponent {
         this.venues = [];
       }
     );
+  }
+
+  
+  filterVenues() {
+    if (!this.searchText) {
+      this.filteredVenues = [...this.venues]; // If search is empty, show all venues
+    } else {
+      this.filteredVenues = this.venues.filter(venue =>
+        venue.venueName.toLowerCase().startsWith(this.searchText.toLowerCase()) ||
+        venue.blockName.toLowerCase().startsWith(this.searchText.toLowerCase()) ||
+        venue.venueLocation.toLowerCase().startsWith(this.searchText.toLowerCase())
+      );
+    }
   }
 
   editCreatedVenue(arenaVenueId_VenueCreation_text: string,
