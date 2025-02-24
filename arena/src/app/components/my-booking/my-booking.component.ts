@@ -21,8 +21,6 @@ export class MyBookingComponent {
   username:string = 'suryansh singh';
   userID:string = '20cs1a4198';
   reasonforCancelation:string = '';
-
-  
   cancelBookingModal: boolean = false;
   sucessCancelBookingModal: boolean = false;
 

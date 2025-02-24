@@ -9,18 +9,19 @@ import { BulkbookingService } from './bulkbooking.service';
 export class BulkBookingComponent {
 
   buttonName: string = 'Venue Type'; 
-  isDropdownOpen = false;
   activeItem: string = 'All Venues'; 
+
+  isDropdownOpen = false;
   sucessBookingModal:boolean = false;
   isDataAvailable: boolean = false;
   bookingError: boolean = false;
-  filteredVenues: any[] = []; 
-  searchText: string = '';
 
+  filteredVenues: any[] = []; 
+  venues: any[] = [];
+  searchText: string = '';
   tomorrowDate: string;
   dayAfterTomorrowDate: string;
   
-
   eventName: string = '';
   bookedSlots: [] = [];
   startDate: string = '';
@@ -32,11 +33,6 @@ export class BulkBookingComponent {
   venueIdCounter:string='';
   venueType:string='';
   venueobjID:string='';
-
-  venues: any[] = [];
-
-
-  
 
   constructor(private bulkbookingService: BulkbookingService)  {
     const tomorrow = new Date();

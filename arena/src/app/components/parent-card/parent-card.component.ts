@@ -24,8 +24,6 @@ export class ParentCardComponent  {
   @Input() selectedDate: Date | null = null;
   userID: string  = "20cs1a4198";
 
-
-
   @Output() buttonSelect = new EventEmitter<string>();
   @Output() bookingCompleted: EventEmitter<boolean> = new EventEmitter();
   @Output() viewOthersBooking: EventEmitter<{ userID: string; venueObID: string; bookingDate: Date | null}> = new EventEmitter();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { HomepageService } from 'src/app/pages/user/homepage/homepage.service';
 
@@ -85,6 +85,14 @@ export class SlotbookingComponent implements OnInit {
       this.dropdownSelected = true;
       this.buttonName = item; 
       this.isDropdownOpen = !this.isDropdownOpen;
+    }
+    
+    @HostListener('document:click', ['$event'])
+    onClickOutside(event: Event) {
+    const dropdown = document.getElementById('venutype');
+    if (dropdown && !dropdown.contains(event.target as Node)) {
+      this.isDropdownOpen = false;
+     }
     }
   
     setDropdown(){

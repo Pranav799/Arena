@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { VenueService } from 'src/app/service/venue.service';
 import { DashboardService } from './dashboard.service';
 import { AgGridAngular } from 'ag-grid-angular'; 
@@ -59,7 +59,6 @@ export class DashboardComponent {
   bookings: any[] = [];
   filteredVenues: any[] = []; 
   searchText: string = '';
-
   
   editVenueModal:boolean = false;  
   editpage:boolean = false;
@@ -118,14 +117,14 @@ export class DashboardComponent {
   gridColumnApi: any;
  
   colDefs: ColDef[] = [
-    { headerName: 'Booking ID', field: 'BookingId', sortable: true, filter: true, editable: false, floatingFilter: false },
-    { headerName: 'venue ID', field: 'venueId', sortable: true, filter: true, editable: false, floatingFilter: false },
-    { headerName: 'venue Name', field: 'venueName', sortable: true, filter: true, editable: false },
-    { headerName: 'Event Date', field: 'eventDate', sortable: true, filter: true, editable: false },
-    { headerName: 'Booked by', field: 'bookedBy', sortable: true, filter: true, editable: false },
-    { headerName: 'Event Name ', field: 'eventName', sortable: true, filter: true, editable: false },
-    { headerName: 'Resource Person ', field: 'resourcePerson', sortable: true, filter: true, editable: false },
-    { headerName: 'Event Timings ', field: 'eventTimings', sortable: true, filter: true, editable: false, wrapText: true, autoHeight: true, width: 400 }, 
+    { headerName: 'BOOKING ID', field: 'BookingId', sortable: true, filter: true, editable: false, floatingFilter: false },
+    { headerName: 'VENUE ID', field: 'venueId', sortable: true, filter: true, editable: false, floatingFilter: false },
+    { headerName: 'VENUE NAME', field: 'venueName', sortable: true, filter: true, editable: false },
+    { headerName: 'EVENT DATE', field: 'eventDate', sortable: true, filter: true, editable: false },
+    { headerName: 'BOOKED BY', field: 'bookedBy', sortable: true, filter: true, editable: false },
+    { headerName: 'EVENT NAME ', field: 'eventName', sortable: true, filter: true, editable: false },
+    { headerName: 'RESOURCE PERSON ', field: 'resourcePerson', sortable: true, filter: true, editable: false },
+    { headerName: 'EVENT TIMINGS ', field: 'eventTimings', sortable: true, filter: true, editable: false, wrapText: true, autoHeight: true, width: 400 }, 
   ];
 
   paginationPageSize = 20;
@@ -261,7 +260,7 @@ export class DashboardComponent {
   }
 
   isMobileScreen(): boolean {
-    return window.innerWidth < 1000; 
+    return window.innerWidth < 640; 
   }
 
   fetchVenue(): void {  

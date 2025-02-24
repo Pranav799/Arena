@@ -1,86 +1,83 @@
 
 
-<div class="container mx-auto p-2 bg-white border border-gray-400 rounded-lg">
-    <!-- First Row -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1 mb-0">
-      <div class="section p-2  text-left ">
-        <h5 class="text-lg font-bold tracking-tight text-gray-900 dark:text-white mb-0">{{venue}}</h5>
+  <div class="container mx-auto p-2 bg-white border border-gray-400 rounded-lg">
+      <!-- First Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1 mb-0">
+        <div class="section p-2  text-left ">
+          <h5 class="text-lg font-bold tracking-tight text-gray-900 dark:text-white mb-0">{{venue}}</h5>
+        </div>
+        <div class="section p-2 text-left ">
+          <div class="flex items-center space-x-2">
+              <svg class="w-4 h-4 text-gray-800 dark:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
+              </svg>
+              <p class="text-gray-700 text-sm dark:text-[2px] ml-0">{{address}}</p>
+            </div>
+        </div>
+        <div class="section p-2 bg-white text-left ">
+          <p class="text-black text-[14px] font-bold dark:text-[2px] ml-0">Booking ID : {{bookingid}}</p>
+        </div>
+        <div class="section p-2 bg-white text-center ">
+          <button 
+                  *ngIf="status == 'Scheduled'" 
+                  type="button" 
+                  (click)="openCancelBookingModal()"
+                  class="text-red-700 bg-red-200 hover:text-black focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  Cancel Booking
+              </button>
+        </div>
       </div>
-      <div class="section p-2 text-left ">
-        <div class="flex items-center space-x-2">
-            <svg class="w-4 h-4 text-gray-800 dark:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
-            </svg>
-            <p class="text-gray-700 text-sm dark:text-[2px] ml-0">{{address}}</p>
-          </div>
-      </div>
-      <div class="section p-2 bg-white text-left ">
-        <p class="text-black text-[14px] font-bold dark:text-[2px] ml-0">Booking ID : {{bookingid}}</p>
-      </div>
-      <div class="section p-2 bg-white text-center ">
-        <button 
-                *ngIf="status == 'Scheduled'" 
-                type="button" 
-                (click)="openCancelBookingModal()"
-                class="text-red-700 bg-red-200 hover:text-black focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                Cancel Booking
-            </button>
-      </div>
-    </div>
 
-     
-  
-    <!-- Second Row -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1">
-      <div class="section p-2 bg-white text-left ">
-        <p class="text-black text-sm "><span class="font-bold">Event Name :</span> {{eventname}}</p>
+      
+    
+      <!-- Second Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1">
+        <div class="section p-2 bg-white text-left ">
+          <p class="text-black text-sm "><span class="font-bold">Event Name :</span> {{eventname}}</p>
+        </div>
+        <div class="section p-2 bg-white text-left ">
+          <p class="text-black text-sm "><span class="font-bold">Booking Date :</span> {{ bookingdate | date: 'd MMM yyyy' }}</p>
+        </div>
+        <div class="section p-2 bg-white text-left ">
+          <p class="text-black text-sm"><span class="font-bold">Event Date :</span> {{eventdate | date: 'd MMM yyyy'}}</p>
+        </div>
+        <div class="section p-2 bg-white text-center ">
+          <ng-container *ngIf="status === 'Scheduled'; else otherStatuses"><p class="text-black text-sm">Status:
+              <span class="text-yellow-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded">
+                  Scheduled
+              </span> </p>
+              
+          </ng-container>
+          <ng-template #otherStatuses>
+              <ng-container *ngIf="status === 'Completed'"><p class="text-black text-sm">Status:
+                  <span class=" text-green-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                      Completed
+                  </span></p>
+              </ng-container>
+              <ng-container *ngIf="status === 'Cancelled'"><p class="text-black text-sm">Status:
+                  <span class=" text-red-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                      Cancelled
+                  </span></p>
+              </ng-container>
+          </ng-template>
+        </div>
       </div>
-      <div class="section p-2 bg-white text-left ">
-        <p class="text-black text-sm "><span class="font-bold">Booking Date :</span> {{ bookingdate | date: 'd MMM yyyy' }}</p>
-      </div>
-      <div class="section p-2 bg-white text-left ">
-        <p class="text-black text-sm"><span class="font-bold">Event Date :</span> {{eventdate | date: 'd MMM yyyy'}}</p>
-      </div>
-      <div class="section p-2 bg-white text-center ">
-        <ng-container *ngIf="status === 'Scheduled'; else otherStatuses"><p class="text-black text-sm">Status:
-            <span class="text-yellow-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded">
-                Scheduled
-            </span> </p>
-            
-        </ng-container>
-        <ng-template #otherStatuses>
-            <ng-container *ngIf="status === 'Completed'"><p class="text-black text-sm">Status:
-                <span class=" text-green-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                    Completed
-                </span></p>
-            </ng-container>
-            <ng-container *ngIf="status === 'Cancelled'"><p class="text-black text-sm">Status:
-                <span class=" text-red-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                    Cancelled
-                </span></p>
-            </ng-container>
-        </ng-template>
-      </div>
-    </div>
 
-     <!-- Third Row -->
-     <div class="grid grid-cols-4 m-2 mb-2 sm:grid-cols-6 md:grid-cols-9 gap-4 mb-0 rounded-lg">
-      <span 
-        *ngFor="let timeSlot of timeSlots" 
-        [ngClass]="{'bg-gray-300 border-gray-400': status === 'Cancelled', 'bg-green-100 border-green-400': status !== 'Cancelled'}"
-        class="text-black text-[10px] gap-4 font-normal px-2.5 py-1 rounded border flex justify-center items-center whitespace-nowrap">
-        {{ timeSlot }}
-      </span>
-    </div>
+      <!-- Third Row -->
+      <div class="grid grid-cols-4 m-2 mb-2 sm:grid-cols-6 md:grid-cols-9 gap-4 mb-0 rounded-lg">
+        <span 
+          *ngFor="let timeSlot of timeSlots" 
+          [ngClass]="{'bg-gray-300 border-gray-400': status === 'Cancelled', 'bg-green-100 border-green-400': status !== 'Cancelled'}"
+          class="text-black text-[10px] gap-4 font-normal px-2.5 py-1 rounded border flex justify-center items-center whitespace-nowrap">
+          {{ timeSlot }}
+        </span>
+      </div>
 
-   
+    
 
   </div>
   
-
-
-
   <div *ngIf="cancelBookingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">
     <div class="relative p-4 w-full max-w-lg max-h-full"> 
     
@@ -108,8 +105,6 @@
       </div>
     </div>
   </div>
-
-
 
   <div *ngIf="sucessCancelBookingModal" 
   class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
