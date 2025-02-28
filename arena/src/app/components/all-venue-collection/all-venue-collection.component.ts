@@ -1,11 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { BookingService } from '../parent-card/booking.service';
 
 @Component({
   selector: 'app-all-venue-collection',
   templateUrl: './all-venue-collection.component.html',
   styleUrls: ['./all-venue-collection.component.css']
 })
-export class AllVenueCollectionComponent {
+export class AllVenueCollectionComponent implements OnInit {
 
   @Input() venueID: string = '';
   @Input() venueName: string = '';
@@ -33,6 +34,7 @@ export class AllVenueCollectionComponent {
     venueImage: string;
     venueObjId: string;
     creationTimeStamp: string;
+    venueImagePath: string;
 
   }> = new EventEmitter();
   
@@ -47,17 +49,32 @@ export class AllVenueCollectionComponent {
     intrevalTiming: boolean,
     venueImage: string,
     venueObjId: string,
-    creationTimeStamp: string) {
+    creationTimeStamp: string,
+    venueImagePath: string) {
     this.editBooking.emit({
       venueID, venueName, blockName, seatingCapacity, acStatus,
       permissionRequired, venueLocation, venueType, intrevalTiming,
-      venueImage, venueObjId, creationTimeStamp
+      venueImage, venueObjId, creationTimeStamp, venueImagePath
     })
   }
+
+  imageUrl: string = '';
+
   
 
+constructor(private bookingService: BookingService) { }
 
+ngOnInit(): void {
+  this.fetchImage()
+}
 
+fetchImage() {
+  this.bookingService.getImage(this.venueImage).subscribe(response => {
+    this.imageUrl = URL.createObjectURL(response);
+  }, error => {
+    console.error('Error fetching image:', error);
+  });
+}
 
 
 }

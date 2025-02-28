@@ -1,11 +1,26 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { VenueService } from 'src/app/service/venue.service';
 import { DashboardService } from './dashboard.service';
 import { AgGridAngular } from 'ag-grid-angular'; 
 import type { ColDef, GridApi } from 'ag-grid-community'; 
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { jsPDF } from "jspdf";
-import autoTable from "jspdf-autotable";
+// import * as pdfMake from 'pdfmake/build/pdfmake';
+// import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+// (pdfMake as any).vfs = (pdfFonts as any).pdfMake.vfs;
+
+interface Venue {
+  arenaVenueId_VenueCreation_Text: string;
+  arenaVenueName_VenueCreation_Text: string;
+  arenaBlockName_VenueCreation_Text: string;
+  arenaSeatingCapacityOfVenue_VenueCreation_Int: number;
+  arenaIsVenueAirConditionedOrNot_VenueCreation_Text: string;
+  arenaIsPermissionRequiredForAuditorium_VenueCreation_Text: string;
+  arenaVenueLocation_VenueCreation_Text: string;
+  arenaTypeOfVenue_VenueCreation_Text: string;
+  arenaIntervalTiming_VenueCreation_Bool: boolean;
+  arenaVenueImage_VenueCreation_Image: File | null;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -32,24 +47,27 @@ import autoTable from "jspdf-autotable";
     ])
   ]
 })
-export class DashboardComponent {
 
- venue = {
-    arenaVenueId_VenueCreation_text: '',
-    arenaVenueName_VenueCreation_text: '',
-    arenaBlockName_VenueCreation_text: '',
-    arenaSeatingCapacityOfVenue_VenueCreation_Integer:0,
-    arenaIsVenueAirConditionedOrNot_VenueCreation_text: '',
-    arenaIsPermissionRequiredForAuditorium_VenueCreation_text: '',
-    arenaVenueLocation_VenueCreation_text: '',
-    arenaTypeOfVenue_VenueCreation_text: '',
-    aernaIntervalTiming_VenueCreation_boolean: false,
-    arenaVenueImage_VenueCreation_Image:''
+
+
+export class DashboardComponent {
+  @ViewChild('eventForm') eventForm!: NgForm;
+
+  venue: Venue = {
+    arenaVenueId_VenueCreation_Text: '',
+    arenaVenueName_VenueCreation_Text: '',
+    arenaBlockName_VenueCreation_Text: '',
+    arenaSeatingCapacityOfVenue_VenueCreation_Int: 0,
+    arenaIsVenueAirConditionedOrNot_VenueCreation_Text: '',
+    arenaIsPermissionRequiredForAuditorium_VenueCreation_Text: '',
+    arenaVenueLocation_VenueCreation_Text: '',
+    arenaTypeOfVenue_VenueCreation_Text: '',
+    arenaIntervalTiming_VenueCreation_Bool: false,
+    arenaVenueImage_VenueCreation_Image: null
   };
 
   myTheme: any;
-  activeItem: string = 'All Venues'; 
-  buttonName: string = 'Venue Type'; 
+  activeItem: string = ''; 
   createVenueModal: boolean = false;
   errorVenueCreation: boolean = false;
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
@@ -57,8 +75,19 @@ export class DashboardComponent {
   tommorowDate: string;
   venues: any[] = [];
   bookings: any[] = [];
+  cancelledBookings: any[] = [];
   filteredVenues: any[] = []; 
   searchText: string = '';
+  fromDate: Date | null = null;
+  toDate: Date | null = null;
+  minToDate: string = '';
+  fromDateCancellationReport: Date | null = null;
+  toDateCancellationReport: Date | null = null;
+  minToDateCancellationReport: string = '';
+  errorVenueType: boolean = false;
+  errorEnteringVenueType: boolean = true;
+  
+  selectedFileName: string = 'Select a file or drag and drop here';
   
   editVenueModal:boolean = false;  
   editpage:boolean = false;
@@ -74,6 +103,10 @@ export class DashboardComponent {
   venueImage: string = '';
   venueObjId: string = '';
   creationTimeStamp: string = '';
+  venueImagePath: string = '';
+  reportselector: string = 'booking';
+
+  uploadMessage: string = '';
 
 
   constructor(private venueService: VenueService,private dashboardService: DashboardService) {
@@ -92,32 +125,99 @@ export class DashboardComponent {
 
   setActiveSection(section: string) {
     this.activeSection = section;
+    this.fetchVenue();
     this.filteredVenues = [...this.venues]
     console.log(this.venues)
   }
 
-  onSubmit() {
-    this.dashboardService.addVenue(this.venue).subscribe(response => {
-      console.log('Venue added successfully', response);
-    }, error => {
-      console.error('Error adding venue', error);
-    });
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.venue.arenaVenueImage_VenueCreation_Image = file;
+      this.selectedFileName = file.name; // Update the displayed file name
+      console.log('Selected file:', this.venue.arenaVenueImage_VenueCreation_Image);
+    }
   }
 
-  setDate(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const selectedDateString = input.value;  
-    if (selectedDateString) {
-      this.reportDate = new Date(selectedDateString);  
+  onSubmit() {
+    if (!this.venue.arenaVenueImage_VenueCreation_Image) {
+      console.error('No file selected for upload');
+      return;
     }
-    this.getBookings(this.formatDate(this.reportDate));
+  
+    this.dashboardService.addVenue(this.venue, this.venue.arenaVenueImage_VenueCreation_Image).subscribe(
+      response => {
+        console.log('Venue added successfully', response);
+      },
+      error => {
+        console.error('Error adding venue', error);
+      }
+    );
   }
+  
+
+setStartDate(event: any) {
+  this.fromDate = new Date(event.target.value); // Convert string to Date
+  this.minToDate = this.formatDate(this.fromDate);
+  this.validateDates();
+}
+
+setToDate(event: any) {
+  this.toDate = new Date(event.target.value); // Convert string to Date
+  this.validateDates();
+}
+
+validateDates() {
+  if (this.fromDate && this.toDate) {
+    if (this.toDate >= this.fromDate) {
+      console.log('Valid Date Range:', this.formatDate(this.fromDate), 'to', this.formatDate(this.fromDate));
+      this.triggerFunction();
+    } else {
+      console.warn('Invalid Date Selection: To Date should be greater than From Date');
+    }
+  }
+}
+
+triggerFunction() {
+  console.log('Function Triggered Successfully!');
+  this.getBookings(this.formatDate(this.fromDate),this.formatDate(this.toDate));
+}
+
+
+
+setStartDateCancellationReport(event: any) {
+  this.fromDateCancellationReport = new Date(event.target.value); // Convert string to Date
+  this.minToDateCancellationReport = this.formatDate(this.fromDateCancellationReport);
+  this.validateDatesCancellationReport();
+}
+
+setToDateCancellationReport(event: any) {
+  this.toDateCancellationReport = new Date(event.target.value); // Convert string to Date
+  this.validateDatesCancellationReport();
+}
+
+validateDatesCancellationReport() {
+  if (this.fromDateCancellationReport && this.toDateCancellationReport) {
+    if (this.toDateCancellationReport >= this.fromDateCancellationReport) {
+      console.log('Valid Date Range:', this.formatDate(this.fromDateCancellationReport), 'to', this.formatDate(this.toDateCancellationReport));
+      this.triggerFunctionCancellationReport();
+    } else {
+      console.warn('Invalid Date Selection: To Date should be greater than From Date');
+    }
+  }
+}
+
+triggerFunctionCancellationReport() {
+  console.log('Function Triggered Successfully!');
+  this.getCancelledBookings(this.formatDate(this.fromDateCancellationReport),this.formatDate(this.toDateCancellationReport));
+}
+
 
   gridApi!: GridApi;
   gridColumnApi: any;
  
   colDefs: ColDef[] = [
-    { headerName: 'BOOKING ID', field: 'BookingId', sortable: true, filter: true, editable: false, floatingFilter: false },
+    { headerName: 'BOOKING ID', field: 'BookingId', sortable: true, filter: true, editable: true, floatingFilter: false },
     { headerName: 'VENUE ID', field: 'venueId', sortable: true, filter: true, editable: false, floatingFilter: false },
     { headerName: 'VENUE NAME', field: 'venueName', sortable: true, filter: true, editable: false },
     { headerName: 'EVENT DATE', field: 'eventDate', sortable: true, filter: true, editable: false },
@@ -127,7 +227,17 @@ export class DashboardComponent {
     { headerName: 'EVENT TIMINGS ', field: 'eventTimings', sortable: true, filter: true, editable: false, wrapText: true, autoHeight: true, width: 400 }, 
   ];
 
-  paginationPageSize = 20;
+  CancelledcolDefs: ColDef[] = [
+    { headerName: 'BOOKING ID', field: 'BookingId', sortable: true, filter: true, editable: true, floatingFilter: false },
+    { headerName: 'VENUE NAME', field: 'venueName', sortable: true, filter: true, editable: false },
+    { headerName: 'EVENT DATE', field: 'eventDate', sortable: true, filter: true, editable: false },
+    { headerName: 'BOOKED BY', field: 'bookedBy', sortable: true, filter: true, editable: false },
+    { headerName: 'CANCELLED DATE', field: 'cancelledDate', sortable: true, filter: true, editable: false },
+    { headerName: 'CANCELLED BY', field: 'cancelledBy', sortable: true, filter: true, editable: false },
+    { headerName: 'CANCELLED REASON ', field: 'cancelledReason', sortable: true, filter: true, editable: false },
+  ];
+
+  paginationPageSize = 10;
   paginationPageSizeSelector = [5, 10, 20];
 
   rowSelection: 'multiple' | 'single' = 'multiple'; 
@@ -141,12 +251,11 @@ export class DashboardComponent {
   ngOnInit() {
     this.fetchVenue();
     this.filteredVenues = [...this.venues]
-    this.getBookings(this.formatDate(this.reportDate));
   }
 
 
   onSeatingCapacityChange(value: string) {
-    this.venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer = parseInt(value, 10);
+    this.venue.arenaSeatingCapacityOfVenue_VenueCreation_Int = parseInt(value, 10);
   }
 
   onGridReady(params: any): void {
@@ -173,24 +282,44 @@ export class DashboardComponent {
     }
   }
 
-  downloadPDF() {
-    if (!this.gridApi) return;
-  
-    const doc = new jsPDF();
-    doc.text("Booking Report", 14, 10);
-    const colDefs = this.gridColumnApi.getAllColumns().map((col: any) => col.getColDef().headerName);
-    const rowData: any[] = [];
-    this.gridApi.forEachNode((node) => {
-      rowData.push(Object.values(node.data)); 
-    });
-    autoTable(doc, {
-      head: [colDefs], 
-      body: rowData,   
-      startY: 20,      
-      theme: 'grid',
-    });
-    doc.save("Booking_Report.pdf");
-  }
+
+  // exportToPDF() {
+  //   // Get column headers dynamically
+  //   const headers = this.colDefs.map(col => col.headerName);
+
+  //   // Get row data dynamically
+  //   const rows = this.bookings.map(row =>
+  //     this.colDefs.map(col => row[col.field as keyof typeof row])
+  //   );
+
+  //   const docDefinition = {
+  //     content: [
+  //       { text: 'AG Grid Data Export', style: 'header' },
+  //       {
+  //         table: {
+  //           headerRows: 1,
+  //           widths: Array(headers.length).fill('*'), // Adjust column widths dynamically
+  //           body: [
+  //             headers, // Table headers
+  //             ...rows   // Table rows
+  //           ]
+  //         }
+  //       }
+  //     ],
+  //     styles: {
+  //       header: {
+  //         fontSize: 18,
+  //         bold: true,
+  //         margin: [0, 0, 0, 10]
+  //       }
+  //     }
+  //   };
+
+  //   (pdfMake as any).createPdf(docDefinition).download('grid-data.pdf');
+  // }
+
+
+
 
   setDropdown(){
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -198,6 +327,10 @@ export class DashboardComponent {
 
   setActiveItem(item: string): void {
     this.activeItem = item; 
+    this.venue.arenaTypeOfVenue_VenueCreation_Text = item;
+    this.setDropdown();
+    this.errorVenueType = false;
+    this.errorEnteringVenueType = false;
   }
 
   setItemForEdit(item: string): void {
@@ -206,8 +339,7 @@ export class DashboardComponent {
   }
 
   setButtonName(item: string): void {
-    this.buttonName = item; 
-    this.venue.arenaTypeOfVenue_VenueCreation_text = item;
+    this.venue.arenaTypeOfVenue_VenueCreation_Text = item;
   }
 
   closeCreateVenueModal(){
@@ -215,7 +347,13 @@ export class DashboardComponent {
   }
 
   setEditVenueModal() {
-    this.editVenueModal = !this.editVenueModal;
+    this.editpage = false;
+    console.log("hi");
+    this.fetchVenue();
+    console.log(this.venues);
+    this.filteredVenues = [...this.venues]
+    console.log("Filterd Venues"+this.filteredVenues);
+
 }
 
   openCreateVenueModal(){
@@ -232,35 +370,83 @@ export class DashboardComponent {
   }
 
   createVenue(){
+    if(this.errorEnteringVenueType === false){
     this.onSubmit();
-    this.openCreateVenueModal()
+    this.openCreateVenueModal();
+    this.eventForm.resetForm();
+    this.venue.arenaVenueImage_VenueCreation_Image = null;
+    this.fetchVenue();
+    this.filteredVenues = [...this.venues];
+    }else{
+      if (this.activeItem === '') { // Only show error if no venue type is selected
+        this.errorVenueType = true;
+        setTimeout(() => {
+          this.errorVenueType = false;
+        }, 3000);
+      }
+    }
   }
 
-  editVenue(){
+  editVenue() {
     this.setEditVenueModal()
-    this.editCreatedVenue(this.venueID,
-      this.venueName,
-      this.blockName,
-      this.seatingCapacity,
-      this.acStatus,
-      this.permissionRequired,
-      this.venueLocation,
-      this.venueType,
-      this.intrevalTiming,
-      this.venueImage,
-      this.venueObjId,
-      this.creationTimeStamp)
+    if(this.venue.arenaVenueImage_VenueCreation_Image == null){
+      this.editCreatedVenue(this.venueID,
+        this.venueName,
+        this.blockName,
+        this.seatingCapacity,
+        this.acStatus,
+        this.permissionRequired,
+        this.venueLocation,
+        this.venueType,
+        this.intrevalTiming,
+        this.venueImage,
+        this.venueObjId,
+        this.creationTimeStamp);
+    }else{
+      this.editCreatedVenueWithImage(this.venueID,
+        this.venueName,
+        this.blockName,
+        this.seatingCapacity,
+        this.acStatus,
+        this.permissionRequired,
+        this.venueLocation,
+        this.venueType,
+        this.intrevalTiming,
+        this.venue.arenaVenueImage_VenueCreation_Image,
+        this.venueObjId,
+        this.convertMillisToDateTimeString(this.creationTimeStamp));
+    }
+    
+    console.log("fetchvenue is running")
+    this.fetchVenue();
+    console.log("finished fetch")
+    this.filteredVenues = [...this.venues]
   }
 
   errorCreateVenue(){
+
     this.errorVenueCreation=true
     setTimeout(()=>{
       this.errorVenueCreation = false;
     },3000)
+
+    if (this.activeItem === '') { // Only show error if no venue type is selected
+      this.errorVenueType = true;
+      setTimeout(() => {
+        this.errorVenueType = false;
+      }, 3000);
+    }
+    console.log(this.errorVenueType);
+    this.errorEnteringVenueType= true;
+   
   }
 
   isMobileScreen(): boolean {
     return window.innerWidth < 640; 
+  }
+
+  if(editpage:false){
+  this.fetchVenue();
   }
 
   fetchVenue(): void {  
@@ -269,24 +455,26 @@ export class DashboardComponent {
         console.log('API Response:', response);
         if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
           this.venues = response.responseData.data.map((venue: any) => ({
-            venueID: venue.arenaVenueId_VenueCreation_text,
-            venueName: venue.arenaVenueName_VenueCreation_text,
-            blockName: venue.arenaBlockName_VenueCreation_text,
-            seatingCapacity:venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer,
-            acStatus:venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
-            permissionRequired:venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_text,
-            venueLocation: venue.arenaVenueLocation_VenueCreation_text,
-            venueType: venue.arenaTypeOfVenue_VenueCreation_text,
-            intrevalTiming:venue.aernaIntervalTiming_VenueCreation_boolean,
+            venueID: venue.arenaVenueId_VenueCreation_Text,
+            venueName: venue.arenaVenueName_VenueCreation_Text,
+            blockName: venue.arenaBlockName_VenueCreation_Text,
+            seatingCapacity:venue.arenaSeatingCapacityOfVenue_VenueCreation_Int,
+            acStatus:venue.arenaIsVenueAirConditionedOrNot_VenueCreation_Text,
+            permissionRequired:venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_Text,
+            venueLocation: venue.arenaVenueLocation_VenueCreation_Text,
+            venueType: venue.arenaTypeOfVenue_VenueCreation_Text,
+            intrevalTiming:venue.arenaIntervalTiming_VenueCreation_Bool,
             venueImage: venue.arenaVenueImage_VenueCreation_Image,
             venueObjId:venue._id,
             creationTimeStamp:venue.arenaVenueCreationTimeStamp_VenueCreation_DateTime,
           }));
           console.log('Mapped Cards:', this.venues);
+          this.filteredVenues = [...this.venues]
 
         } else {
           console.error('Invalid or empty API response:', response);
           this.venues = [];
+          this.filteredVenues=[];
 
         }
       },
@@ -340,6 +528,41 @@ export class DashboardComponent {
     );
   }
 
+  editCreatedVenueWithImage(arenaVenueId_VenueCreation_text: string,
+    arenaVenueName_VenueCreation_text: string,
+    arenaBlockName_VenueCreation_text: string,
+    arenaSeatingCapacityOfVenue_VenueCreation_Integer: number,
+    arenaIsVenueAirConditionedOrNot_VenueCreation_text: string,
+    arenaIsPermissionRequiredForAuditorium_VenueCreation_text: string,
+    arenaVenueLocation_VenueCreation_text: string,
+    arenaTypeOfVenue_VenueCreation_text: string,
+    aernaIntervalTiming_VenueCreation_boolean: boolean,
+    arenaVenueImage_VenueCreation_Image:File,
+    arena_VenueObjectId_UpdateVenue_Text:string,
+    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string): void {  
+    this.dashboardService.editVenueWithImage(arenaVenueId_VenueCreation_text, arenaVenueName_VenueCreation_text, arenaBlockName_VenueCreation_text,
+      arenaSeatingCapacityOfVenue_VenueCreation_Integer, arenaIsVenueAirConditionedOrNot_VenueCreation_text, arenaIsPermissionRequiredForAuditorium_VenueCreation_text, arenaVenueLocation_VenueCreation_text,
+      arenaTypeOfVenue_VenueCreation_text, aernaIntervalTiming_VenueCreation_boolean, arenaVenueImage_VenueCreation_Image,
+      arena_VenueObjectId_UpdateVenue_Text, arenaVenueCreationTimeStamp_VenueCreation_DateTime).subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          
+        } else {
+         
+        }
+      },
+      (error) => {
+        console.error('Error fetching venue slots:', error);
+      }
+    );
+  }
+
+  closeEditPage(){
+    console.log("hi")
+    this.editpage = false;
+  }
+
   editBooking(event:{venueID: string;
     venueName: string;
     blockName: string;
@@ -351,7 +574,8 @@ export class DashboardComponent {
     intrevalTiming: boolean;
     venueImage: string;
     venueObjId: string;
-    creationTimeStamp: string;}){
+    creationTimeStamp: string;
+    venueImagePath: string}){
         this.editpage=true;
         this.venueID=event.venueID;
         this.venueName=event.venueName;
@@ -365,10 +589,11 @@ export class DashboardComponent {
         this.venueImage=event.venueImage;
         this.venueObjId=event.venueObjId;
         this.creationTimeStamp=event.creationTimeStamp;
+        this.venueImagePath = event.venueImagePath;
   }
 
-  getBookings(date: string): void {  
-    this.dashboardService.getBookings(date).subscribe(
+  getBookings(fromDate: string, toDate: string): void {  
+    this.dashboardService.getBookings(fromDate,toDate).subscribe(
       (response: any) => {
         console.log('API Response:', response);
         if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
@@ -376,11 +601,40 @@ export class DashboardComponent {
             BookingId: booking.arenaBookingId_UserBooking_Text,
             venueId: booking.arena_venueIdCounter_UserBooking_Text,
             venueName: booking.arena_SpotName_UserBooking_Text,
-            eventDate: booking.arenaEventDate_UserBooking_Date,
-            bookedBy: booking.arenaUsername_UserBooking_Text,
+            eventDate: new Date(booking.arenaEventDate_UserBooking_Date).toLocaleDateString(),
+            bookedBy: booking.arenaBookedToUserName_UserBooking_Text,
             eventName: booking.arenaEventName_UserBooking_Text,
             resourcePerson: booking.arenaResourcePerson_UserBooking_Text,
             eventTimings: booking.arenaBookedSlots_UserBooking_Array,
+          }));
+          console.log('Mapped Cards:', this.bookings);
+
+        } else {
+          console.error('Invalid or empty API response:', response);
+          this.bookings = [];
+
+        }
+      },
+      (error) => {
+        console.error('Error fetching bookings :', error);
+        this.bookings = [];
+      }
+    );
+  }
+
+  getCancelledBookings(fromDate: string, toDate: string): void {  
+    this.dashboardService.getCancelledBookings(fromDate,toDate).subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
+        if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
+          this.cancelledBookings = response.responseData.data.map((booking: any) => ({
+            BookingId: booking.arenaBookingId_UserBooking_Text,
+            venueName: booking.arena_SpotName_UserBooking_Text,
+            eventDate: new Date(booking.arenaEventDate_UserBooking_Date).toLocaleDateString(),
+            cancelledDate: new Date(booking.arenaCancelledBookingTimestamp_UserBooking_DateTime).toLocaleDateString(),
+            cancelledBy: booking.arena_CancelledBy_UserBooking_Text,
+            cancelledReason: booking.arenaCancelledBookingReason_UserBooking_text,
+            bookedBy: booking.arenaBookedToUserName_UserBooking_Text,
           }));
           console.log('Mapped Cards:', this.bookings);
 
@@ -404,5 +658,35 @@ export class DashboardComponent {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   }
+  
+  setReportHeader(item:string){
+    this.reportselector = item ;
+  }
+
+
+
+  convertMillisToDateTimeString(millis: string): string {
+    // Convert string to number
+    const timestamp = Number(millis);
+
+    if (isNaN(timestamp)) {
+        throw new Error("Invalid timestamp: Not a number");
+    }
+
+    const date = new Date(timestamp);
+
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');  // Month is 0-based
+    const year = date.getUTCFullYear();
+
+    const hours = String(date.getUTCHours()).padStart(2, '0');
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
+
+
+
 
 }

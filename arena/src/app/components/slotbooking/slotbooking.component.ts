@@ -11,7 +11,7 @@ import { HomepageService } from 'src/app/pages/user/homepage/homepage.service';
 export class SlotbookingComponent implements OnInit {
 
     activeItem: string = 'All Venue'; 
-    buttonName: string = 'Venue Type'; 
+    buttonName: string = 'All Venue'; 
     selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
     Date: Date | null = null;
     startDate: Date | null = null;
@@ -119,18 +119,17 @@ export class SlotbookingComponent implements OnInit {
           console.log('API Response:', response);
           if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
             this.cards = response.responseData.data.map((venue: any) => ({
-              heading: venue.arenaVenueName_VenueCreation_text,
-              location: venue.arenaBlockName_VenueCreation_text,
-              capacity: venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer,
-              acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
+              heading: venue.arenaVenueName_VenueCreation_Text,
+              location: venue.arenaBlockName_VenueCreation_Text,
+              capacity: venue.arenaSeatingCapacityOfVenue_VenueCreation_Int,
+              acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_Text,
               imagepath: venue.arenaVenueImage_VenueCreation_Image,
-              address: venue.arenaVenueLocation_VenueCreation_text,
-              venueId: venue.arenaVenueId_VenueCreation_text,
+              address: venue.arenaVenueLocation_VenueCreation_Text,
+              venueId: venue.arenaVenueId_VenueCreation_Text,
               venueObjID:venue._id,
-              typeOfVenue: venue.arenaTypeOfVenue_VenueCreation_text,
-              venueLocation: venue.arena_VenueSpot_UserBooking_Text,
+              typeOfVenue: venue.arenaTypeOfVenue_VenueCreation_Text,
+              venueLocation: venue.arenaVenueLocation_VenueCreation_Text,
               buttons: venue.arenaTimeslots_VenueCreation_Array,
-              selectedButtons: []
             }));
             console.log('Mapped Cards:', this.cards);
             this.isDataAvailable = true;

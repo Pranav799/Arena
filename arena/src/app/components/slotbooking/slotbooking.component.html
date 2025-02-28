@@ -3,7 +3,7 @@
       <div class="flex justify-center mt-8">
 
         <div *ngIf="!isMobileScreen()" class="w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8">
-          <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
+          <p class="mb-4 text-[#5a6acf] text-sm font-semibold flex justify-center">Check Availability</p>
           <div class="flex gap-2">
     
             <!-- Dropdown Button Section -->
@@ -74,7 +74,7 @@
               <button 
                 type="button" 
                 (click)="searchforVenue()"
-                class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg "
+                class="flex items-center justify-center w-12 h-10 bg-[#5a6acf] text-white rounded-lg "
                 style="height: 40px; width: 50px;"> <!-- Fixed size for button -->
                 <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
@@ -86,7 +86,7 @@
         </div>
 
         <div *ngIf="isMobileScreen()" class="w-[300px] bg-white border border-gray-200 rounded-lg shadow-lg p-6 py-8 mb-8 mt-24">
-          <p class="mb-4 text-[#0284c7] text-sm font-semibold flex justify-center">Check Availability</p>
+          <p class="mb-4 text-[#5a6acf] text-sm font-semibold flex justify-center">Check Availability</p>
         
           <!-- First section: Dropdown Button -->
           <div class="w-full mb-4"> <!-- Use w-full to make it full width, and mb-4 for spacing -->
@@ -152,7 +152,7 @@
             <button 
               type="button" 
               (click)="searchforVenue()"
-              class="flex items-center justify-center w-12 h-10 bg-[#0284c7] text-white rounded-lg"
+              class="flex items-center justify-center w-12 h-10 bg-[#5a6acf] text-white rounded-lg"
               style="height: 40px; width: 50px;"> 
               <svg class="w-4 h-4 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
@@ -203,9 +203,7 @@
         [imagepath]="card.imagepath"
         [address]="card.address"
         [buttons]="card.buttons"
-        [module]="'user'"
-        [selectedButtons]="card.selectedButtons"
-        (buttonSelect)="onButtonSelect(i, $event)"
+        [module]="'admin'"
         [selectedDate]="selectedDate"
         [venuType]="card.typeOfVenue"
         [venueID]="card.venueId"

@@ -1,8 +1,9 @@
- <div class="bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
-   
+<div class="bg-white h-[610px] border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 overflow-hidden relative">
+
     <!-- Image -->
     <div class="p-4">
-        <img class="rounded-lg w-full object-cover shadow-lg w-[100%] h-[230px]" src="../../../assets/images/audi8.jpg" alt="" />
+        <img class="rounded-lg w-full object-cover shadow-lg w-[100%] h-[230px]" [src]="imageUrl"
+            alt="" />
     </div>
 
     <!-- Heading and descrption -->
@@ -12,282 +13,401 @@
             <h5 class="mb-0 text-[23.13px] font-bold tracking-tight text-gray-900 dark:text-white">{{heading}}</h5>
             <p class="mb-2 font-normal text-[15.4px] dark:text-gray-400">{{location}}</p>
         </div>
-        
+
         <!-- Right Side: Symbols or Icons -->
         <div class="flex space-x-4">
             <!-- First Item -->
             <div class="flex flex-col items-center">
                 <!-- SVG Icon -->
-                <svg class="w-6 h-6 text-orange-500 dark:text-orange-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+                <svg class="w-6 h-6 text-orange-500 dark:text-orange-400" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                        d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
                 </svg>
                 <!-- Text below the SVG -->
                 <span class="text-xs font-medium text-orange-500 dark:text-orange-400">{{capacity}}</span>
             </div>
-        
+
             <!-- Second Item -->
             <div class="flex flex-col items-center">
                 <!-- SVG Icon with conditional color based on acstatus -->
-                <img 
-                    src="../../../assets/logo/Union.svg" 
-                    alt="Your Icon" 
-                    [ngStyle]="{'filter': acstatus === 'A/C' ? 'hue-rotate(32deg) saturate(2)' : 'grayscale(1)'}" 
+                <img src="../../../assets/logo/Union.svg" alt="Your Icon"
+                    [ngStyle]="{'filter': acstatus === 'A/C' ? 'hue-rotate(32deg) saturate(2)' : 'grayscale(1)'}"
                     class="w-6 h-6">
-              
+
                 <!-- Text below the SVG with conditional color based on acstatus -->
-                <span 
-                  class="text-xs font-medium" 
-                  [ngClass]="acstatus === 'A/C' ? 'text-blue-500 dark:text-blue-400' : 'text-gray-400 dark:text-gray-500'">
-                  {{ acstatus }}
+                <span class="text-xs font-medium"
+                    [ngClass]="acstatus === 'A/C' ? 'text-blue-500 dark:text-blue-400' : 'text-gray-400 dark:text-gray-500'">
+                    {{ acstatus }}
                 </span>
-              </div>
-              
+            </div>
+
         </div>
     </div>
-    
+
     <!-- App Badge -->
     <div class="pt-0 p-2">
         <!-- Flex container to hold the buttons, ensuring wrapping works and the buttons are confined to 3 per row -->
         <div class="flex flex-wrap justify-center gap-2 w-full">
-            <button *ngFor="let button of buttons"
-              [ngClass]="{
+            <button *ngFor="let button of buttons" [ngClass]="{
                 'text-red-500 border border-red-500': getButtonValue(button),
                 'text-green-500 border border-green-500': !isSelected(button),
                 'text-white bg-green-500': isSelected(button)
-              }"
-              (click)="onButtonSelect(button)"
-              [disabled]="getButtonValue(button)"
-              type="button"
-              class="focus:outline-none font-medium rounded text-sm p-1 text-center w-1/3 max-w-[calc(30%-0.5rem)]">
-              {{ getButtonLabel(button) }}
+              }" (click)="onButtonSelect(button)" [disabled]="getButtonValue(button)" type="button"
+                class="focus:outline-none font-medium rounded text-sm p-1 text-center w-1/3 max-w-[calc(30%-0.5rem)]">
+                {{ getButtonLabel(button) }}
             </button>
-          </div>
+        </div>
     </div>
     <div *ngIf="showMessage" class="text-red-500 text-sm mt-0 ml-8">
         Please select at least one slot to proceed.
-      </div>
-    
+    </div>
+
     <!-- location and book button -->
-    <div class="p-2 flex justify-between items-center mt-6">
+    <div class="p-2 flex justify-between items-center mt-6 absolute bottom-0 left-0 w-full ">
         <!-- Left Side -->
         <div class="flex flex-col w-2/3">
             <div class="flex items-center">
-                <svg class="w-5 h-5 text-gray-800 dark:text-white mr-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
+                <svg class="w-5 h-5 text-gray-800 dark:text-white mr-0" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z" />
                 </svg>
                 <p class="mb-0 font-normal text-[13px] dark:text-gray-400">{{address}}</p>
             </div>
-            <button (click)="othersBooking(userID, objID, selectedDate)" class="ml-4 font-normal text-xs text-blue-500 hover:text-blue-700 text-left">View others Booking </button>
- 
+            <button (click)="othersBooking(userID, objID, selectedDate)"
+                class="ml-4 font-normal text-xs text-blue-500 hover:text-blue-700 text-left">View All Bookings </button>
+
         </div>
 
         <!-- Right Side -->
         <div class="flex flex-col w-1/3 text-right">
-            
+
             <button type="button" data-tooltip-target="tooltip-click" data-tooltip-trigger="click"
-            (click)="selectedButtons.length > 0 ? openbookVenueModal() : setShowMessage()"
-                    class="text-white font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 whitespace-nowrap flex justify-center items-center"
-                    [ngClass]="{
-                        'bg-[#0284c7]': module === 'user' && selectedButtons.length > 0,
-                        'bg-[#5a6acf]': module !== 'user' && selectedButtons.length > 0,
-                        'bg-gray-400 ': selectedButtons.length === 0 }">
+                (click)="bookingDetails.arenaBookedSlots_UserBooking_Array.length > 0 ? openbookVenueModal() : setShowMessage()"
+                class="text-white font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 whitespace-nowrap flex justify-center items-center"
+                [ngClass]="{
+                        'bg-[#0284c7]': module === 'user' && bookingDetails.arenaBookedSlots_UserBooking_Array.length > 0,
+                        'bg-[#5a6acf]': module !== 'user' && bookingDetails.arenaBookedSlots_UserBooking_Array.length > 0,
+                        'bg-gray-400 ': bookingDetails.arenaBookedSlots_UserBooking_Array.length === 0 }">
                 Book Venue
             </button>
         </div>
     </div>
- </div>
+</div>
 
-  <div *ngIf="bookVenueModal"    class="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-70 ">
-      <div class="relative p-4 w-full max-w-3xl max-h-full">
-          <!-- Modal content -->
-          <div class="relative bg-[#f9f9f9] rounded-lg shadow dark:bg-gray-700">
+<div *ngIf="bookVenueModal" class="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-70 ">
+    <div class="relative p-4 w-full max-w-3xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-[#f9f9f9] rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
-            <div class="p-4 md:p-5 border-b rounded-t dark:border-gray-600" >
+            <div class="p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <!-- First line: Heading and Close Button -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-2">
-                        <img src="../../../assets/logo/Icon.svg" alt="Logo" class="w-5 h-5"> 
+                        <img src="../../../assets/logo/Icon.svg" alt="Logo" class="w-5 h-5">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                             My Booking
                         </h3>
                     </div>
-                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-xs w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" (click)="closebookVenueModal()">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-xs w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        (click)="closebookVenueModal()">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                
+
                 <!-- Second line: Paragraph -->
-                <p [ngClass]="{'mt-2 text-sm ml-8 text-gray-700 dark:text-gray-300':!isMobileScreen(), 'mt-2 text-[12px] ml-7 text-gray-700 dark:text-gray-300':isMobileScreen() }">
+                <p
+                    [ngClass]="{'mt-2 text-sm ml-8 text-gray-700 dark:text-gray-300':!isMobileScreen(), 'mt-2 text-[12px] ml-7 text-gray-700 dark:text-gray-300':isMobileScreen() }">
                     {{ selectedDate | date: 'd MMM yyyy' }} | {{heading}} | {{address}}
                 </p>
                 <!-- Component -->
                 <div class="mt-4 ml-7">
-                    <app-badge [badges]="selectedButtons"></app-badge>
+                    <app-badge [badges]="bookingDetails.arenaBookedSlots_UserBooking_Array"></app-badge>
                 </div>
             </div>
 
-              <!-- Modal body -->
-              <form  #eventForm="ngForm" class="p-4 md:p-5 mb-8 overflow-scroll  max-h-screen" [ngClass]="{'h-80':isMobileScreen()}">
+            <!-- Modal body -->
+            <form #eventForm="ngForm" class="p-4 md:p-5 mb-8 overflow-scroll  max-h-screen"
+                [ngClass]="{'h-80':isMobileScreen()}">
 
-                <div class="flex items-center space-x-4 mb-0">
-                    <label class="w-2/5 text-black text-xs text-left ">Event Name <span class="text-red-700">*</span></label>
-                    <input type="text" name="eventName" #eventNameInput="ngModel" [(ngModel)]="bookingDetails.arenaEventName_UserBooking_Text" placeholder="Event" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md text-[12px]">
-                    <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
-                </div>
-            
-                <div class="flex items-center space-x-4 mb-0">
-                    <label class="w-2/5 text-black text-xs text-left ">Resource Person / Chief Guest Name <span class="text-red-700">*</span></label>
-                    <input type="text" [(ngModel)]="bookingDetails.arenaResourcePerson_UserBooking_Text" name="chiefPerson" #chiefPersonInput="ngModel" required class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="XYZ">
-                    <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
-                </div>
-            
-                <div class="flex items-center space-x-4 mb-0">
-                    <label class="w-2/5 text-black text-xs text-left ">Department / Club / Association / Deanery / Institutional Name <span class="text-red-700">*</span></label>
-                    <input type="text" [(ngModel)]="bookingDetails.arenaDepartmentName_UserBooking_Text" name="department" #departmentInput="ngModel" required class="w-3/5 px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
-                    <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
+                <div *ngIf="module === 'admin'" class="flex flex-col space-y-1 mb-3">
+                    <div class="flex items-center space-x-4">
+                      <label class="w-2/5 text-black text-xs text-left">
+                        Select User <span class="text-red-700">*</span>
+                      </label>
+                      <!-- Wrap Input + Error Message in a Flex Column -->
+                      <div class="w-3/5 flex flex-col">
+                        <button id="dropdownDefaultButton"  class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg " type="button" (click)="setDropdown()"> {{bookingDetails.arenaBookedToUserName_UserBooking_Text}}
+                            <svg *ngIf="isDropdownOpen === false" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                            </svg>
+
+                            <svg *ngIf="isDropdownOpen === true" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
+                             </svg>
+                      </button>
+                      <div *ngIf="isDropdownOpen" class="absolute mt-12 z-10 w-[320px] shadow-xl bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ">
+                        
+                        <div class="p-3">
+                          <label for="input-group-search" class="sr-only">Search</label>
+                          <div class="relative">
+                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                              </svg>
+                            </div>
+                            <input type="text" [(ngModel)]="searchText" (input)="filterUsers()"
+                                   id="input-group-search" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " placeholder="Search Venue">
+                          </div>
+                        </div>
+
+                        <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
+                          <li *ngFor="let user of filteredUsers; let i = index">
+                            <div class="flex items-left ps-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <button (click)="setUserDetails(user.userId, user.username)"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{user.username}}</button>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                        <!-- Error Message Below Input -->
+                        <div 
+                          *ngIf="(eventNameInput.invalid && eventNameInput.touched) || (error && !bookingDetails.arenaEventName_UserBooking_Text)" 
+                          class="text-red-500 text-xs mt-1">
+                          Enter Event Name
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="flex flex-col space-y-1 mb-3">
+                    <div class="flex items-center space-x-4">
+                      <label class="w-2/5 text-black text-xs text-left">
+                        Event Name <span class="text-red-700">*</span>
+                      </label>
+                      <!-- Wrap Input + Error Message in a Flex Column -->
+                      <div class="w-3/5 flex flex-col">
+                        <input 
+                          type="text" 
+                          name="eventName" 
+                          #eventNameInput="ngModel"
+                          [(ngModel)]="bookingDetails.arenaEventName_UserBooking_Text" 
+                          placeholder="Event" 
+                          required
+                          class="h-10 px-3 py-1 border border-gray-300 rounded-md text-[12px]"
+                        />
+                        <!-- Error Message Below Input -->
+                        <div 
+                          *ngIf="(eventNameInput.invalid && eventNameInput.touched) || (error && !bookingDetails.arenaEventName_UserBooking_Text)" 
+                          class="text-red-500 text-xs mt-1">
+                          Enter Event Name
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="flex flex-col space-y-1 mb-3">
+                    <div class="flex items-center space-x-4">
+                        <label class="w-2/5 text-black text-xs text-left ">Resource Person / Chief Guest Name <span
+                                class="text-red-700">*</span></label>
+                
+                        <div class="w-3/5 flex flex-col">
+                            <input type="text" [(ngModel)]="bookingDetails.arenaResourcePerson_UserBooking_Text" name="chiefPerson"
+                                #chiefPersonInput="ngModel" required
+                                class="w-full px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="XYZ">
+                
+                            <div *ngIf="(chiefPersonInput.invalid && chiefPersonInput.touched) || (error && !bookingDetails.arenaResourcePerson_UserBooking_Text)"
+                                class="text-red-500 text-xs mt-1">
+                                Enter Resource Person / Chief Guest Name
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex items-center space-x-4 mb-0">
-                    <label class="w-2/5 text-black text-xs text-left ">Fest / Conference /Meeting / Seminar /Workshop / Training Programme / FDP <span class="text-red-700">*</span></label>
-                    <input type="text" [(ngModel)]="bookingDetails.arenaEventType_UserBooking_Text" name="eventKind" #eventKindInput="ngModel" required class="w-3/5 h-10 px-3 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
-                    <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
+                <div class="flex flex-col space-y-1 mb-3">
+                    <div class="flex items-center space-x-4">
+                        <label class="w-2/5 text-black text-xs text-left ">Department / Club / Association / Deanery /
+                            Institutional Name <span class="text-red-700">*</span></label>
+                
+                        <div class="w-3/5 flex flex-col">
+                            <input type="text" [(ngModel)]="bookingDetails.arenaDepartmentName_UserBooking_Text" name="department"
+                                #departmentInput="ngModel" required
+                                class="w-full px-3 h-10 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
+                
+                            <div *ngIf="(departmentInput.invalid && departmentInput.touched) || (error && !bookingDetails.arenaDepartmentName_UserBooking_Text)"
+                                class="text-red-500 text-xs mt-1">
+                                Enter the details
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-1 mb-3">
+                    <div class="flex items-center space-x-4">
+                        <label class="w-2/5 text-black text-xs text-left ">Fest / Conference /Meeting / Seminar /Workshop /
+                            Training Programme / FDP <span class="text-red-700">*</span></label>
+                
+                        <div class="w-3/5 flex flex-col">
+                            <input type="text" [(ngModel)]="bookingDetails.arenaEventType_UserBooking_Text" name="eventKind"
+                                #eventKindInput="ngModel" required
+                                class="w-full h-10 px-3 py-1 border border-gray-300 rounded-md  text-xs" placeholder="CS PG">
+                
+                            <div *ngIf="(eventKindInput.invalid && eventKindInput.touched) || (error && !bookingDetails.arenaEventType_UserBooking_Text)"
+                                class="text-red-500 text-xs mt-1">
+                                Enter the details
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex items-center space-x-4 mb-2">
                     <label class="w-2/5 text-black text-xs text-left ">Additional Requirements</label>
 
                     <div class="flex w-3/5 flex-wrap gap-1">
-                            <div class="flex items-center ps-3">
-                                <input id="photography" type="checkbox" value="" name="photography" [(ngModel)]="photographySelected" (ngModelChange)="updateAdditionalRequirements()" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                <label for="photography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Photography</label>
-                            </div>
-
-                            <div class="flex items-center ps-3">
-                                <input id="choir" type="checkbox" value="" name="choir" [(ngModel)]="choirSelected" (ngModelChange)="updateAdditionalRequirements()" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                <label for="choir" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Choir</label>
-                            </div>
-
-                            <div class="flex items-center ps-3">
-                                <input id="videography" type="checkbox" value="" name="videography" [(ngModel)]="videographySelected" (ngModelChange)="updateAdditionalRequirements()" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                <label for="videography" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Videography</label>
-                            </div>
-
-                            <div class="flex items-center ps-3">
-                                <input id="lamp" type="checkbox" value="" name="lamp" [(ngModel)]="lampSelected" (ngModelChange)="updateAdditionalRequirements()" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                <label for="lamp" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Lamp</label>
-                            </div>
-
-                            <div class="flex items-center ps-3">
-                                <input id="studentReporters" type="checkbox" value="" [(ngModel)]="studentReportersSelected" (ngModelChange)="updateAdditionalRequirements()" name="studentReporters" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                <label for="studentReporters" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Student Reporters</label>
-                            </div>
-
-                            <div class="flex  items-center ps-3">
-                                <input id="whiteboard" type="checkbox" value="" name="whiteboard" [(ngModel)]="whiteboardSelected" (ngModelChange)="updateAdditionalRequirements()" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                                <label for="whiteboard" class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Whiteboard</label>
-                            </div>
-
-                            <!-- ---------------sapling----------------------  -->
-                           <div class="flex items-center ps-3 py-3 space-x-2">
-                                
-                            <input id="saplings-radio" 
-                                type="checkbox" 
-                                value="saplings" 
-                                [(ngModel)]="saplingsSelected" 
-                                (ngModelChange)="onSaplingsChange(); updateAdditionalRequirements()" 
-                                name="saplings-radio" 
+                        <div class="flex items-center ps-3">
+                            <input id="photography" type="checkbox" value="" name="photography"
+                                [(ngModel)]="photographySelected" (ngModelChange)="updateAdditionalRequirements()"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                            <label for="saplings-radio" class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
+                            <label for="photography"
+                                class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Photography</label>
+                        </div>
 
-                           
+                        <div class="flex items-center ps-3">
+                            <input id="choir" type="checkbox" value="" name="choir" [(ngModel)]="choirSelected"
+                                (ngModelChange)="updateAdditionalRequirements()"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            <label for="choir"
+                                class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Choir</label>
+                        </div>
+
+                        <div class="flex items-center ps-3">
+                            <input id="videography" type="checkbox" value="" name="videography"
+                                [(ngModel)]="videographySelected" (ngModelChange)="updateAdditionalRequirements()"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            <label for="videography"
+                                class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Videography</label>
+                        </div>
+
+                        <div class="flex items-center ps-3">
+                            <input id="lamp" type="checkbox" value="" name="lamp" [(ngModel)]="lampSelected"
+                                (ngModelChange)="updateAdditionalRequirements()"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            <label for="lamp"
+                                class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Lamp</label>
+                        </div>
+
+                        <div class="flex items-center ps-3">
+                            <input id="studentReporters" type="checkbox" value="" [(ngModel)]="studentReportersSelected"
+                                (ngModelChange)="updateAdditionalRequirements()" name="studentReporters"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            <label for="studentReporters"
+                                class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Student
+                                Reporters</label>
+                        </div>
+
+                        <div class="flex  items-center ps-3">
+                            <input id="whiteboard" type="checkbox" value="" name="whiteboard"
+                                [(ngModel)]="whiteboardSelected" (ngModelChange)="updateAdditionalRequirements()"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            <label for="whiteboard"
+                                class="w-full py-3 ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Whiteboard</label>
+                        </div>
+
+                        <!-- ---------------sapling----------------------  -->
+                        <div class="flex items-center ps-3 py-3 space-x-2">
+
+                            <input id="saplings-radio" type="checkbox" value="saplings" [(ngModel)]="saplingsSelected"
+                                (ngModelChange)="onSaplingsChange(); updateAdditionalRequirements()"
+                                name="saplings-radio"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            <label for="saplings-radio"
+                                class="text-xs font-medium text-gray-900 dark:text-gray-300">Saplings</label>
+
+
                             <div *ngIf="saplingsSelected" class="flex items-center">
-                                <input type="number" 
-                                    id="saplings-quantity" 
-                                    [(ngModel)]="bookingDetails.arenaSaplingsQuantity_UserBooking_Integer" 
-                                    name="saplings-quantity" 
-                                    class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md  text-xs" 
-                                    min="1" 
+                                <input type="number" id="saplings-quantity"
+                                    [(ngModel)]="bookingDetails.arenaSaplingsQuantity_UserBooking_Integer"
+                                    (ngModelChange)="updateAdditionalRequirements()" name="saplings-quantity"
+                                    class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md  text-xs" min="1"
                                     placeholder="Enter number">
                             </div>
                         </div>
-                            
-                            <!-- ------------------------ Mementos -------------------------  -->
-                            <div class="flex items-center ps-3 space-x-2">
-                                
-                                <input id="mementos-radio" 
-                                    type="checkbox" 
-                                    value="mementos" 
-                                    [(ngModel)]="mementosSelected" 
-                                    (ngModelChange)="onMementosChange();updateAdditionalRequirements()" 
-                                    name="memntos-radio" 
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
-                                <label for="memntos-radio" class="text-xs font-medium text-gray-900 ">Mementos</label>
 
-                                
-                                <div *ngIf="mementosSelected" class="flex items-center">
-                                    <input type="number" 
-                                        id="memntos-quantity" 
-                                        [(ngModel)]="bookingDetails.arenaMementoQuantity_UserBooking_Integer" 
-                                        name="mementos-quantity" 
-                                        class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md text-xs" 
-                                        min="1" 
-                                        placeholder="Enter number">
-                                </div>
+                        <!-- ------------------------ Mementos -------------------------  -->
+                        <div class="flex items-center ps-3 space-x-2">
+
+                            <input id="mementos-radio" type="checkbox" value="mementos" [(ngModel)]="mementosSelected"
+                                (ngModelChange)="onMementosChange();updateAdditionalRequirements()"
+                                (ngModelChange)="updateAdditionalRequirements()" name="memntos-radio"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                            <label for="memntos-radio" class="text-xs font-medium text-gray-900 ">Mementos</label>
+
+
+                            <div *ngIf="mementosSelected" class="flex items-center">
+                                <input type="number" id="memntos-quantity"
+                                    [(ngModel)]="bookingDetails.arenaMementoQuantity_UserBooking_Integer"
+                                    name="mementos-quantity"
+                                    class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md text-xs" min="1"
+                                    placeholder="Enter number">
                             </div>
+                        </div>
 
-                            <!-- --------------------Laptop----------------------  -->
-                            <div class="flex items-center ps-3 py-3 space-x-2">
-                                
-                                <input id="laptop-radio" 
-                                    type="checkbox" 
-                                    value="laptop" 
-                                    [(ngModel)]="laptopsSelected" 
-                                    (ngModelChange)="onLaptopsChange();updateAdditionalRequirements()" 
-                                    name="laptop-radio" 
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
-                                <label for="laptop-radio" class="text-xs font-medium text-gray-900 ">Laptop</label>
+                        <!-- --------------------Laptop----------------------  -->
+                        <div class="flex items-center ps-3 py-3 space-x-2">
 
-                                
-                                <div *ngIf="laptopsSelected" class="flex items-center">
-                                    <input type="number" 
-                                        id="laptop-quantity" 
-                                        [(ngModel)]="bookingDetails.arenaLaptopQuantity_UserBooking_Integer" 
-                                        name="laptop-quantity" 
-                                        class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md text-xs" 
-                                        min="1" 
-                                        placeholder="Enter number">
-                                </div>
+                            <input id="laptop-radio" type="checkbox" value="laptop" [(ngModel)]="laptopsSelected"
+                                (ngModelChange)="onLaptopsChange();updateAdditionalRequirements()"
+                                (ngModelChange)="updateAdditionalRequirements()" name="laptop-radio"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                            <label for="laptop-radio" class="text-xs font-medium text-gray-900 ">Laptop</label>
+
+
+                            <div *ngIf="laptopsSelected" class="flex items-center">
+                                <input type="number" id="laptop-quantity"
+                                    [(ngModel)]="bookingDetails.arenaLaptopQuantity_UserBooking_Integer"
+                                    name="laptop-quantity"
+                                    class="ml-2 px-3 w-12 py-1 border border-gray-300 rounded-md text-xs" min="1"
+                                    placeholder="Enter number">
                             </div>
+                        </div>
 
-                            
+
 
                     </div>
-                    
+
                 </div>
 
                 <div class="flex items-center space-x-4 mb-0">
                     <label class="w-2/5 text-black text-xs text-left">Extra Requirements, if needed</label>
-                    <textarea
-                        id="message"
-                        name="ExtraRequirment"
-                        [(ngModel)]="bookingDetails.arenaExtraRequirements_UserBooking_text"
-                        rows="6"
+                    <textarea id="message" name="ExtraRequirment"
+                        [(ngModel)]="bookingDetails.arenaExtraRequirements_UserBooking_text" rows="6"
                         class="w-3/5 px-3 py-1 mb-6 mt-6 border border-gray-300 rounded-md text-xs"
                         placeholder=""></textarea>
                     <hr class="h-px my-8 bg-black border-0 dark:bg-gray-700">
                 </div>
 
                 <div class="flex items-center space-x-4 mb-2">
-                     <p class="text-xs">Is the event scheduled as per the academic calendar?</p>
+                    <p class="text-xs">Is the event scheduled as per the academic calendar?</p>
 
-                    <input id="yes" type="radio" [value]="true" name="academic_calender" [(ngModel)]="bookingDetails.arenaIsScheduledAsPerAcademicCalendar_UserBooking_bool" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                    <input id="yes" type="radio" [value]="true" name="academic_calender" name="academicCalender"
+                         #academicCalenderInput="ngModel" required
+                        [(ngModel)]="bookingDetails.arenaIsScheduledAsPerAcademicCalendar_UserBooking_bool"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
                     <label for="yes" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Yes</label>
 
-                    <input id="no" type="radio" [value]="false" name="academic_calender" [(ngModel)]="bookingDetails.arenaIsScheduledAsPerAcademicCalendar_UserBooking_bool" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                    <input id="no" type="radio" [value]="false" name="academic_calender" name="academicCalender"
+                    #academicCalenderInput="ngModel" required
+                        [(ngModel)]="bookingDetails.arenaIsScheduledAsPerAcademicCalendar_UserBooking_bool"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
                     <label for="no" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">No</label>
 
                 </div>
@@ -295,77 +415,67 @@
                 <div class="flex items-center space-x-4 mb-2">
                     <p class="text-xs">Mode of Event</p>
 
-                   <input id="offline" type="radio" value="offline" name="mode" [(ngModel)]="bookingDetails.arenaModeOfEvent_UserBooking_Text" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
-                   <label for="offline" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Offline</label>
+                    <input id="offline" type="radio" value="offline" name="mode" name="modeOFEvent"
+                           #modeOFEventInput="ngModel" required
+                        [(ngModel)]="bookingDetails.arenaModeOfEvent_UserBooking_Text"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                    <label for="offline"
+                        class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Offline</label>
 
-                   <input id="hybrid" type="radio" value="hybrid" name="mode" [(ngModel)]="bookingDetails.arenaModeOfEvent_UserBooking_Text" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
-                   <label for="hybrid" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Hybrid</label>
+                    <input id="hybrid" type="radio" value="hybrid" name="mode" name="modeOFEvent"
+                         #modeOFEventInput="ngModel" required
+                        [(ngModel)]="bookingDetails.arenaModeOfEvent_UserBooking_Text"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                    <label for="hybrid" class="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300">Hybrid</label>
 
                 </div>
-
-               <div *ngIf="error" class="flex items-center p-4 mb-4 mt-6 text-blue-800 rounded-lg bg-blue-50 " role="alert">
-                <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Info</span>
-                <div class="ms-3 text-sm font-medium">
-                    Please fill in all the required fields to book your slot
-                </div>
-                  <button type="button" (click)="closeErrorMessage()" class="ms-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg  p-1.5 hover:bg-blue-200 inline-flex items-center justify-center h-8 w-8">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                </button>
-               </div>
 
                 <div class="flex mt-8">
-                    <div class="flex-1 flex justify-center" >
-                        <button type="button" (click)="closebookVenueModal()" class="py-2.5 px-5 me-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 w-full">Cancel</button>
+                    <div class="flex-1 flex justify-center">
+                        <button type="button" (click)="closebookVenueModal()"
+                            class="py-2.5 px-5 me-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 w-full">Cancel</button>
                     </div>
                     <div class="flex-1 flex justify-center">
-                        <button 
-                            type="button"
-                            (click)="eventForm.valid ? bookSlot() : errorBookSlot()"
+                        <button type="button" (click)="eventForm.valid ? bookSlot() : errorBookSlot()"
                             class="py-2.5 px-5 me-2 mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800 w-full">
                             Confirm
                         </button>
-                    </div> 
+                    </div>
                 </div>
-                
-            </form>
-            
-          </div>
-      </div>
-  </div> 
-  
-  <div *ngIf="sucessBookingModal" 
-  class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
-    <div class="relative p-4 w-full max-w-lg max-h-full"> 
-    
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-       
-        <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
-          <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4"> 
-          
-          <div class="text-center"> 
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Venue Booked Successfully !
-            </h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300">
-              Auditorium A1 | 2nd Floor, Admin Block has been booked!
-            </p>
-          </div>
-        </div>
-  
-       
-        <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-          <button (click)="closeSucessBookingModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Done
-          </button>
-        </div>
 
-      </div>
+            </form>
+
+        </div>
     </div>
-  </div>
-  
-  
+</div>
+
+<div *ngIf="sucessBookingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
+    <div class="relative p-4 w-full max-w-lg max-h-full">
+
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+            <div class="p-4 md:p-5 space-y-4 flex flex-col items-center">
+                <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4">
+
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Venue Booked Successfully !
+                    </h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Auditorium A1 | 2nd Floor, Admin Block has been booked!
+                    </p>
+                </div>
+            </div>
+
+
+            <div
+                class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <button (click)="closeSucessBookingModal()" data-modal-hide="default-modal" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Done
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

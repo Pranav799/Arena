@@ -1,1043 +1,1199 @@
-
 <div class="flex h-screen">
-  
-  <div  [ngClass]="{'w-1/6': isSidePanelOpen && !isMobileScreen(), 'w-12': !isSidePanelOpen && !isMobileScreen(),'hidden': isMobileScreen()}" class="transition-all duration-900 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg hidden sm:block">
-        <div class="py-4">
 
-          <h5 id="drawer-navigation-label" *ngIf="isSidePanelOpen" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 mt-3 mb-4">Menu</h5>
-          <ul class="space-y-2 font-medium" [ngClass]="{'mt-16': !isSidePanelOpen}"> 
+  <div
+    [ngClass]="{'w-1/6': isSidePanelOpen && !isMobileScreen(), 'w-12': !isSidePanelOpen && !isMobileScreen(),'hidden': isMobileScreen()}"
+    class="transition-all duration-900 ease-in-out bg-white text-white p-4 overflow-y-auto shadow-lg hidden sm:block">
+    <div class="py-4">
 
-              <li class="w-full rounded-lg" [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'dashboard', 'bg-white': activeSection !== 'dashboard' }">
-                <button (click)="setActiveSection('dashboard')" data-drawer-hide="drawer-navigation" 
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
-                    <img src="../../../../assets/icons/dashboard.svg" class="h-4"  alt="Flowbite Logo" />
-                    <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
-                </button>
-              </li> 
+      <h5 id="drawer-navigation-label" *ngIf="isSidePanelOpen"
+        class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400 mt-3 mb-4">Menu</h5>
+      <ul class="space-y-2 font-medium" [ngClass]="{'mt-16': !isSidePanelOpen}">
 
-              <li class="w-full rounded-lg" [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'createvenue', 'bg-white': activeSection !== 'createvenue' }">
-                <button (click)="setActiveSection('createvenue')" data-drawer-hide="drawer-navigation"  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
-                  <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
-                  <span class="flex-1 ms-3 whitespace-nowrap">Create Venue</span>
-                </button>
-            </li>
+        <li class="w-full rounded-lg"
+          [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'dashboard', 'bg-white': activeSection !== 'dashboard' }">
+          <button (click)="setActiveSection('dashboard')" data-drawer-hide="drawer-navigation"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
+            <img src="../../../../assets/icons/dashboard.svg" class="h-4" alt="Flowbite Logo" />
+            <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+          </button>
+        </li>
 
-            <li class="w-full rounded-lg" [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'editvenue', 'bg-white': activeSection !== 'editvenue' }">
-                <button (click)="setActiveSection('editvenue')" data-drawer-hide="drawer-navigation"  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
-                  <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
-                  <span class="flex-1 ms-3 whitespace-nowrap">View/ Edit Venue</span>
-                </button>
-            </li>
+        <li class="w-full rounded-lg"
+          [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'createvenue', 'bg-white': activeSection !== 'createvenue' }">
+          <button (click)="setActiveSection('createvenue')" data-drawer-hide="drawer-navigation"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
+            <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
+            <span class="flex-1 ms-3 whitespace-nowrap">Create Venue</span>
+          </button>
+        </li>
 
-            <li class="w-full rounded-lg" [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'slotbooking', 'bg-white': activeSection !== 'slotbooking' }">
-                <button (click)="setActiveSection('slotbooking')" data-drawer-hide="drawer-navigation"  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
-                  <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
-                  <span class="flex-1 ms-3 whitespace-nowrap">Slot Booking</span>
-                </button>
-            </li>
+        <li class="w-full rounded-lg"
+          [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'editvenue', 'bg-white': activeSection !== 'editvenue' }">
+          <button (click)="setActiveSection('editvenue')" data-drawer-hide="drawer-navigation"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
+            <img src="../../../../assets/icons/createvenue.svg" class="h-4" alt="Flowbite Logo" />
+            <span class="flex-1 ms-3 whitespace-nowrap">View/ Edit Venue</span>
+          </button>
+        </li>
 
-            <li class="w-full rounded-lg" [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'report', 'bg-white': activeSection !== 'report' }">
-                <button (click)="setActiveSection('report')" data-drawer-hide="drawer-navigation"  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
-                  <img src="../../../../assets/icons/report.svg" class="h-4" alt="Flowbite Logo" />
-                  <span class="flex-1 ms-3 whitespace-nowrap">Reports</span>
-                </button>
-            </li>
+        <li class="w-full rounded-lg"
+          [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'slotbooking', 'bg-white': activeSection !== 'slotbooking' }">
+          <button (click)="setActiveSection('slotbooking')" data-drawer-hide="drawer-navigation"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
+            <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
+            <span class="flex-1 ms-3 whitespace-nowrap">Slot Booking</span>
+          </button>
+        </li>
 
-            <li class="w-full rounded-lg" [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'bulkbooking', 'bg-white': activeSection !== 'bulkbooking' }">
-                <button (click)="setActiveSection('bulkbooking')" data-drawer-hide="drawer-navigation"  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
-                  <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
-                  <span class="flex-1 ms-3 whitespace-nowrap">Bulk Booking</span>
-                </button>
-            </li>
+        <li class="w-full rounded-lg"
+          [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'report', 'bg-white': activeSection !== 'report' }">
+          <button (click)="setActiveSection('report')" data-drawer-hide="drawer-navigation"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
+            <img src="../../../../assets/icons/report.svg" class="h-4" alt="Flowbite Logo" />
+            <span class="flex-1 ms-3 whitespace-nowrap">Reports</span>
+          </button>
+        </li>
 
-          </ul>
-        </div>
+        <li class="w-full rounded-lg"
+          [ngClass]="{ 'bg-[#ebe8fc]': activeSection === 'bulkbooking', 'bg-white': activeSection !== 'bulkbooking' }">
+          <button (click)="setActiveSection('bulkbooking')" data-drawer-hide="drawer-navigation"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group ">
+            <img src="../../../../assets/icons/slotbooking.svg" class="h-4" alt="Flowbite Logo" />
+            <span class="flex-1 ms-3 whitespace-nowrap">Bulk Booking</span>
+          </button>
+        </li>
+
+      </ul>
+    </div>
   </div>
 
-  
-  <div [ngClass]="{'w-full': !isSidePanelOpen || isMobileScreen(), 'w-5/6': isSidePanelOpen && !isMobileScreen()}" class="bg-gray-100 p-1 overflow-y-auto relative sm:w-full">
-  
+
+  <div [ngClass]="{'w-full': !isSidePanelOpen || isMobileScreen(), 'w-5/6': isSidePanelOpen && !isMobileScreen()}"
+    class="bg-gray-100 p-1 overflow-y-auto relative sm:w-full">
+
     <nav class="bg-white border-gray-200 dark:bg-gray-900 shadow-lg p-2">
       <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4 relative">
-  
-          <!-- Button: Visible on mobile when sidepanel is closed, always visible on desktop -->
-          <button 
-              *ngIf="!isMobileScreen()"
-              class="font-medium rounded-lg px-5 py-2.5 flex items-center space-x-3 absolute left-4"
-              type="button" 
-              (click)="toggleSidePanel()">
-              <img src="../../../../assets/logo/burger.svg" class="h-5" alt="Flowbite Logo" />
-          </button>
-  
-          <!-- Centered Text (with Flexbox Centering) -->
-          <div class="flex-1 flex justify-center items-center md:block">
-              <p class="text-[32px] sm:text-lg text-center" *ngIf="!isMobileScreen()">
-                  Welcome to <span class="text-[#5a6acf]" style="font-weight: 500;">Kristu Jayanti ARENA</span>
-              </p>
-          </div>
-  
-          <!-- Right-aligned Logo -->
-          <div class="flex items-center justify-end">
-              <img src="../../../../assets/images/applogo.png" class="h-6 sm:h-6 md:h-10" alt="Flowbite Logo" />
-          </div>
-  
+
+        <!-- Button: Visible on mobile when sidepanel is closed, always visible on desktop -->
+        <button *ngIf="!isMobileScreen()"
+          class="font-medium rounded-lg px-5 py-2.5 flex items-center space-x-3 absolute left-4" type="button"
+          (click)="toggleSidePanel()">
+          <img src="../../../../assets/logo/burger.svg" class="h-5" alt="Flowbite Logo" />
+        </button>
+
+        <!-- Centered Text (with Flexbox Centering) -->
+        <div class="flex-1 flex justify-center items-center md:block">
+          <p class="text-[32px] sm:text-lg text-center" *ngIf="!isMobileScreen()">
+            Welcome to <span class="text-[#5a6acf]" style="font-weight: 500;">Kristu Jayanti ARENA</span>
+          </p>
+        </div>
+
+        <!-- Right-aligned Logo -->
+        <div class="flex items-center justify-end">
+          <img src="../../../../assets/images/applogo.png" class="h-6 sm:h-6 md:h-10" alt="Flowbite Logo" />
+        </div>
+
       </div>
-  </nav>
-  
-  
-  
-  
-  
-  
+    </nav>
 
-        <div *ngIf="activeSection === 'dashboard'" class="flex flex-wrap justify-center mt-8 gap-8 p-6">  
 
-            <div class="max-w-sm w-1/3 w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-              <div class="flex justify-between">
-                <div>
-                  <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-                  <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
-                </div>
-                <div
-                  class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                  12%
-                  <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
-                  </svg>
-                </div>
-              </div>
-              <div id="area-chart"></div>
-              <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                <div class="flex justify-between items-center pt-5">
-                  <!-- Button -->
-                  <button
-                    id="dropdownDefaultButton"
-                    data-dropdown-toggle="lastDaysdropdown"
-                    data-dropdown-placement="bottom"
-                    class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                    type="button">
-                    Last 7 days
-                    <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                    </svg>
-                  </button>
-                  <!-- Dropdown menu -->
-                  <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-                        </li>
-                      </ul>
-                  </div>
-                  <a
-                    href="#"
-                    class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                    Users Report
-                    <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>  
 
-            <div class="max-w-sm w-1/3 w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-                <div class="flex justify-between mb-3">
-                  <div class="flex items-center">
-                    <div class="flex justify-center items-center">
-                      <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Your team's progress</h5>
-                      <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z"/>
-                      </svg>
-                      <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-                          <div class="p-3 space-y-2">
-                              <h3 class="font-semibold text-gray-900 dark:text-white">Activity growth - Incremental</h3>
-                              <p>Report helps navigate cumulative growth of community activities. Ideally, the chart should have a growing trend, as stagnating chart signifies a significant decrease of community activity.</p>
-                              <h3 class="font-semibold text-gray-900 dark:text-white">Calculation</h3>
-                              <p>For each date bucket, the all-time volume of activities is calculated. This means that activities in period n contain all activities up to period n, plus the activities generated by your community in period.</p>
-                              <a href="#" class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700 hover:underline">Read more <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                        </svg></a>
-                          </div>
-                          <div data-popper-arrow></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
-                  <div class="grid grid-cols-3 gap-3 mb-2">
-                    <dl class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
-                      <dt class="w-8 h-8 rounded-full bg-orange-100 dark:bg-gray-500 text-orange-600 dark:text-orange-300 text-sm font-medium flex items-center justify-center mb-1">12</dt>
-                      <dd class="text-orange-600 dark:text-orange-300 text-sm font-medium">To do</dd>
-                    </dl>
-                    <dl class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
-                      <dt class="w-8 h-8 rounded-full bg-teal-100 dark:bg-gray-500 text-teal-600 dark:text-teal-300 text-sm font-medium flex items-center justify-center mb-1">23</dt>
-                      <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium">In progress</dd>
-                    </dl>
-                    <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
-                      <dt class="w-8 h-8 rounded-full bg-blue-100 dark:bg-gray-500 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1">64</dt>
-                      <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium">Done</dd>
-                    </dl>
-                  </div>
-                  <button data-collapse-toggle="more-details" type="button" class="hover:underline text-xs text-gray-500 dark:text-gray-400 font-medium inline-flex items-center">Show more details <svg class="w-2 h-2 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                    </svg>
-                  </button>
-                  <div id="more-details" class="border-gray-200 border-t dark:border-gray-600 pt-3 mt-3 space-y-2 hidden">
-                    <dl class="flex items-center justify-between">
-                      <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Average task completion rate:</dt>
-                      <dd class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-                        <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
-                        </svg> 57%
-                      </dd>
-                    </dl>
-                    <dl class="flex items-center justify-between">
-                      <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Days until sprint ends:</dt>
-                      <dd class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-gray-600 dark:text-gray-300">13 days</dd>
-                    </dl>
-                    <dl class="flex items-center justify-between">
-                      <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Next meeting:</dt>
-                      <dd class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-gray-600 dark:text-gray-300">Thursday</dd>
-                    </dl>
-                  </div>
-                </div>
 
-                <!-- Radial Chart -->
-                <div class="py-6" id="radial-chart"></div>
 
-                <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                  <div class="flex justify-between items-center pt-5">
-                    <!-- Button -->
-                    <button
-                      id="dropdownDefaultButton"
-                      data-dropdown-toggle="lastDaysdropdown"
-                      data-dropdown-placement="bottom"
-                      class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                      type="button">
-                      Last 7 days
-                      <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                      </svg>
-                    </button>
-                    <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                          <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                          </li>
-                          <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                          </li>
-                          <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-                          </li>
-                          <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-                          </li>
-                          <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-                          </li>
-                        </ul>
-                    </div>
-                    <a
-                      href="#"
-                      class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                      Progress report
-                      <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-            </div>
 
-            <div class="max-w-sm w-1/3 w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-          
-          <div class="flex justify-between mb-3">
-              <div class="flex justify-center items-center">
-                  <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Website traffic</h5>
-                  <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z"/>
-                  </svg>
-                  <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-                      <div class="p-3 space-y-2">
-                          <h3 class="font-semibold text-gray-900 dark:text-white">Activity growth - Incremental</h3>
-                          <p>Report helps navigate cumulative growth of community activities. Ideally, the chart should have a growing trend, as stagnating chart signifies a significant decrease of community activity.</p>
-                          <h3 class="font-semibold text-gray-900 dark:text-white">Calculation</h3>
-                          <p>For each date bucket, the all-time volume of activities is calculated. This means that activities in period n contain all activities up to period n, plus the activities generated by your community in period.</p>
-                          <a href="#" class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700 hover:underline">Read more <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                    </svg></a>
-                      </div>
-                      <div data-popper-arrow></div>
-                  </div>
-                </div>
-              <div>
-                <button type="button" data-tooltip-target="data-tooltip" data-tooltip-placement="bottom" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-8 h-8 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"><svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
-          </svg><span class="sr-only">Download data</span>
-                </button>
-                <div id="data-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Download CSV
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-              </div>
-          </div>
+    <div *ngIf="activeSection === 'dashboard'" class="flex flex-wrap justify-center mt-8 gap-8 p-6">
 
+      <div class="max-w-sm w-1/3 w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+        <div class="flex justify-between">
           <div>
-            <div class="flex" id="devices">
-              <div class="flex items-center me-4">
-                  <input id="desktop" type="checkbox" value="desktop" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="desktop" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desktop</label>
-              </div>
-              <div class="flex items-center me-4">
-                  <input id="tablet" type="checkbox" value="tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="tablet" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tablet</label>
-              </div>
-              <div class="flex items-center me-4">
-                  <input id="mobile" type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="mobile" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mobile</label>
-              </div>
-            </div>
+            <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
+            <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
           </div>
-
-          <!-- Donut Chart -->
-          <div class="py-6" id="donut-chart"></div>
-
-          <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-            <div class="flex justify-between items-center pt-5">
-              <!-- Button -->
-              <button
-                id="dropdownDefaultButton"
-                data-dropdown-toggle="lastDaysdropdown"
-                data-dropdown-placement="bottom"
-                class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                type="button">
-                Last 7 days
-                <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                </svg>
-              </button>
-              <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-                    </li>
-                  </ul>
-              </div>
-              <a
-                href="#"
-                class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                Traffic analysis
-                <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                </svg>
-              </a>
-            </div>
+          <div
+            class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
+            12%
+            <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 10 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 13V1m0 0L1 5m4-4 4 4" />
+            </svg>
           </div>
-           </div>
-
-           <div class="max-w-sm w-1/3 w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-          
-            <div class="flex justify-between mb-3">
-                <div class="flex justify-center items-center">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Website traffic</h5>
-                    <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z"/>
-                    </svg>
-                    <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-                        <div class="p-3 space-y-2">
-                            <h3 class="font-semibold text-gray-900 dark:text-white">Activity growth - Incremental</h3>
-                            <p>Report helps navigate cumulative growth of community activities. Ideally, the chart should have a growing trend, as stagnating chart signifies a significant decrease of community activity.</p>
-                            <h3 class="font-semibold text-gray-900 dark:text-white">Calculation</h3>
-                            <p>For each date bucket, the all-time volume of activities is calculated. This means that activities in period n contain all activities up to period n, plus the activities generated by your community in period.</p>
-                            <a href="#" class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700 hover:underline">Read more <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                      </svg></a>
-                        </div>
-                        <div data-popper-arrow></div>
-                    </div>
-                  </div>
-                <div>
-                  <button type="button" data-tooltip-target="data-tooltip" data-tooltip-placement="bottom" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-8 h-8 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"><svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
-            </svg><span class="sr-only">Download data</span>
-                  </button>
-                  <div id="data-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                      Download CSV
-                      <div class="tooltip-arrow" data-popper-arrow></div>
-                  </div>
-                </div>
-            </div>
-  
-            <div>
-              <div class="flex" id="devices">
-                <div class="flex items-center me-4">
-                    <input id="desktop" type="checkbox" value="desktop" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="desktop" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desktop</label>
-                </div>
-                <div class="flex items-center me-4">
-                    <input id="tablet" type="checkbox" value="tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="tablet" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tablet</label>
-                </div>
-                <div class="flex items-center me-4">
-                    <input id="mobile" type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="mobile" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mobile</label>
-                </div>
-              </div>
-            </div>
-  
-            <!-- Donut Chart -->
-            <div class="py-6" id="donut-chart"></div>
-  
-            <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-              <div class="flex justify-between items-center pt-5">
-                <!-- Button -->
-                <button
-                  id="dropdownDefaultButton"
-                  data-dropdown-toggle="lastDaysdropdown"
-                  data-dropdown-placement="bottom"
-                  class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                  type="button">
-                  Last 7 days
-                  <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                  </svg>
-                </button>
-                <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-                      </li>
-                    </ul>
-                </div>
-                <a
-                  href="#"
-                  class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                  Traffic analysis
-                  <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            </div>
-
         </div>
-
-        <div *ngIf="activeSection === 'createvenue'" class="flex justify-center mt-12 " >
-          <form #eventForm="ngForm" class="w-[90%] p-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-5 mt-4 ml-5 text-2xl font-medium tracking-tight text-[#5a6acf] dark:text-white">Create a Venue</h5>
-          
-            <!-- Using grid for responsiveness: 1 item per row on mobile, 2 items per row on large screens -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
-          
-              <!-- Venue ID -->
-              <div class="mb-2">
-                <label for="venue-id" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue ID</label>
-                <input id="venue-id" [(ngModel)]="venue.arenaVenueId_VenueCreation_text" name="venueId" #venueIdInput="ngModel" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. M2">
-              </div>
-          
-              <!-- Venue Name -->
-              <div class="mb-2">
-                <label for="venue-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Name</label>
-                <input id="venue-name" [(ngModel)]="venue.arenaVenueName_VenueCreation_text" name="venueName" #venueNameInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Auditorium M2">
-              </div>
-          
-              <!-- Block -->
-              <div class="mb-2">
-                <label for="venue-block" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Block</label>
-                <input id="venue-block" [(ngModel)]="venue.arenaBlockName_VenueCreation_text" name="block" #blockInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter block">
-              </div>
-          
-              <!-- Seating Capacity -->
-              <div class="mb-2">
-                <label for="seating-capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seating Capacity</label>
-                <input id="seating-capacity" [(ngModel)]="venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer" 
-                       name="seatingCapacity" #seatingCapacityInput="ngModel" required type="number"
-                       (ngModelChange)="onSeatingCapacityChange($event)"
-                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. 100">
-              </div>
-          
-              <!-- A/C -->
-              <div class="mb-2">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">A/C</label>
-                <div class="flex items-center space-x-4">
-                  <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="ac" [(ngModel)]="venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text" name="ac" #acInput="ngModel" required type="radio" value="A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="A/C">
-                    <label for="ac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">A/C</label>
-                  </div>
-          
-                  <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="noac" [(ngModel)]="venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text" name="ac" #acInput="ngModel" required type="radio" value="Non A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Non A/C">
-                    <label for="noac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non A/C</label>
-                  </div>
-                </div>
-              </div>
-          
-              <!-- Permission for Auditorium -->
-              <div class="mb-2">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">Permission for Auditorium</label>
-                <div class="flex items-center space-x-4">
-                  <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="intreval" [(ngModel)]="venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_text" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="Required" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
-                    <label for="intreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
-                  </div>
-          
-                  <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input id="nointreval" [(ngModel)]="venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_text" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="NotRequired" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
-                    <label for="nointreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
-                  </div>
-                </div>
-              </div>
-          
-              <!-- Venue Location -->
-              <div class="mb-2">
-                <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Location</label>
-                <input id="venue-location" [(ngModel)]="venue.arenaVenueLocation_VenueCreation_text" name="location" #locationInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Main Block 3rd Floor">
-              </div>
-          
-              <!-- Venue Type Dropdown -->
-              <div class="mb-2">
-                <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Choose the type of Venue</label>
-                <button 
-                  id="dropdownDefaultButton" 
-                  class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg"
-                  type="button" 
-                  (click)="setDropdown()">
-                  {{buttonName}}
-                  <svg *ngIf="!isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
-                  </svg>
-          
-                  <svg *ngIf="isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
-                  </svg>
-                </button>
-          
-                <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
-                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                    <li><a (click)="setActiveItem('All Venue'); setDropdown(); setButtonName('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a></li>
-                    <li><a (click)="setActiveItem('Auditorium'); setDropdown(); setButtonName('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a></li>
-                    <li><a (click)="setActiveItem('Conference Hall'); setDropdown(); setButtonName('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a></li>
-                    <li><a (click)="setActiveItem('Mini Auditorium'); setDropdown(); setButtonName('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a></li>
-                    <li><a (click)="setActiveItem('Panel Room'); setDropdown(); setButtonName('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a></li>
-                    <li><a (click)="setActiveItem('Quadrangle/Turf'); setDropdown(); setButtonName('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="mb-2">
-                <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Upload Picture</label>
-            
-                <!-- Card Container -->
-                <div class="w-full px-3 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
-                    <div class="flex items-center justify-center w-full">
-                        <!-- Logo Section (30%) -->
-                        <div class="w-[30%] flex justify-center">
-                            <svg class="w-12 h-12 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                            </svg>
-                        </div>
-                        <!-- Text Section (70%) -->
-                        <div class="w-full sm:w-[70%] flex flex-col items-center justify-center pt-3 pb-3 h-[80px]">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <input id="dropzone-file" type="file" class="hidden" />
-                                <p class="mb-2 text-[14px] text-gray-600">Select a file or drag and drop here</p>
-                                <p class="text-center text-[12px] text-gray-500">PDF file size no more than 10MB</p>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-
-            <div class="mb-2 mt-8">
-              <label class="inline-flex items-center cursor-pointer">
-                <input 
-                  type="checkbox" 
-                  [(ngModel)]="venue.aernaIntervalTiming_VenueCreation_boolean" 
-                  (change)="venue.aernaIntervalTiming_VenueCreation_boolean = !venue.aernaIntervalTiming_VenueCreation_boolean"
-                  required 
-                  class="sr-only peer">
-                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Interval Timings</span>
-                <div class="relative w-11 h-6 ml-2 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#5a6acf]"></div>
-              </label>
-              <p class="ml-3 text-gray-500 text-sm mt-2">Toggle this if the venue timings is in break time (Eg. Quadrangle)</p>
-            </div>
-            
-            </div>
-
-            <div *ngIf="errorVenueCreation" class="flex items-center p-4 mb-4 m-6 mt-6 text-blue-800 rounded-lg bg-blue-50 " role="alert">
-              <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        <div id="area-chart"></div>
+        <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+          <div class="flex justify-between items-center pt-5">
+            <!-- Button -->
+            <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom"
+              class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+              type="button">
+              Last 7 days
+              <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 4 4 4-4" />
               </svg>
-              <span class="sr-only">Info</span>
-              <div class="ms-3 text-sm font-medium">
-                  Please fill in all the required fields to book your slot
+            </button>
+            <!-- Dropdown menu -->
+            <div id="lastDaysdropdown"
+              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7
+                    days</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30
+                    days</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90
+                    days</a>
+                </li>
+              </ul>
+            </div>
+            <a href="#"
+              class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+              Users Report
+              <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 9 4-4-4-4" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-sm w-1/3 w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+        <div class="flex justify-between mb-3">
+          <div class="flex items-center">
+            <div class="flex justify-center items-center">
+              <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Your team's progress</h5>
+              <svg data-popover-target="chart-info" data-popover-placement="bottom"
+                class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ms-1"
+                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z" />
+              </svg>
+              <div data-popover id="chart-info" role="tooltip"
+                class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+                <div class="p-3 space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Activity growth - Incremental</h3>
+                  <p>Report helps navigate cumulative growth of community activities. Ideally, the chart should have a
+                    growing trend, as stagnating chart signifies a significant decrease of community activity.</p>
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Calculation</h3>
+                  <p>For each date bucket, the all-time volume of activities is calculated. This means that activities
+                    in period n contain all activities up to period n, plus the activities generated by your community
+                    in period.</p>
+                  <a href="#"
+                    class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700 hover:underline">Read
+                    more <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                    </svg></a>
+                </div>
+                <div data-popper-arrow></div>
               </div>
-             </div>
-            
-            <div class="w-full text-center mt-4 mb-4">
-              <button 
-                type="button" 
-                (click)="eventForm.valid ? createVenue() : errorCreateVenue()"
-                class="text-white bg-[#5a6acf] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-0 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 col-span-2 mx-auto">
-                Add Venue
-              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+          <div class="grid grid-cols-3 gap-3 mb-2">
+            <dl class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+              <dt
+                class="w-8 h-8 rounded-full bg-orange-100 dark:bg-gray-500 text-orange-600 dark:text-orange-300 text-sm font-medium flex items-center justify-center mb-1">
+                12</dt>
+              <dd class="text-orange-600 dark:text-orange-300 text-sm font-medium">To do</dd>
+            </dl>
+            <dl class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+              <dt
+                class="w-8 h-8 rounded-full bg-teal-100 dark:bg-gray-500 text-teal-600 dark:text-teal-300 text-sm font-medium flex items-center justify-center mb-1">
+                23</dt>
+              <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium">In progress</dd>
+            </dl>
+            <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+              <dt
+                class="w-8 h-8 rounded-full bg-blue-100 dark:bg-gray-500 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1">
+                64</dt>
+              <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium">Done</dd>
+            </dl>
+          </div>
+          <button data-collapse-toggle="more-details" type="button"
+            class="hover:underline text-xs text-gray-500 dark:text-gray-400 font-medium inline-flex items-center">Show
+            more details <svg class="w-2 h-2 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+          <div id="more-details" class="border-gray-200 border-t dark:border-gray-600 pt-3 mt-3 space-y-2 hidden">
+            <dl class="flex items-center justify-between">
+              <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Average task completion rate:</dt>
+              <dd
+                class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
+                <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 10 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 13V1m0 0L1 5m4-4 4 4" />
+                </svg> 57%
+              </dd>
+            </dl>
+            <dl class="flex items-center justify-between">
+              <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Days until sprint ends:</dt>
+              <dd
+                class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-gray-600 dark:text-gray-300">
+                13 days</dd>
+            </dl>
+            <dl class="flex items-center justify-between">
+              <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Next meeting:</dt>
+              <dd
+                class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-gray-600 dark:text-gray-300">
+                Thursday</dd>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Radial Chart -->
+        <div class="py-6" id="radial-chart"></div>
+
+        <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+          <div class="flex justify-between items-center pt-5">
+            <!-- Button -->
+            <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom"
+              class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+              type="button">
+              Last 7 days
+              <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 4 4 4-4" />
+              </svg>
+            </button>
+            <div id="lastDaysdropdown"
+              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7
+                    days</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30
+                    days</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90
+                    days</a>
+                </li>
+              </ul>
+            </div>
+            <a href="#"
+              class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+              Progress report
+              <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 9 4-4-4-4" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-sm w-1/3 w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+
+        <div class="flex justify-between mb-3">
+          <div class="flex justify-center items-center">
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Website traffic</h5>
+            <svg data-popover-target="chart-info" data-popover-placement="bottom"
+              class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ms-1"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z" />
+            </svg>
+            <div data-popover id="chart-info" role="tooltip"
+              class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+              <div class="p-3 space-y-2">
+                <h3 class="font-semibold text-gray-900 dark:text-white">Activity growth - Incremental</h3>
+                <p>Report helps navigate cumulative growth of community activities. Ideally, the chart should have a
+                  growing trend, as stagnating chart signifies a significant decrease of community activity.</p>
+                <h3 class="font-semibold text-gray-900 dark:text-white">Calculation</h3>
+                <p>For each date bucket, the all-time volume of activities is calculated. This means that activities in
+                  period n contain all activities up to period n, plus the activities generated by your community in
+                  period.</p>
+                <a href="#"
+                  class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700 hover:underline">Read
+                  more <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m1 9 4-4-4-4" />
+                  </svg></a>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+          </div>
+          <div>
+            <button type="button" data-tooltip-target="data-tooltip" data-tooltip-placement="bottom"
+              class="hidden sm:inline-flex items-center justify-center text-gray-500 w-8 h-8 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"><svg
+                class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 16 18">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3" />
+              </svg><span class="sr-only">Download data</span>
+            </button>
+            <div id="data-tooltip" role="tooltip"
+              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+              Download CSV
+              <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex" id="devices">
+            <div class="flex items-center me-4">
+              <input id="desktop" type="checkbox" value="desktop"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="desktop" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desktop</label>
+            </div>
+            <div class="flex items-center me-4">
+              <input id="tablet" type="checkbox" value="tablet"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="tablet" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tablet</label>
+            </div>
+            <div class="flex items-center me-4">
+              <input id="mobile" type="checkbox" value="mobile"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="mobile" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mobile</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="py-6" id="donut-chart"></div>
+
+        <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+          <div class="flex justify-between items-center pt-5">
+            <!-- Button -->
+            <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom"
+              class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+              type="button">
+              Last 7 days
+              <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 4 4 4-4" />
+              </svg>
+            </button>
+            <div id="lastDaysdropdown"
+              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7
+                    days</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30
+                    days</a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90
+                    days</a>
+                </li>
+              </ul>
+            </div>
+            <a href="#"
+              class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+              Traffic analysis
+              <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 9 4-4-4-4" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="activeSection === 'createvenue'" class="flex justify-center mt-12 ">
+      <form #eventForm="ngForm"
+        class="w-[90%] p-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-5 mt-4 ml-5 text-2xl font-medium tracking-tight text-[#5a6acf] dark:text-white">Create a Venue
+        </h5>
+
+        <!-- Using grid for responsiveness: 1 item per row on mobile, 2 items per row on large screens -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
+
+          <!-- Venue ID -->
+          <div class="mb-2">
+            <label for="venue-id" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue ID</label>
+            <input id="venue-id" [(ngModel)]="venue.arenaVenueId_VenueCreation_Text" name="venueId"
+              #venueIdInput="ngModel" required
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. M2">
+              <div *ngIf="(venueIdInput.invalid && venueIdInput.touched) || (errorVenueCreation && !venue.arenaVenueId_VenueCreation_Text)" class="text-red-500 text-sm">
+                Venue ID is required
+              </div>
+          </div>
+
+          <!-- Venue Name -->
+          <div class="mb-2">
+            <label for="venue-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue
+              Name</label>
+            <input id="venue-name" [(ngModel)]="venue.arenaVenueName_VenueCreation_Text" name="venueName"
+              #venueNameInput="ngModel" required type="text"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. Auditorium M2">
+              <div *ngIf="(venueNameInput.invalid && venueNameInput.touched) || (errorVenueCreation && !venue.arenaVenueName_VenueCreation_Text)" class="text-red-500 text-sm">
+                Venue Name is required
+              </div>
+          </div>
+
+          <!-- Block -->
+          <div class="mb-2">
+            <label for="venue-block" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Block</label>
+            <input id="venue-block" [(ngModel)]="venue.arenaBlockName_VenueCreation_Text" name="block"
+              #blockInput="ngModel" required type="text"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Enter block">
+              <div *ngIf="(blockInput.invalid && blockInput.touched) || (errorVenueCreation && !venue.arenaBlockName_VenueCreation_Text)" class="text-red-500 text-sm">
+                Block is required
+              </div>
+          </div>
+
+          <!-- Seating Capacity -->
+          <div class="mb-2">
+            <label for="seating-capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seating
+              Capacity</label>
+            <input id="seating-capacity" [(ngModel)]="venue.arenaSeatingCapacityOfVenue_VenueCreation_Int"
+              name="seatingCapacity" #seatingCapacityInput="ngModel" required type="number"
+              (ngModelChange)="onSeatingCapacityChange($event)"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. 100">
+              <div *ngIf="(seatingCapacityInput.invalid && seatingCapacityInput.touched) || (errorVenueCreation && !venue.arenaSeatingCapacityOfVenue_VenueCreation_Int)" class="text-red-500 text-sm">
+                Seating Capacity is required
+              </div>
+          </div>
+
+          <!-- A/C -->
+          <div class="mb-2">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">A/C</label>
+            <div class="flex items-center space-x-4">
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="ac" [(ngModel)]="venue.arenaIsVenueAirConditionedOrNot_VenueCreation_Text" name="ac"
+                  #acInput="ngModel" required type="radio" value="A/C" class="ml-2 w-4 h-4 text-[#5a6acf]"
+                  aria-label="A/C">
+                <label for="ac"
+                  class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">A/C</label>
+              </div>
+
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="noac" [(ngModel)]="venue.arenaIsVenueAirConditionedOrNot_VenueCreation_Text" name="ac"
+                  #acInput="ngModel" required type="radio" value="Non A/C" class="ml-2 w-4 h-4 text-[#5a6acf]"
+                  aria-label="Non A/C">
+                <label for="noac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non
+                  A/C</label>
+              </div>
+            </div>
+            <div *ngIf="(acInput.invalid && acInput.touched) || (errorVenueCreation && !venue.arenaIsVenueAirConditionedOrNot_VenueCreation_Text)" class="text-red-500 text-sm">
+              Choose an Option
+            </div>
+          </div>
+
+          <!-- Permission for Auditorium -->
+          <div class="mb-2">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">Permission for Auditorium</label>
+            <div class="flex items-center space-x-4">
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="intreval" [(ngModel)]="venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_Text"
+                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="Required"
+                  class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
+                <label for="intreval"
+                  class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
+              </div>
+
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="nointreval" [(ngModel)]="venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_Text"
+                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="NotRequired"
+                  class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
+                <label for="nointreval"
+                  class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
+              </div>
+            </div>
+            <div *ngIf="(IntrevalInput.invalid && IntrevalInput.touched) || (errorVenueCreation && !venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_Text)" class="text-red-500 text-sm">
+              Choose an Option
+            </div>
+          </div>
+
+          <!-- Venue Location -->
+          <div class="mb-2">
+            <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue
+              Location</label>
+            <input id="venue-location" [(ngModel)]="venue.arenaVenueLocation_VenueCreation_Text" name="location"
+              #locationInput="ngModel" required type="text"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. Main Block 3rd Floor">
+              <div *ngIf="(locationInput.invalid && locationInput.touched) || (errorVenueCreation && !venue.arenaVenueLocation_VenueCreation_Text)" class="text-red-500 text-sm">
+                Venue Location is required
+              </div>
+          </div>
+
+          <!-- Venue Type Dropdown -->
+          <div class="mb-2">
+            <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+              Choose the type of Venue
+            </label>
+          
+            <button id="dropdownDefaultButton"
+              class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg"
+              type="button" (click)="setDropdown()">
+              {{ activeItem || 'Select Venue Type' }}
+              <svg *ngIf="!isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 14 8">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
+              </svg>
+          
+              <svg *ngIf="isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 14 8">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7" />
+              </svg>
+            </button>
+          
+            <div *ngIf="isDropdownOpen"
+              class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li><a (click)="setActiveItem('Auditorium')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a></li>
+                <li><a (click)="setActiveItem('Conference Hall')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                </li>
+                <li><a (click)="setActiveItem('Mini Auditorium')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                </li>
+                <li><a (click)="setActiveItem('Panel Room')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a></li>
+                <li><a (click)="setActiveItem('Quadrangle/Turf')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                </li>
+              </ul>
+            </div>
+          
+            <!-- Validation Message -->
+            <div *ngIf="errorVenueType" class="text-red-500 text-sm mt-1">
+              Venue Type is required
             </div>
 
-          </form>
-        </div>
-
-        <div *ngIf="activeSection === 'editvenue'" >
-          
-          <div class="mb-3 mt-24 mx-12 flex justify-between items-center">
-            <h3 [ngClass]="{'text-lg':isMobileScreen(), 'text-2xl':!isMobileScreen()}" class=" font-bold text-gray-800 dark:text-white text-left">All Venues</h3>
-
-            <div class="flex items-center space-x-2">
-              <input type="text" [(ngModel)]="searchText" (input)="filterVenues()"
-                placeholder="Search venues..." class="border p-2 rounded-md w-64" />
-            </div>
           </div>
 
-          <div *ngIf="!editpage" class="flex justify-left mt-12  m-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10" >
-            <app-all-venue-collection *ngFor="let venue of filteredVenues; let i = index"
-            [venueID]="venue.venueID"
-            [venueName]="venue.venueName"
-            [blockName]="venue.blockName"
-            [seatingCapacity]="venue.seatingCapacity"
-            [acStatus]="venue.acStatus"
-            [permissionRequired]="venue.permissionRequired"
-            [venueLocation]="venue.venueLocation"
-            [venueType]="venue.venueType"
-            [intrevalTiming]="venue.intrevalTiming"
-            [venueImage]="venue.venueImage"
-            [venueObjId]="venue.venueObjId"
-            [creationTimeStamp]="venue.creationTimeStamp"
-            (editBooking)="editBooking($event)"
-            ></app-all-venue-collection>
-          </div>
+          <div class="mb-2">
+            <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Upload
+              Picture</label>
 
-          <div *ngIf="editpage" class="flex justify-center mt-12 " >
-            <form #eventForm="ngForm" class="w-[90%] p-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mb-12">
-              <h5 class="mb-5 mt-4 ml-5 text-2xl font-medium tracking-tight text-[#5a6acf] dark:text-white">Edit Venue</h5>
-            
-              <!-- Using grid for responsiveness: 1 item per row on mobile, 2 items per row on large screens -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
-            
-                <!-- Venue ID -->
-                <div class="mb-2">
-                  <label for="venue-id" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue ID</label>
-                  <input id="venue-id" [(ngModel)]="venueID" name="venueId" #venueIdInput="ngModel" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. M2">
+            <!-- Card Container -->
+            <div class="w-full px-3 border my-2 border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex items-center justify-center w-full">
+                <!-- Logo Section (30%) -->
+                <div class="w-[30%] flex justify-center">
+                  <svg class="w-12 h-12 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                  </svg>
                 </div>
-            
-                <!-- Venue Name -->
-                <div class="mb-2">
-                  <label for="venue-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Name</label>
-                  <input id="venue-name" [(ngModel)]="venueName" name="venueName" #venueNameInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Auditorium M2">
-                </div>
-            
-                <!-- Block -->
-                <div class="mb-2">
-                  <label for="venue-block" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Block</label>
-                  <input id="venue-block" [(ngModel)]="blockName" name="block" #blockInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Enter block">
-                </div>
-            
-                <!-- Seating Capacity -->
-                <div class="mb-2">
-                  <label for="seating-capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seating Capacity</label>
-                  <input id="seating-capacity" [(ngModel)]="seatingCapacity" 
-                         name="seatingCapacity" #seatingCapacityInput="ngModel" required type="number"
-                         (ngModelChange)="onSeatingCapacityChange($event)"
-                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. 100">
-                </div>
-            
-                <!-- A/C -->
-                <div class="mb-2">
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">A/C</label>
-                  <div class="flex items-center space-x-4">
-                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                      <input id="ac" [(ngModel)]="acStatus" name="ac" #acInput="ngModel" required type="radio" value="A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="A/C">
-                      <label for="ac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">A/C</label>
-                    </div>
-            
-                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                      <input id="noac" [(ngModel)]="acStatus" name="ac" #acInput="ngModel" required type="radio" value="Non A/C" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Non A/C">
-                      <label for="noac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non A/C</label>
-                    </div>
-                  </div>
-                </div>
-            
-                <!-- Permission for Auditorium -->
-                <div class="mb-2">
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">Permission for Auditorium</label>
-                  <div class="flex items-center space-x-4">
-                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                      <input id="intreval" [(ngModel)]="permissionRequired" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="Required" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
-                      <label for="intreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
-                    </div>
-            
-                    <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
-                      <input id="nointreval" [(ngModel)]="permissionRequired" name="Intreval" #IntrevalInput="ngModel" required type="radio" value="NotRequired" class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
-                      <label for="nointreval" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
-                    </div>
-                  </div>
-                </div>
-            
-                <!-- Venue Location -->
-                <div class="mb-2">
-                  <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue Location</label>
-                  <input id="venue-location" [(ngModel)]="venueLocation" name="location" #locationInput="ngModel" required type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]" placeholder="Eg. Main Block 3rd Floor">
-                </div>
-            
-                <!-- Venue Type Dropdown -->
-                <div class="mb-2">
-                  <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Choose the type of Venue</label>
-                  <button 
-                    id="dropdownDefaultButton" 
-                    class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg"
-                    type="button" 
-                    (click)="setDropdown()">
-                    {{venueType}}
-                    <svg *ngIf="!isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
-                    </svg>
-            
-                    <svg *ngIf="isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
-                    </svg>
-                  </button>
-            
-                  <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                      <li><a (click)="setItemForEdit('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a></li>
-                      <li><a (click)="setItemForEdit('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a></li>
-                      <li><a (click)="setItemForEdit('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a></li>
-                      <li><a (click)="setItemForEdit('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a></li>
-                      <li><a (click)="setItemForEdit('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a></li>
-                      <li><a (click)="setItemForEdit('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a></li>
-                    </ul>
-                  </div>
-                </div>
-  
-                <div class="mb-2">
-                  <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Upload Picture</label>
-              
-                  <!-- Card Container -->
-                  <div class="w-full px-3 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
-                      <div class="flex items-center justify-center w-full">
-                          <!-- Logo Section (30%) -->
-                          <div class="w-[30%] flex justify-center">
-                              <svg class="w-12 h-12 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                              </svg>
-                          </div>
-                          <!-- Text Section (70%) -->
-                          <div class="w-full sm:w-[70%] flex flex-col items-center justify-center pt-3 pb-3 h-[80px]">
-                              <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                  <input id="dropzone-file" type="file" class="hidden" />
-                                  <p class="mb-2 text-[14px] text-gray-600">Select a file or drag and drop here</p>
-                                  <p class="text-center text-[12px] text-gray-500">PDF file size no more than 10MB</p>
-                              </label>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-
-                <div class="mb-2">
-                  <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Preview Picture</label>
-                  <img class="w-[270px] h-[180px] rounded-lg" src="../../../../assets/images/audi2.webp"/>
-                </div>
-              
-  
-              <div class="mb-2 mt-8">
-              </div>
-              
-              </div>
-  
-              <div *ngIf="errorVenueCreation" class="flex items-center p-4 mb-4 m-6 mt-6 text-blue-800 rounded-lg bg-blue-50 " role="alert">
-                <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Info</span>
-                <div class="ms-3 text-sm font-medium">
-                    Please fill in all the required fields to book your slot
-                </div>
-               </div>
-              
-              <div class="w-full text-center mt-4 mb-4">
-                <button 
-                  type="button" 
-                  (click)="eventForm.valid ? editVenue() : errorCreateVenue()"
-                  class="text-white bg-[#5a6acf] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-0 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 col-span-2 mx-auto">
-                  Add Venue
-                </button>
-              </div>
-  
-            </form>
-          </div>
-         
-        </div>
-
-        <div *ngIf="activeSection === 'slotbooking'" > 
-            <app-slotbooking></app-slotbooking>
-        </div>
-
-        <div *ngIf="activeSection === 'report'" class=" flex justify-center mt-16" >
-
-          <div *ngIf="!isMobileScreen()" class="w-[90%] h-[1200px] relative">
-            <div class="flex justify-between items-center p-2 bg-white p-6 border-b border-gray-300">
-
-              <div class="text-lg font-semibold text-gray-700">
-                Booking Details
-                  <span class="block bg-white text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-sm me-2 mt-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 mr-2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
-                    </svg>                  
-                    {{ reportDate | date: 'd MMM yyyy' }}
-                  </span>
-              </div>
-          
-              <div class="flex items-center gap-4">
-                <div class="relative max-w-sm">
-                  <input 
-                    id="date" 
-                    type="date" 
-                    class="peer bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-                    placeholder="Select date" 
-                    [(ngModel)]="reportDate"
-                    (change)="setDate($event)"
-                    style="height: 40px;" /> 
-                  <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                    Enter Date 
+                <!-- Text Section (70%) -->
+                <div class="w-full sm:w-[70%] flex flex-col items-center justify-center pt-3 pb-3 h-[80px]">
+                  <label for="dropzone-file"
+                    class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <input  [(ngModel)]="venue.arenaVenueImage_VenueCreation_Image" name="venueImage" #venueImageInput="ngModel" required id="dropzone-file" type="file"  (change)="onFileSelected($event)" class="hidden" accept="image/*" />
+                    <p class="mb-2 text-[12px] text-gray-600 font-bold ">{{selectedFileName}}</p>
+                    <p class="text-center text-[12px]  text-gray-500">PDF file size no more than 10MB</p>
                   </label>
                 </div>
-            
-                <button 
-                  (click)="downloadPDF()" 
-                  class="bg-[#061d35] text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                  Download Report
-                </button>
-              </div>
-          
-            </div>
-          
-            <!-- Ag-Grid Table -->
-            <ag-grid-angular
-              [rowData]="bookings"
-              [columnDefs]="colDefs"
-              [pagination]="true"
-              [paginationPageSize]="paginationPageSize"
-              [paginationPageSizeSelector]="paginationPageSizeSelector"
-              [rowSelection]="rowSelection"
-              [domLayout]="domLayout"
-              class="ag-theme-alpine w-full h-full"
-              (gridReady)="onGridReady($event)"
-              (selectionChanged)="onSelectionChanged()"
-              (paginationChanged)="onPaginationChanged()"
-              style="--ag-header-background-color: #061d35; --ag-header-foreground-color: white; --ag-header-font-weight: bold;">
-            </ag-grid-angular>
-
-          </div>
-          
-          <div *ngIf="isMobileScreen()" class="bg-white m-4 p-4">
-            <div  class="grid grid-rows-2 gap-2 text-gray-700">
-              <!-- First Line -->
-              <div class="grid grid-cols-5">
-                <div class="col-span-3 ">
-                  <div class="text-lg font-semibold text-gray-700">
-                    Booking Details  
-                  </div>
-                </div>
-                <div class="col-span-2 ">
-                  <span class="block bg-white text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-sm me-2 mt-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 mr-2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
-                    </svg>                  
-                    {{ reportDate | date: 'd MMM yyyy' }}
-                  </span>
-                </div>
-              </div>
-            
-              <!-- Second Line -->
-              <div class="grid grid-cols-4">
-                <div class="col-span-3 ">
-                  <div class="relative max-w-sm">
-                    <input 
-                      id="date" 
-                      type="date" 
-                      class="peer bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
-                      placeholder="Select date" 
-                      [(ngModel)]="reportDate"
-                      (change)="setDate($event)"
-                      style="height: 40px;" /> 
-                    <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                      Enter Date 
-                    </label>
-                  </div>
-                </div>
-                <div class="col-span-1 flex justify-center items-center">
-                  <button 
-                    (click)="downloadPDF()" 
-                    class="bg-[#061d35] text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                    </svg>
-                    
-                  </button>
-                </div>
               </div>
             </div>
+            <div *ngIf="(venueImageInput.invalid && venueImageInput.touched) || (errorVenueCreation && !venue.arenaVenueImage_VenueCreation_Image)" class="text-red-500 text-sm">
+              Select an Image 
+            </div>
+
           </div>
+
+
+          <div class="mb-2 mt-8">
+            <label class="inline-flex items-center cursor-pointer">
+              <input type="checkbox" [(ngModel)]="venue.arenaIntervalTiming_VenueCreation_Bool"
+                (change)="venue.arenaIntervalTiming_VenueCreation_Bool = !venue.arenaIntervalTiming_VenueCreation_Bool"
+                required class="sr-only peer">
+              <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Interval Timings</span>
+              <div
+                class="relative w-11 h-6 ml-2 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#5a6acf]">
+              </div>
+            </label>
+            <p class="ml-3 text-gray-500 text-sm mt-2">Toggle this if the venue timings is in break time (Eg.
+              Quadrangle)</p>
+          </div>
+
         </div>
 
-        <div *ngIf="activeSection === 'bulkbooking'" class="flex justify-center mt-6 p-4" >
-          <app-bulk-booking></app-bulk-booking>
+        <div class="w-full text-center mt-4 mb-4">
+          <button type="button" (click)="eventForm.valid ? createVenue() : errorCreateVenue()"
+            class="text-white bg-[#5a6acf] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-0 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 col-span-2 mx-auto">
+            Add Venue
+          </button>
         </div>
 
-        <div *ngIf="createVenueModal" 
-            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
-              <div class="relative p-4 w-full max-w-lg max-h-full"> 
-              
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                
-                  <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
-                    <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4"> 
-                    
-                    <div class="text-center"> 
-                      <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Venue Created Successfully !
-                      </h3>
-                      <p class="text-sm text-gray-600 dark:text-gray-300">
-                        {{venue.arenaVenueName_VenueCreation_text}} | {{venue.arenaVenueLocation_VenueCreation_text}}!
-                      </p>
-                    </div>
-                  </div>
-            
-                
-                  <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button (click)="closeCreateVenueModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                      Done
-                    </button>
-                  </div>
+      </form>
+    </div>
 
+    <div *ngIf="activeSection === 'editvenue'">
+
+      <div class="mb-3 mt-10 mx-12 flex justify-between items-center">
+        <h3 *ngIf="!editpage" [ngClass]="{'text-lg':isMobileScreen(), 'text-2xl':!isMobileScreen()}"
+          class=" font-bold text-gray-800 dark:text-white text-left">All Venues</h3>
+
+        <div class="flex items-center space-x-2">
+          <input *ngIf="!editpage" type="text" [(ngModel)]="searchText" (input)="filterVenues()"
+            placeholder="Search venues..." class="border p-2 rounded-md w-64" />
+        </div>
+      </div>
+
+      <div *ngIf="!editpage" class="flex justify-left mt-12  m-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <app-all-venue-collection *ngFor="let venue of filteredVenues; let i = index" [venueID]="venue.venueID"
+          [venueName]="venue.venueName" [blockName]="venue.blockName" [seatingCapacity]="venue.seatingCapacity"
+          [acStatus]="venue.acStatus" [permissionRequired]="venue.permissionRequired"
+          [venueLocation]="venue.venueLocation" [venueType]="venue.venueType" [intrevalTiming]="venue.intrevalTiming"
+          [venueImage]="venue.venueImage" [venueObjId]="venue.venueObjId" [creationTimeStamp]="venue.creationTimeStamp"
+          (editBooking)="editBooking($event)"></app-all-venue-collection>
+      </div>
+
+      <div *ngIf="editpage" class="flex justify-center mt-8 ">
+        
+        <form #eventForm="ngForm"
+        class="w-[90%] p-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div class="flex justify-between items-center px-5 mt-4 mb-4">
+          <h5 class="text-2xl font-medium tracking-tight text-[#5a6acf] dark:text-white">Edit Venue</h5>
+          <button *ngIf="editpage" (click)="closeEditPage()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+          </button>
+        </div>
+        <hr class="border-t border-black dark:border-gray-600 mb-8 mx-4">
+
+        <!-- Using grid for responsiveness: 1 item per row on mobile, 2 items per row on large screens -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
+
+          <!-- Venue ID -->
+          <div class="mb-2">
+            <label for="venue-id" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue ID</label>
+            <input id="venue-id" [(ngModel)]="venueID" name="venueId"
+              #venueIdInput="ngModel" required
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. M2">
+              <div *ngIf="(venueIdInput.invalid && venueIdInput.touched) || (errorVenueCreation && !venueID)" class="text-red-500 text-sm">
+                Venue ID is required
+              </div>
+          </div>
+
+          <!-- Venue Name -->
+          <div class="mb-2">
+            <label for="venue-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue
+              Name</label>
+            <input id="venue-name" [(ngModel)]="venueName" name="venueName"
+              #venueNameInput="ngModel" required type="text"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. Auditorium M2">
+              <div *ngIf="(venueNameInput.invalid && venueNameInput.touched) || (errorVenueCreation && !venueName)" class="text-red-500 text-sm">
+                Venue Name is required
+              </div>
+          </div>
+
+          <!-- Block -->
+          <div class="mb-2">
+            <label for="venue-block" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Block</label>
+            <input id="venue-block" [(ngModel)]="blockName" name="block"
+              #blockInput="ngModel" required type="text"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Enter block">
+              <div *ngIf="(blockInput.invalid && blockInput.touched) || (errorVenueCreation && !blockName)" class="text-red-500 text-sm">
+                Block is required
+              </div>
+          </div>
+
+          <!-- Seating Capacity -->
+          <div class="mb-2">
+            <label for="seating-capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seating
+              Capacity</label>
+            <input id="seating-capacity" [(ngModel)]="seatingCapacity"
+              name="seatingCapacity" #seatingCapacityInput="ngModel" required type="number"
+              (ngModelChange)="onSeatingCapacityChange($event)"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. 100">
+              <div *ngIf="(seatingCapacityInput.invalid && seatingCapacityInput.touched) || (errorVenueCreation && !seatingCapacity)" class="text-red-500 text-sm">
+                Seating Capacity is required
+              </div>
+          </div>
+
+          <!-- A/C -->
+          <div class="mb-2">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">A/C</label>
+            <div class="flex items-center space-x-4">
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="ac" [(ngModel)]="acStatus" name="ac"
+                  #acInput="ngModel" required type="radio" value="A/C" class="ml-2 w-4 h-4 text-[#5a6acf]"
+                  aria-label="A/C">
+                <label for="ac"
+                  class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">A/C</label>
+              </div>
+
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="noac" [(ngModel)]="acStatus" name="ac"
+                  #acInput="ngModel" required type="radio" value="Non A/C" class="ml-2 w-4 h-4 text-[#5a6acf]"
+                  aria-label="Non A/C">
+                <label for="noac" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non
+                  A/C</label>
+              </div>
+            </div>
+            <div *ngIf="(acInput.invalid && acInput.touched) || (errorVenueCreation && !acStatus)" class="text-red-500 text-sm">
+              Choose an Option
+            </div>
+          </div>
+
+          <!-- Permission for Auditorium -->
+          <div class="mb-2">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">Permission for Auditorium</label>
+            <div class="flex items-center space-x-4">
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="intreval" [(ngModel)]="permissionRequired"
+                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="Required"
+                  class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
+                <label for="intreval"
+                  class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
+              </div>
+
+              <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
+                <input id="nointreval" [(ngModel)]="permissionRequired"
+                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="NotRequired"
+                  class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
+                <label for="nointreval"
+                  class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
+              </div>
+            </div>
+            <div *ngIf="(IntrevalInput.invalid && IntrevalInput.touched) || (errorVenueCreation && !permissionRequired)" class="text-red-500 text-sm">
+              Choose an Option
+            </div>
+          </div>
+
+          <!-- Venue Location -->
+          <div class="mb-2">
+            <label for="venue-location" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Venue
+              Location</label>
+            <input id="venue-location" [(ngModel)]="venueLocation" name="location"
+              #locationInput="ngModel" required type="text"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600 placeholder:text-[13px]"
+              placeholder="Eg. Main Block 3rd Floor">
+              <div *ngIf="(locationInput.invalid && locationInput.touched) || (errorVenueCreation && !venueLocation)" class="text-red-500 text-sm">
+                Venue Location is required
+              </div>
+          </div>
+
+          <!-- Venue Type Dropdown -->
+          <div class="mb-2">
+            <label for="venue-type" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+              Choose the type of Venue
+            </label>
+          
+            <button id="dropdownDefaultButton"
+              class="text-gray-500 bg-white font-medium text-sm px-5 py-2.5 border-2 w-full text-center inline-flex items-center justify-between rounded-lg"
+              type="button" (click)="setDropdown()">
+              {{ venueType }}
+              <svg *ngIf="!isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 14 8">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
+              </svg>
+          
+              <svg *ngIf="isDropdownOpen" class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 14 8">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7" />
+              </svg>
+            </button>
+          
+            <div *ngIf="isDropdownOpen"
+              class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li><a (click)="setItemForEdit('Auditorium')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                </li>
+                <li><a (click)="setItemForEdit('Conference Hall')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference
+                    Hall</a></li>
+                <li><a (click)="setItemForEdit('Mini Auditorium')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini
+                    Auditorium</a></li>
+                <li><a (click)="setItemForEdit('Panel Room')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel
+                    Room</a></li>
+                <li><a (click)="setItemForEdit('Quadrangle/Turf')"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                </li>
+              </ul>
+            </div>
+         
+  
+
+          </div>
+
+          <div class="mb-2">
+            <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Upload
+              Picture</label>
+
+            <!-- Card Container -->
+            <div class="w-full px-3 border my-2 border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex items-center justify-center w-full">
+                <!-- Logo Section (30%) -->
+                <div class="w-[30%] flex justify-center">
+                  <svg class="w-12 h-12 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                  </svg>
+                </div>
+                <!-- Text Section (70%) -->
+                <div class="w-full sm:w-[70%] flex flex-col items-center justify-center pt-3 pb-3 h-[80px]">
+                  <label for="dropzone-file"
+                    class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <input  [(ngModel)]="venue.arenaVenueImage_VenueCreation_Image" name="venueImage" #venueImageInput="ngModel"  id="dropzone-file" type="file"  (change)="onFileSelected($event)" class="hidden" accept="image/*" />
+                    <p class="mb-2 text-[12px] text-gray-600 font-bold ">{{selectedFileName}}</p>
+                    <p class="text-center text-[12px]  text-gray-500">PDF file size no more than 10MB</p>
+                  </label>
                 </div>
               </div>
-        </div>
-
-        <div *ngIf="editVenueModal" 
-            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
-              <div class="relative p-4 w-full max-w-lg max-h-full"> 
-              
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                
-                  <div class="p-4 md:p-5 space-y-4 flex flex-col items-center"> 
-                    <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4"> 
-                    
-                    <div class="text-center"> 
-                      <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Venue Edited Successfully !
-                      </h3>
-                    </div>
-                  </div>
+            </div>
             
-                
-                  <div class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button (click)="setEditVenueModal()" data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                      Done
-                    </button>
-                  </div>
 
-                </div>
-              </div>
+          </div>
+
+          <div class="mb-2">
+            <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Preview
+              Picture</label>
+            <img class="w-[270px] h-[180px] rounded-lg" [src]="venueImagePath" />
+          </div>
+
         </div>
+
+        <hr class="border-t border-black dark:border-gray-600 mt-8 mb-8 mx-4">
+
+
+        <div class="w-full text-center mt-4 mb-4">
+          <button type="button" (click)="eventForm.valid ? editVenue() : errorCreateVenue()"
+            class="text-white bg-[#5a6acf] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-0 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 col-span-2 mx-auto">
+            Update Venue
+          </button>
+        </div>
+
+      </form>
+      </div>
+
+    </div>
+
+    <div *ngIf="activeSection === 'slotbooking'">
+      <app-slotbooking></app-slotbooking>
+    </div>
+
+    <div *ngIf="activeSection === 'report'" class=" flex justify-center mt-16">
+
+      <div *ngIf="!isMobileScreen()" class="w-[90%] h-[1200px] relative">
+
+        
+
+        <ul
+          class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+          <li class="me-1">
+            <button (click)="setReportHeader('booking')" 
+            [ngStyle]="{
+              'background-color': reportselector === 'booking' ? '#061d35' : '#dedede',
+              'color': reportselector === 'booking' ? 'white' : 'black'
+            }"
+            class="inline-block p-4 rounded-t-lg font-bold ">Booking Report</button>
+          </li>
+          <li class="me-1">
+            <button (click)="setReportHeader('cancel')" 
+            [ngStyle]="{
+              'background-color': reportselector === 'cancel' ? '#061d35' : '#dedede',
+              'color': reportselector === 'cancel' ? 'white' : 'black'
+            }"
+            class="inline-block p-4 rounded-t-lg font-bold ">Cancellation Report</button>
+          </li>
+        </ul>
+
+
+        <div *ngIf="reportselector == 'booking' " class="flex justify-between items-center p-2 bg-white p-6 border-b border-gray-300">
+
+          <div class="text-2xl font-semibold text-gray-700">
+            Booking Details
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="relative max-w-sm">
+              <input id="fromdate" type="date"
+                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+                placeholder="Select date" (change)="setStartDate($event)" style="height: 40px;" />
+              <label for="fromdate"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                From Date
+              </label>
+            </div>
+
+            <div class="relative max-w-sm">
+              <input id="todate" type="date"
+                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+                placeholder="Select date" (change)="setToDate($event)" style="height: 40px;" />
+              <label for="todate"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                To Date
+              </label>
+            </div>
+
+            <button  class="bg-[#061d35] text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+              </svg>
+
+            </button>
+          </div>
+
+        </div>
+
+        <div *ngIf="reportselector == 'cancel' " class="flex justify-between items-center p-2 bg-white p-6 border-b border-gray-300">
+
+          <div class="text-2xl font-semibold text-gray-700">
+            Cancellation Details
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="relative max-w-sm">
+              <input id="fromdate" type="date"
+                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+                placeholder="Select date" (change)="setStartDateCancellationReport($event)" style="height: 40px;" />
+              <label for="fromdate"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                From Date
+              </label>
+            </div>
+
+            <div class="relative max-w-sm">
+              <input id="todate" type="date"
+                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+                placeholder="Select date" (change)="setToDateCancellationReport($event)" style="height: 40px;" />
+              <label for="todate"
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                To Date
+              </label>
+            </div>
+
+            <button class="bg-[#061d35] text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+              </svg>
+
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Ag-Grid Table -->
+        <ag-grid-angular *ngIf="reportselector == 'booking' " [rowData]="bookings" [columnDefs]="colDefs" [pagination]="true"
+          [paginationPageSize]="paginationPageSize" [paginationPageSizeSelector]="paginationPageSizeSelector"
+          [rowSelection]="rowSelection" [domLayout]="'normal'" class="ag-theme-alpine w-full h-[700px]"
+          (gridReady)="onGridReady($event)" (selectionChanged)="onSelectionChanged()"
+          (paginationChanged)="onPaginationChanged()"
+          style="--ag-header-background-color: #061d35;--ag-header-text-color: white; --ag-header-foreground-color: white; --ag-header-font-weight: bold;  --ag-icon-color: white !important;">
+        </ag-grid-angular>
+
+        <ag-grid-angular *ngIf="reportselector == 'cancel' " [rowData]="cancelledBookings" [columnDefs]="CancelledcolDefs" [pagination]="true"
+        [paginationPageSize]="paginationPageSize" [paginationPageSizeSelector]="paginationPageSizeSelector"
+        [rowSelection]="rowSelection" [domLayout]="'normal'" class="ag-theme-alpine w-full h-[700px]"
+        (gridReady)="onGridReady($event)" (selectionChanged)="onSelectionChanged()"
+        (paginationChanged)="onPaginationChanged()"
+        style="--ag-header-background-color: #061d35;--ag-header-text-color: white; --ag-header-foreground-color: white; --ag-header-font-weight: bold;  --ag-icon-color: white !important;">
+      </ag-grid-angular>
+
+      </div>
+
+      <div *ngIf="isMobileScreen()" class="bg-white m-4 p-4">
+
+      </div>
+
+    </div>
+
+    <div *ngIf="activeSection === 'bulkbooking'" class="flex justify-center mt-6 p-4">
+      <app-bulk-booking></app-bulk-booking>
+    </div>
+
+    <div *ngIf="createVenueModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">
+      
+      <div class="relative p-4 w-full max-w-lg max-h-full">
+
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+          <div class="p-4 md:p-5 space-y-4 flex flex-col items-center">
+            <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4">
+
+            <div class="text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Venue Created Successfully !
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{venue.arenaVenueName_VenueCreation_Text}} | {{venue.arenaVenueLocation_VenueCreation_Text}}
+              </p>
+            </div>
+          </div>
+
+
+          <div
+            class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button (click)="closeCreateVenueModal()" data-modal-hide="default-modal" type="button"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Done
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="editVenueModal" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70">>
+      <div class="relative p-4 w-full max-w-lg max-h-full">
+
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+          <div class="p-4 md:p-5 space-y-4 flex flex-col items-center">
+            <img src="../../../assets/images/Sucess.png" alt="Success" class="mb-4">
+
+            <div class="text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Venue Edited Successfully !
+              </h3>
+            </div>
+          </div>
+
+
+          <div
+            class="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button (click)="setEditVenueModal()" data-modal-hide="default-modal" type="button"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Done
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
   </div>
 
 </div>
 
-<div *ngIf="isSidePanelOpen" [@slideIn] class="fixed md:hidden z-50 top-1/2 left-4 transform -translate-y-1/2 flex flex-col items-center space-y-3 bg-white border border-gray-200 rounded-full p-2 shadow-3xl dark:bg-gray-700 dark:border-gray-600">
+<div *ngIf="isSidePanelOpen" [@slideIn]
+  class="fixed md:hidden z-50 top-1/2 left-4 transform -translate-y-1/2 flex flex-col items-center space-y-3 bg-white border border-gray-200 rounded-full p-2 shadow-3xl dark:bg-gray-700 dark:border-gray-600">
   <div class="grid grid-cols-1 gap-8 py-6">
 
-      <button type="button" (click)="setActiveSection('dashboard'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center ">
-          <img src="../../../../assets/icons/dashboard.svg" class="w-5 h-5 mb-1 "/>
-      </button>
+    <button type="button" (click)="setActiveSection('dashboard'); toggleSidePanel()"
+      class="inline-flex flex-col items-center justify-center ">
+      <img src="../../../../assets/icons/dashboard.svg" class="w-5 h-5 mb-1 " />
+    </button>
 
-      <button type="button" (click)="setActiveSection('createvenue'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <img src="../../../../assets/icons/createvenue.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
-      </button>
+    <button type="button" (click)="setActiveSection('createvenue'); toggleSidePanel()"
+      class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <img src="../../../../assets/icons/createvenue.svg"
+        class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" />
+    </button>
 
-      <button type="button" (click)="setActiveSection('editvenue'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <img src="../../../../assets/icons/createvenue.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
-      </button>
+    <button type="button" (click)="setActiveSection('editvenue'); toggleSidePanel()"
+      class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <img src="../../../../assets/icons/createvenue.svg"
+        class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" />
+    </button>
 
-      <button type="button" (click)="setActiveSection('slotbooking'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <img src="../../../../assets/icons/dashboard.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
-      </button>
+    <button type="button" (click)="setActiveSection('slotbooking'); toggleSidePanel()"
+      class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <img src="../../../../assets/icons/dashboard.svg"
+        class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" />
+    </button>
 
-      <button type="button" (click)="setActiveSection('report'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <img src="../../../../assets/icons/report.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
-      </button>
+    <button type="button" (click)="setActiveSection('report'); toggleSidePanel()"
+      class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <img src="../../../../assets/icons/report.svg"
+        class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" />
+    </button>
 
-     <button type="button" (click)="setActiveSection('bulkbooking'); toggleSidePanel()" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-       <img src="../../../../assets/icons/slotbooking.svg" class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"/>
-     </button>
-   
+    <button type="button" (click)="setActiveSection('bulkbooking'); toggleSidePanel()"
+      class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <img src="../../../../assets/icons/slotbooking.svg"
+        class="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" />
+    </button>
+
   </div>
 </div>
 
-<button type="button"  (click)="toggleSidePanel()"
-        class="fixed md:hidden bottom-4 p-1 left-7 text-white bg-gray-300 shadow-lg font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center z-50 ">
-        <!-- <svg *ngIf="!isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+<button type="button" (click)="toggleSidePanel()"
+  class="fixed md:hidden bottom-4 p-1 left-7 text-white bg-gray-300 shadow-lg font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center z-50 ">
+  <!-- <svg *ngIf="!isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
         </svg> -->
-        <app-menu-animation></app-menu-animation>
-        <!-- <svg *ngIf="isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+  <app-menu-animation></app-menu-animation>
+  <!-- <svg *ngIf="isSidePanelOpen" class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v12m0 0 4-4m-4 4L1 9"/>
       </svg> -->
   <span class="sr-only">Icon description</span>
 </button>
-
-
-
-
-
-

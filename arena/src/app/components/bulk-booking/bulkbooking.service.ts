@@ -10,7 +10,7 @@ export class BulkbookingService {
   constructor(private http: HttpClient) { }
 
   getVenue(): Observable<any> {
-      return this.http.get('http://172.19.3.173:8089/kjusys-api/intern-project/venue-Book');
+      return this.http.get('http://172.18.0.59:8089/kjusys-api/intern-project/venue-Book');
     }
 
   bulkBooking(arenaEventName_UserBooking_Text:string, arenaBookedSlots_UserBooking_Array:[], arenaBulkBookingFromDate_BulkBooking_Date:string,
@@ -24,6 +24,6 @@ export class BulkbookingService {
         arena_VenueSpot_UserBooking_Text, arena_venueIdCounter_UserBooking_Text, arena_venueType_UserBooking_Text, arenaBulkBookingVenueObjectId_BulkBooking_Text
       }; 
 
-      return this.http.post('http://172.19.3.173:8089/kjusys-api/intern-project/bulk-Booking', body);
+      return this.http.post('http://172.18.0.59:8089/kjusys-api/intern-project/bulk-Booking', body);
   } 
 }

@@ -1,0 +1,4 @@
+::ng-deep .ag-theme-alpine .ag-header-cell:hover .ag-header-icon {
+    color: white !important; /* Changes sort/filter icons to white */
+    fill: white !important;  /* Ensures SVG icons turn white */
+  }

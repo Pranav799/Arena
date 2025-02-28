@@ -23,8 +23,8 @@ declare var flowbite: any;
 export class HomepageComponent implements OnInit {
 
 
-  activeItem: string = 'All Venues'; 
-  buttonName: string = 'Venue Type'; 
+  activeItem: string = 'All Venue'; 
+  buttonName: string = 'All Venue'; 
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   Date: Date | null = null;
   startDate: Date | null = null;
@@ -74,7 +74,7 @@ export class HomepageComponent implements OnInit {
   }
 
   landingtohome(){
-    if(this.dropdownSelected && this.dateSelected){
+    if(this.dateSelected){
     this.isLoading = true;
     this.requiredFieldError=false;
     this.dateSelected = false;
@@ -163,30 +163,32 @@ export class HomepageComponent implements OnInit {
     return window.innerWidth < 1054; 
   }
 
-  fetchVenue(selectedDate: string, activeItem: string): void {  
+  fetchVenue(selectedDate: string, activeItem: string): void { 
+    this.isSearching = true; 
     this.homepageService.getVenue(selectedDate, activeItem).subscribe(
       (response: any) => {
         console.log('API Response:', response);
         if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
           this.cards = response.responseData.data.map((venue: any) => ({
-            heading: venue.arenaVenueName_VenueCreation_text,
-            location: venue.arenaBlockName_VenueCreation_text,
-            capacity: venue.arenaSeatingCapacityOfVenue_VenueCreation_Integer,
-            acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_text,
+            heading: venue.arenaVenueName_VenueCreation_Text,
+            location: venue.arenaBlockName_VenueCreation_Text,
+            capacity: venue.arenaSeatingCapacityOfVenue_VenueCreation_Int,
+            acstatus: venue.arenaIsVenueAirConditionedOrNot_VenueCreation_Text,
             imagepath: venue.arenaVenueImage_VenueCreation_Image,
-            address: venue.arenaVenueLocation_VenueCreation_text,
-            venueId: venue.arenaVenueId_VenueCreation_text,
+            address: venue.arenaVenueLocation_VenueCreation_Text,
+            venueId: venue.arenaVenueId_VenueCreation_Text,
             venueObjID:venue._id,
-            typeOfVenue: venue.arenaTypeOfVenue_VenueCreation_text,
-            venueLocation: venue.arena_VenueSpot_UserBooking_Text,
+            typeOfVenue: venue.arenaTypeOfVenue_VenueCreation_Text,
+            venueLocation: venue.arenaVenueLocation_VenueCreation_Text,
             buttons: venue.arenaTimeslots_VenueCreation_Array,
-            selectedButtons: []
           }));
           console.log('Mapped Cards:', this.cards);
           this.isDataAvailable = true;
+          this.isSearching = false;
         } else {
           console.error('Invalid or empty API response:', response);
           this.cards = [];
+          this.isSearching = false;
           this.isDataAvailable = false;
         }
       },
@@ -204,7 +206,7 @@ export class HomepageComponent implements OnInit {
         console.log('API Response:', response);
         if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
           this.othersbookings = response.responseData.data.map((booking: any) => ({
-            userName: booking.arenaUsername_UserBooking_Text,
+            userName: booking.arenaBookedToUserName_UserBooking_Text,
             phoneNumber: booking.arena_UserPhoneNumber_UserBooking_Text,
             department: booking.arenaDepartmentName_UserBooking_Text,
             eventName: booking.arenaEventName_UserBooking_Text,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BulkbookingService } from './bulkbooking.service';
+import { BookingService } from '../parent-card/booking.service';
 
 @Component({
   selector: 'app-bulk-booking',
@@ -33,8 +34,10 @@ export class BulkBookingComponent {
   venueIdCounter:string='';
   venueType:string='';
   venueobjID:string='';
+  imageUrl:string='';
+  venueImage:string='';
 
-  constructor(private bulkbookingService: BulkbookingService)  {
+  constructor(private bulkbookingService: BulkbookingService, private bookingService: BookingService)  {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.tomorrowDate = tomorrow.toISOString().split('T')[0];
@@ -102,7 +105,7 @@ export class BulkBookingComponent {
     return `${day}/${month}/${year}`;
   }
 
-  selectVenue(venue: string, Slots:[], spot:string, venueID:string, type:string, objID:string ): void {
+  selectVenue(venue: string, Slots:[], spot:string, venueID:string, type:string, objID:string, image:string ): void {
     this.buttonName = venue; 
     this.bookedSlots = Slots;
     this.spotName = venue;
@@ -110,6 +113,8 @@ export class BulkBookingComponent {
     this.venueIdCounter= venueID;
     this.venueType= type;
     this.venueobjID = objID;
+    this.venueImage = image;
+    this.fetchImage(image);
     this.setDropdown();
 
   }
@@ -121,15 +126,15 @@ export class BulkBookingComponent {
         if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
           this.venues = response.responseData.data.map((venue: any) => ({
             bookedSlots: venue.arenaTimeslots_VenueCreation_Array.map((slot: Record<string, boolean>) => Object.keys(slot)[0]), 
-            spotName: venue.arenaVenueName_VenueCreation_text,
-            venueSpot: venue.arena_VenueSpot_UserBooking_Text,
-            venueId: venue.arenaVenueId_VenueCreation_text,
-            venueType: venue.arenaTypeOfVenue_VenueCreation_text,
+            spotName: venue.arenaVenueName_VenueCreation_Text,
+            venueSpot: venue.arenaBlockName_VenueCreation_Text,
+            venueId: venue.arenaVenueId_VenueCreation_Text,
+            venueType: venue.arenaTypeOfVenue_VenueCreation_Text,
             venueObjID:venue._id,
 
-            blockName: venue.arenaBlockName_VenueCreation_text,
+            blockName: venue.arenaBlockName_VenueCreation_Text,
             imagepath: venue.arenaVenueImage_VenueCreation_Image,
-            address: venue.arenaVenueLocation_VenueCreation_text,
+            address: venue.arenaVenueLocation_VenueCreation_Text,
             
           }));
           console.log('Mapped Cards:', this.venues);
@@ -184,6 +189,14 @@ export class BulkBookingComponent {
         venue.spotName.toLowerCase().startsWith(this.searchText.toLowerCase()) 
       );
     }
+  }
+
+  fetchImage(venueImage:string) {
+    this.bookingService.getImage(venueImage).subscribe(response => {
+      this.imageUrl = URL.createObjectURL(response);
+    }, error => {
+      console.error('Error fetching image:', error);
+    });
   }
 
 }

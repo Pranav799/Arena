@@ -151,55 +151,55 @@ export class BookingpageComponent implements OnInit {
               ? bookings.arenaCancelledSlots_UserBooking_Array
               : bookings.arenaBookedSlots_UserBooking_Array
           }));
-          console.log('Mapped Bookings:', this.bookings);
-          this.totalItems = this.bookings.length;
+          
+          this.filteredBookings = [...this.bookings]; // Keep original data
+          console.log("Filtered Bookings:", this.filteredBookings);
+          this.totalItems = this.filteredBookings.length;
           this.paginatedBookings = this.getPaginatedBookings();
         } else {
           console.error('Invalid or empty API response:', response);
           this.bookings = [];
+          this.filteredBookings = [];
         }
       },
       (error) => {
         console.error('Error fetching venue bookings:', error);
         this.bookings = [];
+        this.filteredBookings = [];
       }
     );
+}
+
+filterBookings(): void {
+  let filteredList = [...this.bookings]; // Always start filtering from the original data
+
+  // Apply status filter
+  if (this.filterItem && this.filterItem !== 'All') {
+    filteredList = filteredList.filter(booking => booking.status === this.filterItem);
   }
 
-  filterBookings(): void {
-    let filteredList = [...this.bookings]; 
+  // Apply date filter if both startDate and endDate are selected
+  if (this.startDate && this.endDate) {
+    filteredList = filteredList.filter(booking => {
+      const bookingDate = new Date(booking.eventDate); // Convert eventDate to Date object
 
-    if (this.searchTerm) {
-      filteredList = filteredList.filter(booking => 
-        booking.venue.toLowerCase().includes(this.searchTerm.toLowerCase()) // Filter based on venue
-      );
-    }
-
-    if (this.filterItem && this.filterItem !== 'All') {
-      filteredList = filteredList.filter(booking => booking.status === this.filterItem);
-    }
-
-    if (this.startDate && this.endDate) {
-      const start = new Date(this.startDate);
-      const end = new Date(this.endDate);
-      end.setHours(23, 59, 59, 999); 
-
-      filteredList = filteredList.filter(booking => {
-        const eventDate = new Date(booking.eventDate);
-        return eventDate >= start && eventDate <= end;
-      });
-    }
-
-    console.log('Filtered Bookings:', filteredList); 
-    this.totalItems = filteredList.length;
-    this.bookings = filteredList;
-    this.paginatedBookings = this.getPaginatedBookings();  // Update paginated bookings after filter
+      return bookingDate >= new Date(this.startDate) && bookingDate <= new Date(this.endDate);
+    });
   }
 
-  setFilterItem(filter: string): void {
-    this.filterItem = filter;
-    this.filterBookings();
-  }
+  console.log("✅ Filtered Bookings:", filteredList);
+
+  this.filteredBookings = filteredList;
+  this.totalItems = this.filteredBookings.length;
+  this.paginatedBookings = this.getPaginatedBookings(); // Ensure pagination updates
+}
+
+
+setFilterItem(filter: string): void {
+  console.log("Selected Filter:", filter);  // Debugging
+  this.filterItem = filter;
+  this.filterBookings();
+}
 
   setFilterDropdown(isOpen: boolean): void {
     this.isFilterDropdownOpen = isOpen;
@@ -208,11 +208,19 @@ export class BookingpageComponent implements OnInit {
   getPaginatedBookings(): Booking[] {
   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
   const endIndex = startIndex + this.itemsPerPage;
-  return this.bookings.slice(startIndex, endIndex);
+  return this.filteredBookings.slice(startIndex, endIndex);
 }
 
 onSearchChange(): void {
   this.filterBookings(); 
+}
+
+formatDate(date: Date | null): string {
+  if (!date) return ''; 
+  const day = date.getDate().toString().padStart(2, '0'); 
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
 }
 
 }

@@ -23,6 +23,9 @@ export class MyBookingComponent {
   reasonforCancelation:string = '';
   cancelBookingModal: boolean = false;
   sucessCancelBookingModal: boolean = false;
+  confirmCancelBookingModal: boolean = false;
+  showErrorMessage = false;
+  
 
   constructor(private bookingService: BookingService) {}
 
@@ -30,9 +33,15 @@ export class MyBookingComponent {
     this.cancelBookingModal = true
   }
 
+  closeModal(){
+    this.cancelBookingModal = false;
+    this.confirmCancelBookingModal = true;
+  }
+
   closeCancelBookingModal(){
-    this.cancelBookingModal = false
     this.cancelBooking(this.reasonforCancelation, this.username, this.userID, this.bookingid)
+    this.confirmCancelBookingModal = false;
+    this.cancelCompleted.emit(true);
   }
   
   opensucessCancelBookingModal(){
@@ -57,5 +66,6 @@ export class MyBookingComponent {
         }  
         );
   }
+
 
 }

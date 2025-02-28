@@ -40,15 +40,16 @@
                         <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
                           <li *ngFor="let venue of filteredVenues; let i = index">
                             <div class="flex items-center ps-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <a (click)="selectVenue(venue.spotName, venue.bookedSlots, venue.blockName, venue.venueId, venue.venueType, venue.venueObjID )" 
+                                <a (click)="selectVenue(venue.spotName, venue.bookedSlots, venue.blockName, venue.venueId, venue.venueType, venue.venueObjID, venue.imagepath )" 
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{venue.spotName}}</a>
                             </div>
                           </li>
                         </ul>
                     </div>
 
-                    <div class="relative flex-1 mt-6">
-                       <img src="../../../assets/images/audi4.jpg" class="w-[440px] h-[200px] rounded-2xl shadow-lg">
+                    <div class="relative flex-1 mt-6 ">
+                       <img *ngIf="imageUrl !== '' "  [src]="imageUrl" class="w-[440px] h-[200px] rounded-2xl shadow-lg">
+                       <img *ngIf="imageUrl == '' "  src="../../../assets/images/white.jpg" class="w-[440px] h-[200px]">
                     </div>
                         
                     </div>
