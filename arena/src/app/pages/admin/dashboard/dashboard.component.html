@@ -700,7 +700,7 @@
           [venueName]="venue.venueName" [blockName]="venue.blockName" [seatingCapacity]="venue.seatingCapacity"
           [acStatus]="venue.acStatus" [permissionRequired]="venue.permissionRequired"
           [venueLocation]="venue.venueLocation" [venueType]="venue.venueType" [intrevalTiming]="venue.intrevalTiming"
-          [venueImage]="venue.venueImage" [venueObjId]="venue.venueObjId" [creationTimeStamp]="venue.creationTimeStamp"
+          [venueImage]="venue.venueImage" [venueObjId]="venue.venueObjId" [creationTimeStamp]="venue.creationTimeStamp" [venueStatus]="venue.venueStatus"
           (editBooking)="editBooking($event)"></app-all-venue-collection>
       </div>
 
@@ -804,7 +804,7 @@
             <div class="flex items-center space-x-4">
               <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
                 <input id="intreval" [(ngModel)]="permissionRequired"
-                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="Required"
+                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="REQUIRED"
                   class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Required">
                 <label for="intreval"
                   class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Required</label>
@@ -812,7 +812,7 @@
 
               <div class="flex items-center w-1/2 border border-gray-200 rounded-lg dark:border-gray-700">
                 <input id="nointreval" [(ngModel)]="permissionRequired"
-                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="NotRequired"
+                  name="Intreval" #IntrevalInput="ngModel" required type="radio" value="NOTREQUIRED"
                   class="ml-2 w-4 h-4 text-[#5a6acf]" aria-label="Not Required">
                 <label for="nointreval"
                   class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not Required</label>
@@ -885,9 +885,10 @@
           </div>
 
           <div class="mb-2">
-            <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">Upload
-              Picture</label>
-
+            <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-4">
+              Upload Picture
+            </label>
+          
             <!-- Card Container -->
             <div class="w-full px-3 border my-2 border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
               <div class="flex items-center justify-center w-full">
@@ -899,19 +900,39 @@
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                   </svg>
                 </div>
+          
                 <!-- Text Section (70%) -->
                 <div class="w-full sm:w-[70%] flex flex-col items-center justify-center pt-3 pb-3 h-[80px]">
                   <label for="dropzone-file"
                     class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                    <input  [(ngModel)]="venue.arenaVenueImage_VenueCreation_Image" name="venueImage" #venueImageInput="ngModel"  id="dropzone-file" type="file"  (change)="onFileSelected($event)" class="hidden" accept="image/*" />
-                    <p class="mb-2 text-[12px] text-gray-600 font-bold ">{{selectedFileName}}</p>
-                    <p class="text-center text-[12px]  text-gray-500">PDF file size no more than 10MB</p>
+                    <input [(ngModel)]="venue.arenaVenueImage_VenueCreation_Image" name="venueImage" #venueImageInput="ngModel"
+                      id="dropzone-file" type="file" (change)="onFileSelected($event)" class="hidden" accept="image/*" />
+                    <p class="mb-2 text-[12px] text-gray-600 font-bold">{{selectedFileName}}</p>
+                    <p class="text-center text-[12px] text-gray-500">PDF file size no more than 10MB</p>
                   </label>
                 </div>
               </div>
             </div>
-            
-
+          
+            <!-- Button after image selection field -->
+            <div class="flex justify-left mt-3">
+              <div class="mb-2 mt-8">
+                <label class="inline-flex items-center cursor-pointer">
+                  <input type="checkbox" [(ngModel)]="venueStatus"
+                    (change)="venueStatus = !venueStatus"
+                    required class="sr-only peer">
+                  <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Auditorium Status</span>
+                  <div
+                  class="relative w-11 h-6 ml-2 bg-gray-200 peer-focus:outline-none rounded-full 
+                  peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full 
+                  peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] 
+                  after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full 
+                  after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#5a6acf]">
+                  </div>
+                </label>
+                <p class="ml-3 text-gray-500 text-sm mt-2">Toggle this off if you want to make the venue Inactive</p>
+              </div>
+            </div>
           </div>
 
           <div class="mb-2">
@@ -919,6 +940,7 @@
               Picture</label>
             <img class="w-[270px] h-[180px] rounded-lg" [src]="venueImagePath" />
           </div>
+
 
         </div>
 

@@ -20,6 +20,8 @@ export class ParentCardComponent implements OnInit {
   @Input() venueLocation: string = '';
   @Input() buttons: string[] = [];
   @Input() module: string = '';
+  @Input() permissionRequired: string = '';
+
   @Input() selectedDate: Date | null = null;
 
   userID: string = "20cs1a4198";

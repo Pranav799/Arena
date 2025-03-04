@@ -18,15 +18,39 @@
         <div class="section p-2 bg-white text-left ">
           <p class="text-black text-[14px] font-bold dark:text-[2px] ml-0">Booking ID : {{bookingid}}</p>
         </div>
-        <div class="section p-2 bg-white text-center ">
+        <div class="section p-2 bg-white text-center flex justify-end items-center">
           <button 
-                  *ngIf="status == 'Scheduled'" 
-                  type="button" 
-                  (click)="openCancelBookingModal()"
-                  class="text-red-700 bg-red-200 hover:text-black focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                  Cancel Booking
-              </button>
-        </div>
+              *ngIf="status == 'SCHEDULED'" 
+              type="button" 
+              (click)="openCancelBookingModal()"
+              class="text-red-700 bg-red-200 hover:text-black focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+              Cancel Booking
+          </button>
+        
+          <button *ngIf="status == 'CANCELLED'" (mouseenter)="openInfo()" (mouseleave)="openInfo()"  type="button"
+            class="text-blue bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+            </svg>            
+          </button>
+
+
+          <div *ngIf="info"
+            class="absolute z-10  inline-block w-64 text-sm text-gray-500  bg-white border border-black rounded-lg shadow-xs ">
+            <div class="px-3 py-2 bg-red-700 flex justify-between border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+              <h3 class="font-semibold text-white ">Cancellation Details </h3>
+            </div>
+            <div class="px-3 py-2">
+              
+              <p class="text-left"><span class="font-bold text-black">Cancelled By : </span>{{cancelledBy}}</p>
+              <p class="text-left"><span class="font-bold text-black">Cancelled Date : </span>{{ cancelledDate | date:'dd/MM/yyyy' }}</p>
+              <p class="text-left"><span class="font-bold text-black">Cancelled Reason : </span>{{cancelledReason}}</p>
+
+
+            </div>
+          </div>
+
+      </div>
       </div>
 
       
@@ -43,19 +67,19 @@
           <p class="text-black text-sm"><span class="font-bold">Event Date :</span> {{eventdate | date: 'd MMM yyyy'}}</p>
         </div>
         <div class="section p-2 bg-white text-center ">
-          <ng-container *ngIf="status === 'Scheduled'; else otherStatuses"><p class="text-black text-sm">Status:
+          <ng-container *ngIf="status === 'SCHEDULED'; else otherStatuses"><p class="text-black text-sm">Status:
               <span class="text-yellow-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded">
                   Scheduled
               </span> </p>
               
           </ng-container>
           <ng-template #otherStatuses>
-              <ng-container *ngIf="status === 'Completed'"><p class="text-black text-sm">Status:
+              <ng-container *ngIf="status === 'COMPLETED'"><p class="text-black text-sm">Status:
                   <span class=" text-green-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                       Completed
                   </span></p>
               </ng-container>
-              <ng-container *ngIf="status === 'Cancelled'"><p class="text-black text-sm">Status:
+              <ng-container *ngIf="status === 'CANCELLED'"><p class="text-black text-sm">Status:
                   <span class=" text-red-500 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
                       Cancelled
                   </span></p>

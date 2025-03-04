@@ -29,22 +29,22 @@
               <div *ngIf="isDropdownOpen" class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2" style="min-width: 150px;">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                   <li>
-                    <a (click)="selectVenue('All Venue')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All Venue</a>
+                    <a (click)="selectVenue('ALL VENUES')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">ALL VENUE</a>
                   </li>
                   <li>
-                    <a (click)="selectVenue('Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Auditorium</a>
+                    <a (click)="selectVenue('AUDITORIUM')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">AUDITORIUM</a>
                   </li>
                   <li>
-                    <a (click)="selectVenue('Conference Hall')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conference Hall</a>
+                    <a (click)="selectVenue('CONFERENCE HALL')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">CONFERENCE HALL</a>
                   </li>
                   <li>
-                    <a (click)="selectVenue('Mini Auditorium')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mini Auditorium</a>
+                    <a (click)="selectVenue('MINI AUDITORIUM')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">MINI AUDITORIUM</a>
                   </li>
                   <li>
-                    <a (click)="selectVenue('Panel Room')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Panel Room</a>
+                    <a (click)="selectVenue('PANEL ROOM')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PANEL ROOM</a>
                   </li>
                   <li>
-                    <a (click)="selectVenue('Quadrangle/Turf')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Quadrangle/Turf</a>
+                    <a (click)="selectVenue('QUADRANGLE/TURF')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">QUADRANGLE/TURF</a>
                   </li>
                 </ul>
               </div>
@@ -61,7 +61,7 @@
                     class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
                     placeholder="Select date" 
                     (change)="onDateChange($event)"
-                    [min]="tomorrowDate"
+                    [min]="todayDate"
                     [value]="selectedDate ? selectedDate.toISOString().split('T')[0] : ''" 
                     style="height: 40px;" /> 
                     <label for="date" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date </label>

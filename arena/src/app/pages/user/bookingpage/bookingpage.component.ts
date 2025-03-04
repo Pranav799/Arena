@@ -11,6 +11,10 @@ interface Booking {
   eventDate: Date;
   bookingDate: Date;
   timeSlots: string[]; 
+  cancelledBy: string; 
+  cancelledDate: Date; 
+  cancelledReason: string; 
+ 
 }
 
 @Component({
@@ -147,6 +151,9 @@ export class BookingpageComponent implements OnInit {
             status: bookings.arenaStatus_UserBoooking_Text, 
             eventDate: new Date(bookings.arenaEventDate_UserBooking_Date), 
             bookingDate: new Date(bookings.arenaBookingDateAndTime_UserBooking_DateTime),
+            cancelledBy: bookings.arena_CancelledBy_UserBooking_Text, 
+            cancelledDate:new Date(bookings.arenaCancelledBookingTimestamp_UserBooking_DateTime),
+            cancelledReason: bookings.arenaCancelledBookingReason_UserBooking_text, 
             timeSlots: bookings.arenaStatus_UserBoooking_Text === "Cancelled"
               ? bookings.arenaCancelledSlots_UserBooking_Array
               : bookings.arenaBookedSlots_UserBooking_Array
@@ -212,7 +219,17 @@ setFilterItem(filter: string): void {
 }
 
 onSearchChange(): void {
-  this.filterBookings(); 
+  console.log(this.searchTerm );
+  if (!this.searchTerm) {
+    this.paginatedBookings = [...this.filteredBookings]; // If search is empty, show all bookings
+  } else {
+    this.paginatedBookings = this.filteredBookings.filter(booking =>
+      booking.eventname.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      booking.venue.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+  console.log("Exiting");
+
 }
 
 formatDate(date: Date | null): string {

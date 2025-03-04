@@ -23,8 +23,8 @@ declare var flowbite: any;
 export class HomepageComponent implements OnInit {
 
 
-  activeItem: string = 'All Venue'; 
-  buttonName: string = 'All Venue'; 
+  activeItem: string = 'ALL VENUES'; 
+  buttonName: string = 'ALL VENUES'; 
   selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
   Date: Date | null = null;
   startDate: Date | null = null;
@@ -181,6 +181,7 @@ export class HomepageComponent implements OnInit {
             typeOfVenue: venue.arenaTypeOfVenue_VenueCreation_Text,
             venueLocation: venue.arenaVenueLocation_VenueCreation_Text,
             buttons: venue.arenaTimeslots_VenueCreation_Array,
+            permissionRequired:venue.arenaIsPermissionRequiredForAuditorium_VenueCreation_Text
           }));
           console.log('Mapped Cards:', this.cards);
           this.isDataAvailable = true;

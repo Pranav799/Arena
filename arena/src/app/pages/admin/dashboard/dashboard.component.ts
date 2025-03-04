@@ -63,7 +63,7 @@ export class DashboardComponent {
     arenaVenueLocation_VenueCreation_Text: '',
     arenaTypeOfVenue_VenueCreation_Text: '',
     arenaIntervalTiming_VenueCreation_Bool: false,
-    arenaVenueImage_VenueCreation_Image: null
+    arenaVenueImage_VenueCreation_Image: null,
   };
 
   myTheme: any;
@@ -104,6 +104,7 @@ export class DashboardComponent {
   venueObjId: string = '';
   creationTimeStamp: string = '';
   venueImagePath: string = '';
+  venueStatus: boolean = false;
   reportselector: string = 'booking';
 
   uploadMessage: string = '';
@@ -225,6 +226,9 @@ triggerFunctionCancellationReport() {
     { headerName: 'EVENT NAME ', field: 'eventName', sortable: true, filter: true, editable: false },
     { headerName: 'RESOURCE PERSON ', field: 'resourcePerson', sortable: true, filter: true, editable: false },
     { headerName: 'EVENT TIMINGS ', field: 'eventTimings', sortable: true, filter: true, editable: false, wrapText: true, autoHeight: true, width: 400 }, 
+    { headerName: 'ADDITIONAL REQUIREMENTS ', field: 'additionalRequirements', sortable: true, filter: true, editable: false, wrapText: true, autoHeight: true, width: 300 },
+    { headerName: 'EXTRA REQUIREMENTS ', field: 'extraRequirements', sortable: true, filter: true, editable: false, wrapText: true, autoHeight: true, width: 300 }, 
+
   ];
 
   CancelledcolDefs: ColDef[] = [
@@ -401,7 +405,8 @@ triggerFunctionCancellationReport() {
         this.intrevalTiming,
         this.venueImage,
         this.venueObjId,
-        this.creationTimeStamp);
+        this.creationTimeStamp,
+      this.venueStatus);
     }else{
       this.editCreatedVenueWithImage(this.venueID,
         this.venueName,
@@ -414,7 +419,9 @@ triggerFunctionCancellationReport() {
         this.intrevalTiming,
         this.venue.arenaVenueImage_VenueCreation_Image,
         this.venueObjId,
-        this.convertMillisToDateTimeString(this.creationTimeStamp));
+        this.convertMillisToDateTimeString(this.creationTimeStamp),
+        this.venueStatus.toString()
+        );
     }
     
     console.log("fetchvenue is running")
@@ -467,6 +474,7 @@ triggerFunctionCancellationReport() {
             venueImage: venue.arenaVenueImage_VenueCreation_Image,
             venueObjId:venue._id,
             creationTimeStamp:venue.arenaVenueCreationTimeStamp_VenueCreation_DateTime,
+            venueStatus:venue.arenaVenueStatus_VenueCreation_Bool,
           }));
           console.log('Mapped Cards:', this.venues);
           this.filteredVenues = [...this.venues]
@@ -491,9 +499,9 @@ triggerFunctionCancellationReport() {
       this.filteredVenues = [...this.venues]; // If search is empty, show all venues
     } else {
       this.filteredVenues = this.venues.filter(venue =>
-        venue.venueName.toLowerCase().startsWith(this.searchText.toLowerCase()) ||
-        venue.blockName.toLowerCase().startsWith(this.searchText.toLowerCase()) ||
-        venue.venueLocation.toLowerCase().startsWith(this.searchText.toLowerCase())
+        venue.venueName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        venue.blockName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        venue.venueLocation.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
   }
@@ -509,11 +517,12 @@ triggerFunctionCancellationReport() {
     aernaIntervalTiming_VenueCreation_boolean: boolean,
     arenaVenueImage_VenueCreation_Image:string,
     arena_VenueObjectId_UpdateVenue_Text:string,
-    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string): void {  
+    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string,
+    arenaVenueStatus_VenueCreation_Bool:boolean): void {  
     this.dashboardService.editVenue(arenaVenueId_VenueCreation_text, arenaVenueName_VenueCreation_text, arenaBlockName_VenueCreation_text,
       arenaSeatingCapacityOfVenue_VenueCreation_Integer, arenaIsVenueAirConditionedOrNot_VenueCreation_text, arenaIsPermissionRequiredForAuditorium_VenueCreation_text, arenaVenueLocation_VenueCreation_text,
       arenaTypeOfVenue_VenueCreation_text, aernaIntervalTiming_VenueCreation_boolean, arenaVenueImage_VenueCreation_Image,
-      arena_VenueObjectId_UpdateVenue_Text, arenaVenueCreationTimeStamp_VenueCreation_DateTime).subscribe(
+      arena_VenueObjectId_UpdateVenue_Text, arenaVenueCreationTimeStamp_VenueCreation_DateTime, arenaVenueStatus_VenueCreation_Bool).subscribe(
       (response: any) => {
         console.log('API Response:', response);
         if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
@@ -539,11 +548,12 @@ triggerFunctionCancellationReport() {
     aernaIntervalTiming_VenueCreation_boolean: boolean,
     arenaVenueImage_VenueCreation_Image:File,
     arena_VenueObjectId_UpdateVenue_Text:string,
-    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string): void {  
+    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string,
+    arenaVenueStatus_VenueCreation_Bool: string): void {  
     this.dashboardService.editVenueWithImage(arenaVenueId_VenueCreation_text, arenaVenueName_VenueCreation_text, arenaBlockName_VenueCreation_text,
       arenaSeatingCapacityOfVenue_VenueCreation_Integer, arenaIsVenueAirConditionedOrNot_VenueCreation_text, arenaIsPermissionRequiredForAuditorium_VenueCreation_text, arenaVenueLocation_VenueCreation_text,
       arenaTypeOfVenue_VenueCreation_text, aernaIntervalTiming_VenueCreation_boolean, arenaVenueImage_VenueCreation_Image,
-      arena_VenueObjectId_UpdateVenue_Text, arenaVenueCreationTimeStamp_VenueCreation_DateTime).subscribe(
+      arena_VenueObjectId_UpdateVenue_Text, arenaVenueCreationTimeStamp_VenueCreation_DateTime, arenaVenueStatus_VenueCreation_Bool).subscribe(
       (response: any) => {
         console.log('API Response:', response);
         if (response?.statusCode === 200 && response?.responseData?.data?.length > 0) {
@@ -575,7 +585,8 @@ triggerFunctionCancellationReport() {
     venueImage: string;
     venueObjId: string;
     creationTimeStamp: string;
-    venueImagePath: string}){
+    venueImagePath: string;
+    venueStatus: boolean}){
         this.editpage=true;
         this.venueID=event.venueID;
         this.venueName=event.venueName;
@@ -590,6 +601,7 @@ triggerFunctionCancellationReport() {
         this.venueObjId=event.venueObjId;
         this.creationTimeStamp=event.creationTimeStamp;
         this.venueImagePath = event.venueImagePath;
+        this.venueStatus = event.venueStatus;
   }
 
   getBookings(fromDate: string, toDate: string): void {  
@@ -606,6 +618,8 @@ triggerFunctionCancellationReport() {
             eventName: booking.arenaEventName_UserBooking_Text,
             resourcePerson: booking.arenaResourcePerson_UserBooking_Text,
             eventTimings: booking.arenaBookedSlots_UserBooking_Array,
+            additionalRequirements: booking.arenaAdditionalRequirements_UserBooking_TextArray,
+            extraRequirements: booking.arenaExtraRequirements_UserBooking_text,
           }));
           console.log('Mapped Cards:', this.bookings);
 
@@ -685,6 +699,9 @@ triggerFunctionCancellationReport() {
 
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
+
+
+
 
 
 

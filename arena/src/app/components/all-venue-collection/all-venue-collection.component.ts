@@ -20,6 +20,9 @@ export class AllVenueCollectionComponent implements OnInit {
   @Input() venueImage: string = '';
   @Input() venueObjId: string = '';
   @Input() creationTimeStamp: string = '';
+  @Input() venueStatus: boolean = false;
+  
+
   
   @Output() editBooking: EventEmitter<{ 
     venueID: string;
@@ -35,6 +38,8 @@ export class AllVenueCollectionComponent implements OnInit {
     venueObjId: string;
     creationTimeStamp: string;
     venueImagePath: string;
+    venueStatus: boolean,
+
 
   }> = new EventEmitter();
   
@@ -50,11 +55,13 @@ export class AllVenueCollectionComponent implements OnInit {
     venueImage: string,
     venueObjId: string,
     creationTimeStamp: string,
-    venueImagePath: string) {
+    venueImagePath: string,
+    venueStatus: boolean
+  ) {
     this.editBooking.emit({
       venueID, venueName, blockName, seatingCapacity, acStatus,
       permissionRequired, venueLocation, venueType, intrevalTiming,
-      venueImage, venueObjId, creationTimeStamp, venueImagePath
+      venueImage, venueObjId, creationTimeStamp, venueImagePath, venueStatus
     })
   }
 

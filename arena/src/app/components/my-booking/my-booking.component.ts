@@ -15,6 +15,10 @@ export class MyBookingComponent {
   @Input() address : string = '';
   @Input() venue : string = '';
   @Input() status : string = '';
+  @Input() cancelledBy : string = '';
+  @Input() cancelledDate : Date = new Date();
+  @Input() cancelledReason : string = '';
+
   @Input() timeSlots: string[] = [];
   @Output() cancelCompleted: EventEmitter<boolean> = new EventEmitter();
   
@@ -25,6 +29,8 @@ export class MyBookingComponent {
   sucessCancelBookingModal: boolean = false;
   confirmCancelBookingModal: boolean = false;
   showErrorMessage = false;
+  info: boolean = false;
+
   
 
   constructor(private bookingService: BookingService) {}
@@ -65,6 +71,10 @@ export class MyBookingComponent {
           console.log(error)
         }  
         );
+  }
+
+  openInfo(){
+    this.info = !this.info;
   }
 
 

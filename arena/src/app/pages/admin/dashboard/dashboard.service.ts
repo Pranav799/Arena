@@ -36,11 +36,12 @@ export class DashboardService {
     arenaIntervalTiming_VenueCreation_Bool: boolean,
     arenaVenueImage_VenueCreation_Image:string,
     arenaVenueObjectId_UpdateVenue_ObjectId:string,
-    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string): Observable<any> {
+    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string,
+    arenaVenueStatus_VenueCreation_Bool:boolean): Observable<any> {
     const body = { arenaVenueId_VenueCreation_Text, arenaVenueName_VenueCreation_Text, arenaBlockName_VenueCreation_Text,
       arenaSeatingCapacityOfVenue_VenueCreation_Int, arenaIsVenueAirConditionedOrNot_VenueCreation_Text, arenaIsPermissionRequiredForAuditorium_VenueCreation_Text, arenaIntervalTiming_VenueCreation_Bool,
       arenaVenueLocation_VenueCreation_Text, arenaTypeOfVenue_VenueCreation_Text, arenaVenueImage_VenueCreation_Image,
-      arenaVenueObjectId_UpdateVenue_ObjectId, arenaVenueCreationTimeStamp_VenueCreation_DateTime
+      arenaVenueObjectId_UpdateVenue_ObjectId, arenaVenueCreationTimeStamp_VenueCreation_DateTime, arenaVenueStatus_VenueCreation_Bool
      }; 
     return this.http.post('http://172.18.0.59:8089/kjusys-api/intern-project/update-Venues', body);
   }
@@ -57,7 +58,8 @@ export class DashboardService {
     arenaIntervalTiming_VenueCreation_Bool: boolean,
     arenaVenueImage_VenueCreation_Image: File,
     arenaVenueObjectId_UpdateVenue_ObjectId: string,
-    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string
+    arenaVenueCreationTimeStamp_VenueCreation_DateTime: string,
+    arenaVenueStatus_VenueCreation_Bool:string
   ): Observable<any> {
     const formData = new FormData();
     formData.append("arenaVenueId_VenueCreation_Text", arenaVenueId_VenueCreation_Text);
@@ -71,6 +73,7 @@ export class DashboardService {
     formData.append("arenaIntervalTiming_VenueCreation_Bool", arenaIntervalTiming_VenueCreation_Bool.toString());
     formData.append("arenaVenueObjectId_UpdateVenue_ObjectId", arenaVenueObjectId_UpdateVenue_ObjectId);
     formData.append("arenaVenueCreationTimeStamp_VenueCreation_DateTime", arenaVenueCreationTimeStamp_VenueCreation_DateTime);
+    formData.append("arenaVenueStatus_VenueCreation_Bool", arenaVenueStatus_VenueCreation_Bool);
     formData.append("arenaVenueImage_VenueCreation_Image", arenaVenueImage_VenueCreation_Image);
     return this.http.post('http://172.18.0.59:8089/kjusys-api/intern-project/edit-Venue', formData);
   }

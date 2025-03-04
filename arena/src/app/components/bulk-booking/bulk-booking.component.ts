@@ -74,7 +74,7 @@ export class BulkBookingComponent {
 
   openSucessBookingModal(){
     console.log("function Triggered");
-    this.bulkBook(this.eventName, this.bookedSlots, this.startDate, this.endDate, this.userID, this.userName, this.spotName, this.venueSpot, this.venueIdCounter, this.venueType, this.venueobjID);
+    this.bulkBook(this.eventName, this.bookedSlots, this.startDate, this.endDate, this.userID, this.userName, this.spotName, this.venueSpot, this.venueIdCounter, this.venueType, this.venueobjID, this.userID, this.userName );
   }
 
   setStartDate(event: Event): void {
@@ -157,11 +157,13 @@ export class BulkBookingComponent {
   bulkBook(arenaEventName_UserBooking_Text:string, arenaBookedSlots_UserBooking_Array:[], arenaBulkBookingFromDate_BulkBooking_Date:string,
     arenaBulkBookingToDate_BulkBooking_Date:string, arenaUserId_UserBooking_Text:string, arenaUsername_UserBooking_Text:string,
     arena_SpotName_UserBooking_Text:string, arena_VenueSpot_UserBooking_Text:string, arena_venueIdCounter_UserBooking_Text:string,
-    arena_venueType_UserBooking_Text:string, arenaBulkBookingVenueObjectId_BulkBooking_Text:string){
+    arena_venueType_UserBooking_Text:string, arenaBulkBookingVenueObjectId_BulkBooking_Text:string, arenaBookedToUserId_UserBooking_Text:string, 
+    arenaBookedToUserName_UserBooking_Text:string){
 
       this.bulkbookingService.bulkBooking(arenaEventName_UserBooking_Text, arenaBookedSlots_UserBooking_Array, arenaBulkBookingFromDate_BulkBooking_Date,
         arenaBulkBookingToDate_BulkBooking_Date, arenaUserId_UserBooking_Text, arenaUsername_UserBooking_Text, arena_SpotName_UserBooking_Text,
-        arena_VenueSpot_UserBooking_Text, arena_venueIdCounter_UserBooking_Text, arena_venueType_UserBooking_Text, arenaBulkBookingVenueObjectId_BulkBooking_Text).subscribe(
+        arena_VenueSpot_UserBooking_Text, arena_venueIdCounter_UserBooking_Text, arena_venueType_UserBooking_Text, arenaBulkBookingVenueObjectId_BulkBooking_Text,
+        arenaBookedToUserId_UserBooking_Text, arenaBookedToUserName_UserBooking_Text).subscribe(
           (response: any) => {
             // console.log("hi hello"+response);
     

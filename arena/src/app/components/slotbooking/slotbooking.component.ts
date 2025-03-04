@@ -10,9 +10,9 @@ import { HomepageService } from 'src/app/pages/user/homepage/homepage.service';
 })
 export class SlotbookingComponent implements OnInit {
 
-    activeItem: string = 'All Venue'; 
-    buttonName: string = 'All Venue'; 
-    selectedDate: Date = new Date(new Date().setDate(new Date().getDate() + 1));
+    activeItem: string = 'ALL VENUES'; 
+    buttonName: string = 'ALL VENUES'; 
+    selectedDate: Date = new Date(new Date().setDate(new Date().getDate()));
     Date: Date | null = null;
     startDate: Date | null = null;
     endDate: Date | null = null;
@@ -26,6 +26,7 @@ export class SlotbookingComponent implements OnInit {
     requiredFieldError:boolean = false;
     isDataAvailable: boolean = false;
     othersBookings: boolean = false;
+    todayDate: string = new Date().toISOString().split('T')[0];
   
     
     ngOnInit(): void {
